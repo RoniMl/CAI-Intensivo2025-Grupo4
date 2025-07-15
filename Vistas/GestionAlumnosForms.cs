@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CAI_Intensivo2025_Grupo4.Vistas
 {
-    public partial class InicioSesion : System.Windows.Forms.Form
+    public partial class GestionAlumnosForms : Form
     {
-        public InicioSesion()
+        public GestionAlumnosForms()
         {
             InitializeComponent();
         }
