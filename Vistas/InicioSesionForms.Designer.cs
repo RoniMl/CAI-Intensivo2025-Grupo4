@@ -87,7 +87,7 @@
             Ingresar.UseVisualStyleBackColor = true;
             Ingresar.Click += Ingresar_Click;
             // 
-            // InicioSesion
+            // InicioSesionForms
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -98,8 +98,8 @@
             Controls.Add(UsuarioLbl);
             Controls.Add(UsuarioTextBox);
             Controls.Add(UniversidadLbl);
-            Name = "InicioSesion";
-            Text = "Form1";
+            Name = "InicioSesionForms";
+            Text = "Inicio de sesion";
             Load += InicioSesion_Load;
             ResumeLayout(false);
             PerformLayout();
