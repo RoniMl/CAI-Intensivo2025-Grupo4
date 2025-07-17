@@ -22,12 +22,13 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+       private void CerrarSesionBtn_Click(object sender, EventArgs e)
         {
-
+            // Cierra la aplicación al hacer clic en el botón de cerrar sesión
+            Application.Exit();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void MenuAdministrador_Load(object sender, EventArgs e)
         {
 
         }

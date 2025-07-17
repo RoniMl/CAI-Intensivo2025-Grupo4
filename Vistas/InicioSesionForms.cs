@@ -69,6 +69,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 usuarioEncontrado.intentosFallidos = 0; // Reiniciar intentos fallidos al iniciar sesión correctamente
                 MessageBox.Show("Inicio de sesión exitoso.", "Éxito");
                 // Aquí puedes redirigir al usuario a la siguiente pantalla o realizar otras acciones necesarias
+                
             }
            
 

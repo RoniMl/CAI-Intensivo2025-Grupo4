@@ -30,7 +30,6 @@
         {
             GestionatAlumnosBtn = new Button();
             GestionarPersonaBtn = new Button();
-            LiquidacionDeSueldoBtn = new Button();
             GestionDeDesbloqueosBtn = new Button();
             CerrarSesionBtn = new Button();
             SuspendLayout();
@@ -54,15 +53,6 @@
             GestionarPersonaBtn.Text = "Gestionar Personal";
             GestionarPersonaBtn.UseVisualStyleBackColor = true;
             // 
-            // LiquidacionDeSueldoBtn
-            // 
-            LiquidacionDeSueldoBtn.Location = new Point(273, 326);
-            LiquidacionDeSueldoBtn.Name = "LiquidacionDeSueldoBtn";
-            LiquidacionDeSueldoBtn.Size = new Size(217, 43);
-            LiquidacionDeSueldoBtn.TabIndex = 2;
-            LiquidacionDeSueldoBtn.Text = "Liquidacion de Sueldo";
-            LiquidacionDeSueldoBtn.UseVisualStyleBackColor = true;
-            // 
             // GestionDeDesbloqueosBtn
             // 
             GestionDeDesbloqueosBtn.Location = new Point(273, 237);
@@ -80,7 +70,7 @@
             CerrarSesionBtn.TabIndex = 4;
             CerrarSesionBtn.Text = "Cerrar Sesion";
             CerrarSesionBtn.UseVisualStyleBackColor = true;
-            CerrarSesionBtn.Click += button1_Click_1;
+            CerrarSesionBtn.Click += CerrarSesionBtn_Click;
             // 
             // MenuAdministrador
             // 
@@ -89,11 +79,11 @@
             ClientSize = new Size(800, 450);
             Controls.Add(CerrarSesionBtn);
             Controls.Add(GestionDeDesbloqueosBtn);
-            Controls.Add(LiquidacionDeSueldoBtn);
             Controls.Add(GestionarPersonaBtn);
             Controls.Add(GestionatAlumnosBtn);
             Name = "MenuAdministrador";
             Text = "Menu Administrador";
+            Load += MenuAdministrador_Load;
             ResumeLayout(false);
         }
 
@@ -101,7 +91,6 @@
 
         private Button GestionatAlumnosBtn;
         private Button GestionarPersonaBtn;
-        private Button LiquidacionDeSueldoBtn;
         private Button GestionDeDesbloqueosBtn;
         private Button CerrarSesionBtn;
     }
