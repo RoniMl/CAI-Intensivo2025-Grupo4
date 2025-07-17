@@ -30,14 +30,14 @@
         {
             GestionatAlumnosBtn = new Button();
             GestionarPersonaBtn = new Button();
-            LiquidacionDeSueldoBtn = new Button();
             GestionDeDesbloqueosBtn = new Button();
             CerrarSesionBtn = new Button();
+            GenerarReportesBtn = new Button();
             SuspendLayout();
             // 
             // GestionatAlumnosBtn
             // 
-            GestionatAlumnosBtn.Location = new Point(273, 74);
+            GestionatAlumnosBtn.Location = new Point(273, 28);
             GestionatAlumnosBtn.Name = "GestionatAlumnosBtn";
             GestionatAlumnosBtn.Size = new Size(217, 43);
             GestionatAlumnosBtn.TabIndex = 0;
@@ -47,25 +47,16 @@
             // 
             // GestionarPersonaBtn
             // 
-            GestionarPersonaBtn.Location = new Point(273, 155);
+            GestionarPersonaBtn.Location = new Point(273, 109);
             GestionarPersonaBtn.Name = "GestionarPersonaBtn";
             GestionarPersonaBtn.Size = new Size(217, 43);
             GestionarPersonaBtn.TabIndex = 1;
             GestionarPersonaBtn.Text = "Gestionar Personal";
             GestionarPersonaBtn.UseVisualStyleBackColor = true;
             // 
-            // LiquidacionDeSueldoBtn
-            // 
-            LiquidacionDeSueldoBtn.Location = new Point(273, 326);
-            LiquidacionDeSueldoBtn.Name = "LiquidacionDeSueldoBtn";
-            LiquidacionDeSueldoBtn.Size = new Size(217, 43);
-            LiquidacionDeSueldoBtn.TabIndex = 2;
-            LiquidacionDeSueldoBtn.Text = "Liquidacion de Sueldo";
-            LiquidacionDeSueldoBtn.UseVisualStyleBackColor = true;
-            // 
             // GestionDeDesbloqueosBtn
             // 
-            GestionDeDesbloqueosBtn.Location = new Point(273, 237);
+            GestionDeDesbloqueosBtn.Location = new Point(273, 191);
             GestionDeDesbloqueosBtn.Name = "GestionDeDesbloqueosBtn";
             GestionDeDesbloqueosBtn.Size = new Size(217, 43);
             GestionDeDesbloqueosBtn.TabIndex = 3;
@@ -82,14 +73,24 @@
             CerrarSesionBtn.UseVisualStyleBackColor = true;
             CerrarSesionBtn.Click += button1_Click_1;
             // 
+            // GenerarReportesBtn
+            // 
+            GenerarReportesBtn.Location = new Point(273, 278);
+            GenerarReportesBtn.Name = "GenerarReportesBtn";
+            GenerarReportesBtn.Size = new Size(217, 43);
+            GenerarReportesBtn.TabIndex = 5;
+            GenerarReportesBtn.Text = "Generar Reportes";
+            GenerarReportesBtn.UseVisualStyleBackColor = true;
+            GenerarReportesBtn.Click += button1_Click_2;
+            // 
             // MenuAdministrador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(GenerarReportesBtn);
             Controls.Add(CerrarSesionBtn);
             Controls.Add(GestionDeDesbloqueosBtn);
-            Controls.Add(LiquidacionDeSueldoBtn);
             Controls.Add(GestionarPersonaBtn);
             Controls.Add(GestionatAlumnosBtn);
             Name = "MenuAdministrador";
@@ -101,8 +102,8 @@
 
         private Button GestionatAlumnosBtn;
         private Button GestionarPersonaBtn;
-        private Button LiquidacionDeSueldoBtn;
         private Button GestionDeDesbloqueosBtn;
         private Button CerrarSesionBtn;
+        private Button GenerarReportesBtn;
     }
 }
