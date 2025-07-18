@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36121.58 d17.14
+VisualStudioVersion = 17.14.36121.58
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAI-Intensivo2025-Grupo4", "CAI-Intensivo2025-Grupo4.csproj", "{EEE228A0-5B6E-4DB8-9A2E-3EF2B16DAFB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "..\Datos\Datos.csproj", "{77B98471-5D86-4C03-BD46-77A3BEA5F375}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EEE228A0-5B6E-4DB8-9A2E-3EF2B16DAFB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEE228A0-5B6E-4DB8-9A2E-3EF2B16DAFB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEE228A0-5B6E-4DB8-9A2E-3EF2B16DAFB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77B98471-5D86-4C03-BD46-77A3BEA5F375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77B98471-5D86-4C03-BD46-77A3BEA5F375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77B98471-5D86-4C03-BD46-77A3BEA5F375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77B98471-5D86-4C03-BD46-77A3BEA5F375}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
