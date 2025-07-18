@@ -55,7 +55,6 @@
             NombreLbl.Size = new Size(57, 17);
             NombreLbl.TabIndex = 0;
             NombreLbl.Text = "Nombre";
-            NombreLbl.Click += Nombrelbl_Click;
             // 
             // NombreTxt
             // 
@@ -88,7 +87,6 @@
             DNILbl.Size = new Size(30, 17);
             DNILbl.TabIndex = 4;
             DNILbl.Text = "DNI";
-            DNILbl.Click += label1_Click;
             // 
             // DNITxt
             // 
@@ -122,7 +120,6 @@
             AtrasBtn.TabIndex = 8;
             AtrasBtn.Text = "Atras";
             AtrasBtn.UseVisualStyleBackColor = true;
-            AtrasBtn.Click += button1_Click;
             // 
             // CrearAlumnoBtn
             // 
@@ -132,6 +129,7 @@
             CrearAlumnoBtn.TabIndex = 9;
             CrearAlumnoBtn.Text = "Crear Alumno";
             CrearAlumnoBtn.UseVisualStyleBackColor = true;
+            CrearAlumnoBtn.Click += CrearAlumnoBtn_Click;
             // 
             // CarreraListView
             // 
@@ -158,7 +156,6 @@
             AñadirBtn.TabIndex = 12;
             AñadirBtn.Text = "Añadir";
             AñadirBtn.UseVisualStyleBackColor = true;
-            AñadirBtn.Click += button1_Click_1;
             // 
             // ContraseñaTbx
             // 
@@ -216,7 +213,6 @@
             Controls.Add(NombreLbl);
             Name = "CrearAlumno";
             Text = "Crear Alumno";
-            Load += CrearAlumno_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CAI_Intensivo2025_Grupo4.Vistas
+namespace Vistas
 {
-    public partial class CrearAlumno : Form
+    public partial class MenuPersonal : Form
     {
-        public CrearAlumno()
+        public MenuPersonal()
         {
             InitializeComponent();
-        }
-
-        private void CrearAlumnoBtn_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

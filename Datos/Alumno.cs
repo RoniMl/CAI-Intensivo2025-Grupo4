@@ -1,0 +1,19 @@
+﻿using CAI_Intensivo2025_Grupo4.Datos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Datos
+{
+    public class Alumno
+    {
+        public string nombre { get; set; }
+        public string npellido { get; set; }
+        public string dni { get; set; }
+        public List<string> carrerasId { get; set; } = new List<string>();
+        public Usuario usuario { get; set; } = new Usuario();
+
+    }
+}
