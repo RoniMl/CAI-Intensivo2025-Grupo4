@@ -32,10 +32,9 @@ namespace CAI_Intensivo2025_Grupo4.Modelos
 
         public Usuario ObtenerUsuario(string usuarioIngresado)
         {
-            // Busca el usuario en la lista de usuarios temporal
-            return usuarios.Single(u => u.usuario == usuarioIngresado);
-
+            return usuarios.SingleOrDefault(u => u.usuario == usuarioIngresado);
         }
+
 
     }
 }

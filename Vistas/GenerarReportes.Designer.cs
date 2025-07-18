@@ -35,9 +35,9 @@
             // 
             // GenerarBtn
             // 
-            GenerarBtn.Location = new Point(666, 383);
+            GenerarBtn.Location = new Point(713, 412);
             GenerarBtn.Name = "GenerarBtn";
-            GenerarBtn.Size = new Size(75, 23);
+            GenerarBtn.Size = new Size(75, 26);
             GenerarBtn.TabIndex = 0;
             GenerarBtn.Text = "Generar";
             GenerarBtn.UseVisualStyleBackColor = true;
@@ -45,7 +45,7 @@
             // CarreraCmbBox
             // 
             CarreraCmbBox.FormattingEnabled = true;
-            CarreraCmbBox.Location = new Point(211, 86);
+            CarreraCmbBox.Location = new Point(153, 39);
             CarreraCmbBox.Name = "CarreraCmbBox";
             CarreraCmbBox.Size = new Size(206, 23);
             CarreraCmbBox.TabIndex = 1;
@@ -53,9 +53,9 @@
             // CarreraLbl
             // 
             CarreraLbl.AutoSize = true;
-            CarreraLbl.Location = new Point(95, 89);
+            CarreraLbl.Location = new Point(24, 42);
             CarreraLbl.Name = "CarreraLbl";
-            CarreraLbl.Size = new Size(110, 15);
+            CarreraLbl.Size = new Size(123, 17);
             CarreraLbl.TabIndex = 2;
             CarreraLbl.Text = "Seleccione Carrera..";
             // 
