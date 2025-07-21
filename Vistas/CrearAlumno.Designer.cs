@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             NombreLbl = new Label();
-            NombreTxt = new TextBox();
+            NombreTxb = new TextBox();
             ApellidoLbl = new Label();
-            ApellidoTxt = new TextBox();
+            ApellidoTxb = new TextBox();
             DNILbl = new Label();
-            DNITxt = new TextBox();
+            DniTxb = new TextBox();
             CarreraLbl = new Label();
             CarreraCmbBox = new ComboBox();
             AtrasBtn = new Button();
@@ -56,12 +56,12 @@
             NombreLbl.TabIndex = 0;
             NombreLbl.Text = "Nombre";
             // 
-            // NombreTxt
+            // NombreTxb
             // 
-            NombreTxt.Location = new Point(183, 87);
-            NombreTxt.Name = "NombreTxt";
-            NombreTxt.Size = new Size(138, 23);
-            NombreTxt.TabIndex = 1;
+            NombreTxb.Location = new Point(183, 87);
+            NombreTxb.Name = "NombreTxb";
+            NombreTxb.Size = new Size(138, 23);
+            NombreTxb.TabIndex = 1;
             // 
             // ApellidoLbl
             // 
@@ -72,12 +72,12 @@
             ApellidoLbl.TabIndex = 2;
             ApellidoLbl.Text = "Apellido";
             // 
-            // ApellidoTxt
+            // ApellidoTxb
             // 
-            ApellidoTxt.Location = new Point(183, 127);
-            ApellidoTxt.Name = "ApellidoTxt";
-            ApellidoTxt.Size = new Size(138, 23);
-            ApellidoTxt.TabIndex = 3;
+            ApellidoTxb.Location = new Point(183, 127);
+            ApellidoTxb.Name = "ApellidoTxb";
+            ApellidoTxb.Size = new Size(138, 23);
+            ApellidoTxb.TabIndex = 3;
             // 
             // DNILbl
             // 
@@ -88,12 +88,12 @@
             DNILbl.TabIndex = 4;
             DNILbl.Text = "DNI";
             // 
-            // DNITxt
+            // DniTxb
             // 
-            DNITxt.Location = new Point(183, 166);
-            DNITxt.Name = "DNITxt";
-            DNITxt.Size = new Size(138, 23);
-            DNITxt.TabIndex = 5;
+            DniTxb.Location = new Point(183, 166);
+            DniTxb.Name = "DniTxb";
+            DniTxb.Size = new Size(138, 23);
+            DniTxb.TabIndex = 5;
             // 
             // CarreraLbl
             // 
@@ -205,11 +205,11 @@
             Controls.Add(AtrasBtn);
             Controls.Add(CarreraCmbBox);
             Controls.Add(CarreraLbl);
-            Controls.Add(DNITxt);
+            Controls.Add(DniTxb);
             Controls.Add(DNILbl);
-            Controls.Add(ApellidoTxt);
+            Controls.Add(ApellidoTxb);
             Controls.Add(ApellidoLbl);
-            Controls.Add(NombreTxt);
+            Controls.Add(NombreTxb);
             Controls.Add(NombreLbl);
             Name = "CrearAlumno";
             Text = "Crear Alumno";
@@ -220,11 +220,11 @@
         #endregion
 
         private Label NombreLbl;
-        private TextBox NombreTxt;
+        private TextBox NombreTxb;
         private Label ApellidoLbl;
-        private TextBox ApellidoTxt;
+        private TextBox ApellidoTxb;
         private Label DNILbl;
-        private TextBox DNITxt;
+        private TextBox DniTxb;
         private Label CarreraLbl;
         private ComboBox CarreraCmbBox;
         private Button AtrasBtn;

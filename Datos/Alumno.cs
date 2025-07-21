@@ -10,9 +10,9 @@ namespace Datos
     public class Alumno
     {
         public string nombre { get; set; }
-        public string npellido { get; set; }
+        public string apellido { get; set; }
         public string dni { get; set; }
-        public List<string> carrerasId { get; set; } = new List<string>();
+        public List<int> carrerasId { get; set; } = new List<int>();
         public Usuario usuario { get; set; } = new Usuario();
 
     }
