@@ -13,6 +13,6 @@ namespace Datos
         public int intentosFallidos { get; set; } = 0;
         public bool bloqueado { get; set; } = false;
         public string perfilUsuario { get; set; } = string.Empty;
-
+        public long id { get; set; } 
     }
 }
