@@ -10,12 +10,12 @@ namespace CAI_Intensivo2025_Grupo4.Negocio
 {
     public class InicioSesionModelo
     {
-        public void Login(string username, string password)
+        public LoginResponse Login(string username, string password)
         {
             LoginPersistencia loginPersistencia = new LoginPersistencia();
-            loginPersistencia.login(username, password);
+            LoginResponse loginResponse = loginPersistencia.login(username, password);
 
-            return;
+            return loginResponse;
         }
 
 
