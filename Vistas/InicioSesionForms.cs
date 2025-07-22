@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CAI_Intensivo2025_Grupo4.Datos; // Asegúrate de que el modelo esté en este espacio de nombres
+using Datos; // Asegúrate de que el modelo esté en este espacio de nombres
 using CAI_Intensivo2025_Grupo4.Negocio; // Asegúrate de que la clase Usuario esté en este espacio de nombres
 
 namespace CAI_Intensivo2025_Grupo4.Vistas
