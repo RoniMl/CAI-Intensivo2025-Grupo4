@@ -65,7 +65,9 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         }
 
+        private void AñadirBtn_Click(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

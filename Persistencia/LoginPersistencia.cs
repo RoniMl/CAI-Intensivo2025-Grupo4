@@ -1,5 +1,4 @@
 ﻿using Datos;
-using Newtonsoft.Json;
 using Persistencia.utils;
 using System;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace Persistencia
 {
@@ -21,7 +21,7 @@ namespace Persistencia
             datos.password = password;
 
             // Convert the data to a JSON string
-            var jsonData = JsonConvert.SerializeObject(datos);
+            var jsonData = JsonSerializer.Serialize(datos);
 
             HttpResponseMessage response = WebHelper.Post("tpIntensivo/login", jsonData);
 
@@ -30,7 +30,7 @@ namespace Persistencia
             if (response.IsSuccessStatusCode)
             {
                 var reader = new StreamReader(response.Content.ReadAsStreamAsync().Result);
-                loginResponse = JsonConvert.DeserializeObject<LoginResponse>(reader.ReadToEnd());
+                loginResponse = JsonSerializer.Deserialize<LoginResponse>(reader.ReadToEnd());
             }
             else
             {

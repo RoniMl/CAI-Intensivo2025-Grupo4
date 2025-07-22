@@ -156,6 +156,7 @@
             AñadirBtn.TabIndex = 12;
             AñadirBtn.Text = "Añadir";
             AñadirBtn.UseVisualStyleBackColor = true;
+            AñadirBtn.Click += AñadirBtn_Click;
             // 
             // ContraseñaTbx
             // 
