@@ -1,5 +1,4 @@
-﻿using CAI_Intensivo2025_Grupo4.Datos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
