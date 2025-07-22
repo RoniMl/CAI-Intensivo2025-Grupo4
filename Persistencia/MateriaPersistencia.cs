@@ -9,24 +9,23 @@ using Datos;
 
 namespace Persistencia
 {
-    public class CursoPersistencia
+    public class MateriaPersistencia
     {
-        public List<Curso> buscarCursosPorMateria(long materiaId)
+        public List<Materia> buscarMateriasPorCarrera(long carreraId)
         {
-            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/cursos/{materiaId}");
+            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/materias/{carreraId}");
 
             if (response.IsSuccessStatusCode)
             {
                 string json = response.Content.ReadAsStringAsync().Result;
-                var cursos = JsonSerializer.Deserialize<List<Curso>>(json);
-                return cursos;
+                var materias = JsonSerializer.Deserialize<List<Materia>>(json);
+                return materias;
             }
             else
             {
                 Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
-                throw new Exception("Error al obtener los cursos de la materia");
+                throw new Exception("Error al obtener las materias de la carrera");
             }
         }
     }
-}
 }
