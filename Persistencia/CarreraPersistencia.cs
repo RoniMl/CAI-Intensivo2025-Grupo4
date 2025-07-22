@@ -13,7 +13,7 @@ namespace Persistencia
     class CarreraPersistencia
     {
 
-        public List<CarreraResponse> buscarDatosUsuario()
+        public List<CarreraResponse> buscarCarrera()
         {
             List<CarreraResponse> carreras = new List<CarreraResponse>();
 
@@ -22,13 +22,13 @@ namespace Persistencia
             if (response.IsSuccessStatusCode)
             {
                 var contentStream = response.Content.ReadAsStringAsync().Result;
-                List<CarreraResponse> listadoClientes = JsonSerializer.Deserialize<List<CarreraResponse>>(contentStream);
-                return listadoClientes;
+                List<CarreraResponse> listadoCarrera = JsonSerializer.Deserialize<List<CarreraResponse>>(contentStream);
+                return listadoCarrera;
             }
             else
             {
                 Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
-                throw new Exception("Error al momento de buscar los usuarios");
+                throw new Exception("Error al momento de buscar las carreras");
             }
 
             return carreras;

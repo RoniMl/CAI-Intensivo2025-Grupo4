@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    internal class Docente
+    public class Docente
     {
         public int id { get; set; }
         public string nombre { get; set; }
