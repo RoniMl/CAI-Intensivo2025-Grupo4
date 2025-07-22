@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    internal class Curso
+    public class Curso
     {
         public int id { get; set; }
         public List<Docente> docentes { get; set; } = new List<Docente>();

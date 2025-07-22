@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    internal class Horario
+    public class Horario
     {
         public string dia { get; set; } = string.Empty; // Lunes, Martes, etc.
         public string horaInicio { get; set; } = string.Empty; // Formato "HH:mm"

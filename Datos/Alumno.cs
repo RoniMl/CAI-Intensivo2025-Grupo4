@@ -12,7 +12,7 @@ namespace Datos
         public string apellido { get; set; }
         public string dni { get; set; }
         public List<int> carrerasId { get; set; } = new List<int>();
-        public Usuario usuario { get; set; } = new Usuario();
+        public Usuario usuario { get; set; } = new Usuario(); //chequear
 
     }
 }
