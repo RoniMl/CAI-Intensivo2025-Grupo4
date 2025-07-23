@@ -13,9 +13,8 @@ namespace Persistencia
 {
     public class LoginPersistencia
     {
-        public int contadorIntentosFallidos = 0;
-        public int maxIntentosFallidos = 3;
-        public string? errorMessage;
+        public string error = "0";
+
         public LoginResponse login(String username, String password)
         {
             
@@ -33,25 +32,14 @@ namespace Persistencia
 
             if (response.IsSuccessStatusCode)
             {
+                 // Reset failed attempts on successful login
                 var reader = new StreamReader(response.Content.ReadAsStreamAsync().Result);
                 loginResponse = JsonSerializer.Deserialize<LoginResponse>(reader.ReadToEnd());
             }
-            else
-            {                
-                Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
-                if (response.StatusCode.Equals(401))
-                {
-                    contadorIntentosFallidos++;
-                    if (contadorIntentosFallidos >= maxIntentosFallidos)
-                    {
-                        errorMessage = "Has superado el número máximo de intentos fallidos. Tu cuenta ha sido bloqueada por seguridad.";
-                    }
-                    else
-                    {
-                        errorMessage = "Usuario y/o contraseña incorrectos. Por favor, inténtalo de nuevo.";
-                    }
-                }
-            }
+            else if(response.StatusCode.Equals(401))
+            {
+                error = "401";
+            } 
 
             return loginResponse;
         }

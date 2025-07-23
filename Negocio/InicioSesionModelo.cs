@@ -10,15 +10,41 @@ namespace Negocio
 {
     public class InicioSesionModelo
     {
+        public int contadorIntentosFallidos = 0;
+        public int maxIntentosFallidos = 3;
+        public string mensajeError = "";
+
         public LoginResponse Login(string username, string password)
         {
             LoginPersistencia loginPersistencia = new LoginPersistencia();
             LoginResponse loginResponse = loginPersistencia.login(username, password);
-
-
+            manejarErrores(loginPersistencia.error);
 
             return loginResponse;
         }
+
+        public void manejarErrores(string error)
+        {
+            mensajeError = string.Empty;
+            if (error == "401")
+            {
+                contadorIntentosFallidos++;
+                if (contadorIntentosFallidos >= maxIntentosFallidos)
+                {
+                    mensajeError = "Has superado el número máximo de intentos fallidos. Tu cuenta ha sido bloqueada por seguridad.";
+                }
+                else
+                {
+                    mensajeError = "Usuario y/o contraseña incorrectos. Por favor, inténtalo de nuevo.";
+                }
+            } else
+            {
+                mensajeError = "Error desconocido. Por favor, inténtalo de nuevo más tarde.";
+            }
+
+            return;
+        }
+        
 
        
 

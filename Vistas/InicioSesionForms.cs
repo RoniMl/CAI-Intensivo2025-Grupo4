@@ -42,29 +42,38 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             InicioSesionModelo loginNegocio = new InicioSesionModelo();
             LoginResponse login = loginNegocio.Login(usuarioIngresado, contraseñaIngresada);
 
-            switch (login.perfilUsuario)
+            if (login == null)
             {
-                case "ALUMNO":
-                    this.Hide();
-                    MenuAlumno menuAlumno = new MenuAlumno();
-                    menuAlumno.ShowDialog();
-                    break;
+                if (loginNegocio.mensajeError != "")
+                {
+                    MessageBox.Show(loginNegocio.mensajeError, "Error de inicio de sesión");
+                }
+            }else {
 
-                case "ADMIN":
-                    this.Hide();
-                    MenuAdministrador menuAdministrador = new MenuAdministrador();
-                    menuAdministrador.ShowDialog();
-                    break;
+                switch (login.perfilUsuario)
+                {
+                    case "ALUMNO":
+                        this.Hide();
+                        MenuAlumno menuAlumno = new MenuAlumno();
+                        menuAlumno.ShowDialog();
+                        break;
 
-                case "PERSONAL":
-                    this.Hide();
-                    MenuPersonal menuPersonal = new MenuPersonal();
-                    menuPersonal.ShowDialog();
-                    break;
+                    case "ADMIN":
+                        this.Hide();
+                        MenuAdministrador menuAdministrador = new MenuAdministrador();
+                        menuAdministrador.ShowDialog();
+                        break;
 
-                default:
-                    MessageBox.Show("Perfil de usuario no reconocido.");
-                    break;
+                    case "PERSONAL":
+                        this.Hide();
+                        MenuPersonal menuPersonal = new MenuPersonal();
+                        menuPersonal.ShowDialog();
+                        break;
+
+                    default:
+                        MessageBox.Show("Perfil de usuario no reconocido.");
+                        break;
+                } 
             }
 
 
