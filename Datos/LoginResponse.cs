@@ -11,8 +11,8 @@ namespace Datos
         private long _id;
         private String _perfilUsuario;
 
-        public long Id { get => _id; set => _id = value; }
-        public string PerfilUsuario { get => _perfilUsuario; set => _perfilUsuario = value; }
+        public long id { get => _id; set => _id = value; }
+        public string perfilUsuario { get => _perfilUsuario; set => _perfilUsuario = value; }
     }
 }
 

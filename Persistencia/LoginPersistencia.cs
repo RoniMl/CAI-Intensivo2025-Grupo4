@@ -13,19 +13,23 @@ namespace Persistencia
 {
     public class LoginPersistencia
     {
+        public int contadorIntentosFallidos = 0;
+        public int maxIntentosFallidos = 3;
+        public string? errorMessage;
         public LoginResponse login(String username, String password)
         {
-
+            
             LoginRequest datos = new LoginRequest();
-            datos.User = username;
-            datos.Password = password;
+            datos.user = username;
+            datos.password = password;
 
             // Convert the data to a JSON string
             var jsonData = JsonSerializer.Serialize(datos);
 
             HttpResponseMessage response = WebHelper.Post("tpIntensivo/login", jsonData);
-
+            
             LoginResponse loginResponse = null;
+            
 
             if (response.IsSuccessStatusCode)
             {
@@ -33,14 +37,20 @@ namespace Persistencia
                 loginResponse = JsonSerializer.Deserialize<LoginResponse>(reader.ReadToEnd());
             }
             else
-            {
+            {                
                 Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
                 if (response.StatusCode.Equals(401))
                 {
-                    throw new Exception("Usuario bloqueado");
+                    contadorIntentosFallidos++;
+                    if (contadorIntentosFallidos >= maxIntentosFallidos)
+                    {
+                        errorMessage = "Has superado el número máximo de intentos fallidos. Tu cuenta ha sido bloqueada por seguridad.";
+                    }
+                    else
+                    {
+                        errorMessage = "Usuario y/o contraseña incorrectos. Por favor, inténtalo de nuevo.";
+                    }
                 }
-
-                throw new Exception("Error al momento del Login");
             }
 
             return loginResponse;

@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Datos; // Asegúrate de que el modelo esté en este espacio de nombres
-using Negocio; // Asegúrate de que la clase Usuario esté en este espacio de nombres
+using Negocio;
+using Vistas; // Asegúrate de que la clase Usuario esté en este espacio de nombres
 
 namespace CAI_Intensivo2025_Grupo4.Vistas
 {
@@ -29,18 +30,43 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void Ingresar_Click(object sender, EventArgs e)
         {
-       
+            string usuarioIngresado = UsuarioTextBox.Text;
+            string contraseñaIngresada = ContraseñaTextBox.Text;
 
+            if (string.IsNullOrWhiteSpace(usuarioIngresado) || string.IsNullOrWhiteSpace(contraseñaIngresada))
+            {
+                MessageBox.Show("Por favor, complete todos los campos.", "Error");
+                return;
+            }
 
             InicioSesionModelo loginNegocio = new InicioSesionModelo();
-            LoginResponse login = loginNegocio.Login(UsuarioTextBox.Text, ContraseñaTextBox.Text);
+            LoginResponse login = loginNegocio.Login(usuarioIngresado, contraseñaIngresada);
 
-            if (login.PerfilUsuario.Equals("ALUMNO"))
+            switch (login.perfilUsuario)
             {
-                this.Hide();
-                InicioSesionForms inicioSesionForms = new InicioSesionForms();
-                inicioSesionForms.ShowDialog();
+                case "ALUMNO":
+                    this.Hide();
+                    MenuAlumno menuAlumno = new MenuAlumno();
+                    menuAlumno.ShowDialog();
+                    break;
+
+                case "ADMIN":
+                    this.Hide();
+                    MenuAdministrador menuAdministrador = new MenuAdministrador();
+                    menuAdministrador.ShowDialog();
+                    break;
+
+                case "PERSONAL":
+                    this.Hide();
+                    MenuPersonal menuPersonal = new MenuPersonal();
+                    menuPersonal.ShowDialog();
+                    break;
+
+                default:
+                    MessageBox.Show("Perfil de usuario no reconocido.");
+                    break;
             }
+
 
 
 
