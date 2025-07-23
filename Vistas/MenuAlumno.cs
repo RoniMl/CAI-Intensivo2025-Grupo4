@@ -7,14 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Datos;
+using Negocio;
 
 namespace CAI_Intensivo2025_Grupo4.Vistas
 {
     public partial class MenuAlumno : Form
     {
-        public MenuAlumno()
+        private long _alumnoId;
+        private long _carreraId;
+
+        public MenuAlumno(long alumnoId, long carreraId)
         {
             InitializeComponent();
+            _alumnoId = alumnoId;
+            _carreraId = carreraId;
         }
 
         private void MenuAlumno_Load(object sender, EventArgs e)
@@ -23,7 +30,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         }
         private void btnInscripcionMaterias_Click(object sender, EventArgs e)
         {
-            InscripcionMaterias formMaterias = new InscripcionMaterias();
+            InscripcionMaterias formMaterias = new InscripcionMaterias(_alumnoId, _carreraId);
             formMaterias.Show();
         }
 
