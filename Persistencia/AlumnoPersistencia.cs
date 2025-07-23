@@ -29,5 +29,20 @@ namespace Persistencia
                 throw new Exception("Error al obtener los alumnos");
             }
         }
+        public Alumno ObtenerAlumnoPorId(long id)
+        {
+            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                return JsonSerializer.Deserialize<Alumno>(json);
+            }
+            else
+            {
+                Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+                throw new Exception("Error al obtener el alumno por ID");
+            }
+        }
     }
 }
