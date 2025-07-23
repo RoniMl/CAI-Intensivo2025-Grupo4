@@ -12,13 +12,16 @@ namespace CAI_Intensivo2025_Grupo4.Negocio
     {
         public LoginResponse Login(string username, string password)
         {
+
             LoginPersistencia loginPersistencia = new LoginPersistencia();
             LoginResponse loginResponse = loginPersistencia.login(username, password);
+
+            
 
             return loginResponse;
         }
 
-
+       
 
         //Base de datos simulada para usuarios
         //private List<Usuario> usuarios = new List<Usuario>

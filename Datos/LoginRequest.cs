@@ -11,7 +11,7 @@ namespace Datos
         String _user;
         String _password;
 
-        public string user { get => _user; set => _user = value; }
-        public string password { get => _password; set => _password = value; }
+        public string User { get => _user; set => _user = value; }
+        public string Password { get => _password; set => _password = value; }
     }
 }

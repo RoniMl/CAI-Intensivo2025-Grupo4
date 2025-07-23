@@ -17,8 +17,8 @@ namespace Persistencia
         {
 
             LoginRequest datos = new LoginRequest();
-            datos.user = username;
-            datos.password = password;
+            datos.User = username;
+            datos.Password = password;
 
             // Convert the data to a JSON string
             var jsonData = JsonSerializer.Serialize(datos);
