@@ -34,31 +34,33 @@
             // 
             // ModuloInscMatBtn
             // 
-            ModuloInscMatBtn.Location = new Point(268, 112);
+            ModuloInscMatBtn.Location = new Point(234, 84);
+            ModuloInscMatBtn.Margin = new Padding(3, 2, 3, 2);
             ModuloInscMatBtn.Name = "ModuloInscMatBtn";
-            ModuloInscMatBtn.Size = new Size(239, 69);
+            ModuloInscMatBtn.Size = new Size(209, 52);
             ModuloInscMatBtn.TabIndex = 0;
             ModuloInscMatBtn.Text = " Modulo de inscripción a materia";
             ModuloInscMatBtn.UseVisualStyleBackColor = true;
-            this.ModuloInscMatBtn.Click += new System.EventHandler(this.btnInscripcionMaterias_Click);
-
+            ModuloInscMatBtn.Click += btnInscripcionMaterias_Click;
             // 
             // ModuloInscFinBtn
             // 
-            ModuloInscFinBtn.Location = new Point(268, 235);
+            ModuloInscFinBtn.Location = new Point(235, 176);
+            ModuloInscFinBtn.Margin = new Padding(3, 2, 3, 2);
             ModuloInscFinBtn.Name = "ModuloInscFinBtn";
-            ModuloInscFinBtn.Size = new Size(239, 66);
+            ModuloInscFinBtn.Size = new Size(209, 50);
             ModuloInscFinBtn.TabIndex = 1;
             ModuloInscFinBtn.Text = "Modulo de inscripción a finales";
             ModuloInscFinBtn.UseVisualStyleBackColor = true;
             // 
             // MenuAlumno
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
             Controls.Add(ModuloInscFinBtn);
             Controls.Add(ModuloInscMatBtn);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "MenuAlumno";
             Text = "Menu";
             Load += MenuAlumno_Load;
