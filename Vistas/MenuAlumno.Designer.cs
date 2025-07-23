@@ -40,6 +40,8 @@
             ModuloInscMatBtn.TabIndex = 0;
             ModuloInscMatBtn.Text = " Modulo de inscripción a materia";
             ModuloInscMatBtn.UseVisualStyleBackColor = true;
+            this.ModuloInscMatBtn.Click += new System.EventHandler(this.btnInscripcionMaterias_Click);
+
             // 
             // ModuloInscFinBtn
             // 
