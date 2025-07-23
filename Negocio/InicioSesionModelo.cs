@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CAI_Intensivo2025_Grupo4.Negocio
+namespace Negocio
 {
     public class InicioSesionModelo
     {
@@ -15,8 +15,6 @@ namespace CAI_Intensivo2025_Grupo4.Negocio
 
             LoginPersistencia loginPersistencia = new LoginPersistencia();
             LoginResponse loginResponse = loginPersistencia.login(username, password);
-
-            
 
             return loginResponse;
         }
