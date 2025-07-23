@@ -50,8 +50,12 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 switch (login.perfilUsuario)
                 {
                     case "ALUMNO":
+
+                        long idAlumno = login.id;
+                        long idCarrera = 1;
+
                         this.Hide();
-                        MenuAlumno menuAlumno = new MenuAlumno();
+                        MenuAlumno menuAlumno = new MenuAlumno(idAlumno, idCarrera);
                         menuAlumno.ShowDialog();
                         break;
 
