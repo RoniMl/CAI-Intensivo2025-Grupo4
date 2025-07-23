@@ -52,6 +52,7 @@
             ModuloInscFinBtn.TabIndex = 1;
             ModuloInscFinBtn.Text = "Modulo de inscripción a finales";
             ModuloInscFinBtn.UseVisualStyleBackColor = true;
+            ModuloInscFinBtn.Click += btnInscripcionFinales_Click;
             // 
             // MenuAlumno
             // 
