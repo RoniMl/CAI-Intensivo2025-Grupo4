@@ -30,14 +30,14 @@
         {
             Materia1Lbl = new Label();
             Materia2Lbl = new Label();
-            Materia3Lbl = new Label();
             Materia1Cmb = new ComboBox();
             Materia2Cmb = new ComboBox();
-            Materia3Cmb = new ComboBox();
             AtrasInscMatBtn = new Button();
             EnviarInscMatBtn = new Button();
             RankingLbl = new Label();
             RankingTxt = new TextBox();
+            Materia3Lbl = new Label();
+            Materia3Cmb = new ComboBox();
             SuspendLayout();
             // 
             // Materia1Lbl
@@ -58,15 +58,6 @@
             Materia2Lbl.TabIndex = 1;
             Materia2Lbl.Text = "Seleccione Materia";
             // 
-            // Materia3Lbl
-            // 
-            Materia3Lbl.AutoSize = true;
-            Materia3Lbl.Location = new Point(35, 270);
-            Materia3Lbl.Name = "Materia3Lbl";
-            Materia3Lbl.Size = new Size(106, 15);
-            Materia3Lbl.TabIndex = 2;
-            Materia3Lbl.Text = "Seleccione Materia";
-            // 
             // Materia1Cmb
             // 
             Materia1Cmb.FormattingEnabled = true;
@@ -84,15 +75,6 @@
             Materia2Cmb.Name = "Materia2Cmb";
             Materia2Cmb.Size = new Size(119, 23);
             Materia2Cmb.TabIndex = 4;
-            // 
-            // Materia3Cmb
-            // 
-            Materia3Cmb.FormattingEnabled = true;
-            Materia3Cmb.Location = new Point(35, 297);
-            Materia3Cmb.Margin = new Padding(3, 2, 3, 2);
-            Materia3Cmb.Name = "Materia3Cmb";
-            Materia3Cmb.Size = new Size(119, 23);
-            Materia3Cmb.TabIndex = 5;
             // 
             // AtrasInscMatBtn
             // 
@@ -130,6 +112,24 @@
             RankingTxt.Size = new Size(100, 23);
             RankingTxt.TabIndex = 9;
             // 
+            // Materia3Lbl
+            // 
+            Materia3Lbl.AutoSize = true;
+            Materia3Lbl.Location = new Point(35, 270);
+            Materia3Lbl.Name = "Materia3Lbl";
+            Materia3Lbl.Size = new Size(106, 15);
+            Materia3Lbl.TabIndex = 2;
+            Materia3Lbl.Text = "Seleccione Materia";
+            // 
+            // Materia3Cmb
+            // 
+            Materia3Cmb.FormattingEnabled = true;
+            Materia3Cmb.Location = new Point(35, 297);
+            Materia3Cmb.Margin = new Padding(3, 2, 3, 2);
+            Materia3Cmb.Name = "Materia3Cmb";
+            Materia3Cmb.Size = new Size(119, 23);
+            Materia3Cmb.TabIndex = 5;
+            // 
             // InscripcionMaterias
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -156,13 +156,13 @@
 
         private Label Materia1Lbl;
         private Label Materia2Lbl;
-        private Label Materia3Lbl;
         private ComboBox Materia1Cmb;
         private ComboBox Materia2Cmb;
-        private ComboBox Materia3Cmb;
         private Button AtrasInscMatBtn;
         private Button EnviarInscMatBtn;
         private Label RankingLbl;
         private TextBox RankingTxt;
+        private Label Materia3Lbl;
+        private ComboBox Materia3Cmb;
     }
 }

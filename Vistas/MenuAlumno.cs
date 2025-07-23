@@ -32,19 +32,5 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             InscripcionFinales formFinales = new InscripcionFinales();
             formFinales.Show();
         }
-
-        private long idAlumno;
-
-        public MenuAlumno(long idAlumno)
-        {
-            InitializeComponent();
-            this.idAlumno = idAlumno;
-        }
-
-        private void ModuloInscMatBtn(object sender, EventArgs e)
-        {
-            var formMaterias = new InscripcionMaterias(idAlumno);
-            formMaterias.ShowDialog();
-        }
     }
 }
