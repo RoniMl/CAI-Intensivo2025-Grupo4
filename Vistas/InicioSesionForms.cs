@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Datos; // Asegúrate de que el modelo esté en este espacio de nombres
 using Negocio;
-using Vistas; // Asegúrate de que la clase Usuario esté en este espacio de nombres
+using Vistas;
+using Windows.Graphics.Printing.OptionDetails; // Asegúrate de que la clase Usuario esté en este espacio de nombres
 
 namespace CAI_Intensivo2025_Grupo4.Vistas
 {
     public partial class InicioSesionForms : System.Windows.Forms.Form
     {
         private InicioSesionModelo modelo;
-        string usuarioIngresado;
+        //public int contadorIntentosFallidos = 0;
 
         public InicioSesionForms()
         {
@@ -41,14 +42,10 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
             InicioSesionModelo loginNegocio = new InicioSesionModelo();
             LoginResponse login = loginNegocio.Login(usuarioIngresado, contraseñaIngresada);
+            
 
-            if (login == null)
+            if (login != null)
             {
-                if (loginNegocio.mensajeError != "")
-                {
-                    MessageBox.Show(loginNegocio.mensajeError, "Error de inicio de sesión");
-                }
-            }else {
 
                 switch (login.perfilUsuario)
                 {
@@ -73,9 +70,15 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                     default:
                         MessageBox.Show("Perfil de usuario no reconocido.");
                         break;
-                } 
-            }
+                }
 
+            }
+            else
+            {
+                MessageBox.Show(loginNegocio.mensajeError, "Error");
+                loginNegocio.contadorIntentosFallidos++;
+                MessageBox.Show($"Intentos fallidos: {loginNegocio.contadorIntentosFallidos}", "Información");
+            }
 
 
 

@@ -25,8 +25,7 @@ namespace Persistencia
             // Convert the data to a JSON string
             var jsonData = JsonSerializer.Serialize(datos);
 
-            HttpResponseMessage response = WebHelper.Post("tpIntensivo/login", jsonData);
-            
+            HttpResponseMessage response = WebHelper.Post("tpIntensivo/login", jsonData);           
             LoginResponse loginResponse = null;
             
 
@@ -36,7 +35,7 @@ namespace Persistencia
                 var reader = new StreamReader(response.Content.ReadAsStreamAsync().Result);
                 loginResponse = JsonSerializer.Deserialize<LoginResponse>(reader.ReadToEnd());
             }
-            else if(response.StatusCode.Equals(401))
+            else if((int) response.StatusCode == 401)
             {
                 error = "401";
             } 
