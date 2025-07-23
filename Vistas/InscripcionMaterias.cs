@@ -17,6 +17,13 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             InitializeComponent();
         }
 
-        
+        private long idAlumno;
+
+        public InscripcionMaterias(long idAlumno)
+        {
+            InitializeComponent();
+            this.idAlumno = idAlumno;
+        }
+
     }
 }
