@@ -13,7 +13,9 @@ namespace Persistencia
 {
     public class LoginPersistencia
     {
-        public string error = "0";
+        public string? errorMensaje;
+
+       
 
         public LoginResponse login(String username, String password)
         {
@@ -27,7 +29,8 @@ namespace Persistencia
 
             HttpResponseMessage response = WebHelper.Post("tpIntensivo/login", jsonData);           
             LoginResponse loginResponse = null;
-            
+            //string errorDeAPI = response.Content.ReadAsStringAsync().Result; 
+
 
             if (response.IsSuccessStatusCode)
             {
@@ -35,9 +38,12 @@ namespace Persistencia
                 var reader = new StreamReader(response.Content.ReadAsStreamAsync().Result);
                 loginResponse = JsonSerializer.Deserialize<LoginResponse>(reader.ReadToEnd());
             }
-            else if((int) response.StatusCode == 401)
+            else 
             {
-                error = "401";
+                string body = response.Content.ReadAsStringAsync().Result;
+                var error = JsonSerializer.Deserialize<ResponseError>(body);
+                errorMensaje = error.message;
+              //  error = errorDeAPI;
             } 
 
             return loginResponse;

@@ -18,6 +18,8 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
     {
         private InicioSesionModelo modelo;
         //public int contadorIntentosFallidos = 0;
+        public string usuarioIngresado;
+        public string contraseñaIngresada;
 
         public InicioSesionForms()
         {
@@ -31,8 +33,8 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void Ingresar_Click(object sender, EventArgs e)
         {
-            string usuarioIngresado = UsuarioTextBox.Text;
-            string contraseñaIngresada = ContraseñaTextBox.Text;
+            contraseñaIngresada = ContraseñaTextBox.Text;
+            usuarioIngresado = UsuarioTextBox.Text;
 
             if (string.IsNullOrWhiteSpace(usuarioIngresado) || string.IsNullOrWhiteSpace(contraseñaIngresada))
             {
@@ -80,8 +82,6 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             else
             {
                 MessageBox.Show(loginNegocio.mensajeError, "Error");
-                loginNegocio.contadorIntentosFallidos++;
-                MessageBox.Show($"Intentos fallidos: {loginNegocio.contadorIntentosFallidos}", "Información");
             }
 
 
