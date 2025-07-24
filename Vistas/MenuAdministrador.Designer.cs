@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             GestionatAlumnosBtn = new Button();
-            GestionarPersonaBtn = new Button();
+            GestionarPersonalBtn = new Button();
             GestionDeDesbloqueosBtn = new Button();
             CerrarSesionBtn = new Button();
             GenerarReportesBtn = new Button();
@@ -47,12 +47,13 @@
             // 
             // GestionarPersonaBtn
             // 
-            GestionarPersonaBtn.Location = new Point(273, 109);
-            GestionarPersonaBtn.Name = "GestionarPersonaBtn";
-            GestionarPersonaBtn.Size = new Size(217, 43);
-            GestionarPersonaBtn.TabIndex = 1;
-            GestionarPersonaBtn.Text = "Gestionar Personal";
-            GestionarPersonaBtn.UseVisualStyleBackColor = true;
+            GestionarPersonalBtn.Location = new Point(273, 109);
+            GestionarPersonalBtn.Name = "GestionarPersonaBtn";
+            GestionarPersonalBtn.Size = new Size(217, 43);
+            GestionarPersonalBtn.TabIndex = 1;
+            GestionarPersonalBtn.Text = "Gestionar Personal";
+            GestionarPersonalBtn.UseVisualStyleBackColor = true;
+            GestionarPersonalBtn.Click += GestionarPersonalBtn_Click;
             // 
             // GestionDeDesbloqueosBtn
             // 
@@ -92,7 +93,7 @@
             Controls.Add(GenerarReportesBtn);
             Controls.Add(CerrarSesionBtn);
             Controls.Add(GestionDeDesbloqueosBtn);
-            Controls.Add(GestionarPersonaBtn);
+            Controls.Add(GestionarPersonalBtn);
             Controls.Add(GestionatAlumnosBtn);
             Name = "MenuAdministrador";
             Text = "Menu Administrador";
@@ -103,7 +104,7 @@
         #endregion
 
         private Button GestionatAlumnosBtn;
-        private Button GestionarPersonaBtn;
+        private Button GestionarPersonalBtn;
         private Button GestionDeDesbloqueosBtn;
         private Button CerrarSesionBtn;
         private Button GenerarReportesBtn;

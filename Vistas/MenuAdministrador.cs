@@ -45,5 +45,12 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             GestionDesbloqueo gestionDesbloqueo = new GestionDesbloqueo();
             gestionDesbloqueo.ShowDialog();
         }
+
+        private void GestionarPersonalBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            GestionPersonal gestionPersonal = new GestionPersonal();
+            gestionPersonal.ShowDialog();
+        }
     }
 }

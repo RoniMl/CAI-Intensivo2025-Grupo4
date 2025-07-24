@@ -35,48 +35,50 @@
             ApellidoCol = new ColumnHeader();
             DniCol = new ColumnHeader();
             AlumnosLbl = new Label();
-            ModificarBtn = new Button();
+            EliminarBtn = new Button();
             EditarBtn = new Button();
             NuevoAlumnoBtn = new Button();
             EdicionGroup = new GroupBox();
-            CancelarGrpBtn = new Button();
-            AceptarGrpBtn = new Button();
-            NombreGrpLbl = new Label();
-            NombreGrpTxb = new TextBox();
-            ApellidoGrpTxb = new TextBox();
-            ApellidoGrpLbl = new Label();
+            AgregarGrpBtn = new Button();
+            QuitarGrpBtn = new Button();
+            listView1 = new ListView();
+            MateriasGrpCmb = new ComboBox();
+            MateriaGrpLbl = new Label();
             DniGrpTxb = new TextBox();
             DniGrpLbl = new Label();
-            MateriaGrpLbl = new Label();
-            MateriasGrpCb = new ComboBox();
-            listView1 = new ListView();
-            QuitarGrpBtn = new Button();
-            AgregarGrpBtn = new Button();
+            ApellidoGrpTxb = new TextBox();
+            ApellidoGrpLbl = new Label();
+            NombreGrpTxb = new TextBox();
+            NombreGrpLbl = new Label();
+            AceptarGrpBtn = new Button();
+            CancelarGrpBtn = new Button();
             EdicionGroup.SuspendLayout();
             SuspendLayout();
             // 
             // BuscarAlumnoLbl
             // 
             BuscarAlumnoLbl.AutoSize = true;
-            BuscarAlumnoLbl.Location = new Point(12, 24);
+            BuscarAlumnoLbl.Location = new Point(14, 32);
             BuscarAlumnoLbl.Name = "BuscarAlumnoLbl";
-            BuscarAlumnoLbl.Size = new Size(144, 17);
+            BuscarAlumnoLbl.Size = new Size(163, 20);
             BuscarAlumnoLbl.TabIndex = 0;
             BuscarAlumnoLbl.Text = "Buscar alumno por DNI";
             // 
             // BuscarDniTxb
             // 
-            BuscarDniTxb.Location = new Point(162, 21);
+            BuscarDniTxb.Location = new Point(185, 28);
+            BuscarDniTxb.Margin = new Padding(3, 4, 3, 4);
             BuscarDniTxb.Name = "BuscarDniTxb";
-            BuscarDniTxb.Size = new Size(138, 23);
+            BuscarDniTxb.Size = new Size(157, 27);
             BuscarDniTxb.TabIndex = 1;
             // 
             // AlumnosListView
             // 
             AlumnosListView.Columns.AddRange(new ColumnHeader[] { NombreCol, ApellidoCol, DniCol });
-            AlumnosListView.Location = new Point(12, 93);
+            AlumnosListView.Location = new Point(14, 124);
+            AlumnosListView.Margin = new Padding(3, 4, 3, 4);
             AlumnosListView.Name = "AlumnosListView";
-            AlumnosListView.Size = new Size(778, 226);
+            AlumnosListView.Size = new Size(889, 300);
             AlumnosListView.TabIndex = 2;
             AlumnosListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -99,35 +101,38 @@
             // AlumnosLbl
             // 
             AlumnosLbl.AutoSize = true;
-            AlumnosLbl.Location = new Point(12, 73);
+            AlumnosLbl.Location = new Point(14, 97);
             AlumnosLbl.Name = "AlumnosLbl";
-            AlumnosLbl.Size = new Size(58, 17);
+            AlumnosLbl.Size = new Size(67, 20);
             AlumnosLbl.TabIndex = 3;
             AlumnosLbl.Text = "Alumnos";
             // 
-            // ModificarBtn
+            // EliminarBtn
             // 
-            ModificarBtn.Location = new Point(644, 325);
-            ModificarBtn.Name = "ModificarBtn";
-            ModificarBtn.Size = new Size(144, 29);
-            ModificarBtn.TabIndex = 4;
-            ModificarBtn.Text = "Modificar";
-            ModificarBtn.UseVisualStyleBackColor = true;
+            EliminarBtn.Location = new Point(736, 433);
+            EliminarBtn.Margin = new Padding(3, 4, 3, 4);
+            EliminarBtn.Name = "EliminarBtn";
+            EliminarBtn.Size = new Size(165, 39);
+            EliminarBtn.TabIndex = 4;
+            EliminarBtn.Text = "Eliminar";
+            EliminarBtn.UseVisualStyleBackColor = true;
             // 
             // EditarBtn
             // 
-            EditarBtn.Location = new Point(496, 325);
+            EditarBtn.Location = new Point(567, 433);
+            EditarBtn.Margin = new Padding(3, 4, 3, 4);
             EditarBtn.Name = "EditarBtn";
-            EditarBtn.Size = new Size(142, 29);
+            EditarBtn.Size = new Size(162, 39);
             EditarBtn.TabIndex = 5;
             EditarBtn.Text = "Editar";
             EditarBtn.UseVisualStyleBackColor = true;
             // 
             // NuevoAlumnoBtn
             // 
-            NuevoAlumnoBtn.Location = new Point(334, 325);
+            NuevoAlumnoBtn.Location = new Point(382, 433);
+            NuevoAlumnoBtn.Margin = new Padding(3, 4, 3, 4);
             NuevoAlumnoBtn.Name = "NuevoAlumnoBtn";
-            NuevoAlumnoBtn.Size = new Size(156, 29);
+            NuevoAlumnoBtn.Size = new Size(178, 39);
             NuevoAlumnoBtn.TabIndex = 6;
             NuevoAlumnoBtn.Text = "Nuevo Alumno";
             NuevoAlumnoBtn.UseVisualStyleBackColor = true;
@@ -137,7 +142,7 @@
             EdicionGroup.Controls.Add(AgregarGrpBtn);
             EdicionGroup.Controls.Add(QuitarGrpBtn);
             EdicionGroup.Controls.Add(listView1);
-            EdicionGroup.Controls.Add(MateriasGrpCb);
+            EdicionGroup.Controls.Add(MateriasGrpCmb);
             EdicionGroup.Controls.Add(MateriaGrpLbl);
             EdicionGroup.Controls.Add(DniGrpTxb);
             EdicionGroup.Controls.Add(DniGrpLbl);
@@ -148,135 +153,147 @@
             EdicionGroup.Controls.Add(AceptarGrpBtn);
             EdicionGroup.Controls.Add(CancelarGrpBtn);
             EdicionGroup.Enabled = false;
-            EdicionGroup.Location = new Point(12, 392);
+            EdicionGroup.Location = new Point(14, 523);
+            EdicionGroup.Margin = new Padding(3, 4, 3, 4);
             EdicionGroup.Name = "EdicionGroup";
-            EdicionGroup.Size = new Size(776, 281);
+            EdicionGroup.Padding = new Padding(3, 4, 3, 4);
+            EdicionGroup.Size = new Size(887, 375);
             EdicionGroup.TabIndex = 7;
             EdicionGroup.TabStop = false;
             EdicionGroup.Text = "Edicion ";
             // 
-            // CancelarGrpBtn
+            // AgregarGrpBtn
             // 
-            CancelarGrpBtn.Location = new Point(612, 250);
-            CancelarGrpBtn.Name = "CancelarGrpBtn";
-            CancelarGrpBtn.Size = new Size(76, 25);
-            CancelarGrpBtn.TabIndex = 0;
-            CancelarGrpBtn.Text = "Cancelar";
-            CancelarGrpBtn.UseVisualStyleBackColor = true;
+            AgregarGrpBtn.Location = new Point(410, 65);
+            AgregarGrpBtn.Margin = new Padding(3, 4, 3, 4);
+            AgregarGrpBtn.Name = "AgregarGrpBtn";
+            AgregarGrpBtn.Size = new Size(87, 39);
+            AgregarGrpBtn.TabIndex = 12;
+            AgregarGrpBtn.Text = "Agregar";
+            AgregarGrpBtn.UseVisualStyleBackColor = true;
             // 
-            // AceptarGrpBtn
+            // QuitarGrpBtn
             // 
-            AceptarGrpBtn.Location = new Point(694, 250);
-            AceptarGrpBtn.Name = "AceptarGrpBtn";
-            AceptarGrpBtn.Size = new Size(76, 25);
-            AceptarGrpBtn.TabIndex = 1;
-            AceptarGrpBtn.Text = "Aceptar";
-            AceptarGrpBtn.UseVisualStyleBackColor = true;
+            QuitarGrpBtn.Location = new Point(793, 200);
+            QuitarGrpBtn.Margin = new Padding(3, 4, 3, 4);
+            QuitarGrpBtn.Name = "QuitarGrpBtn";
+            QuitarGrpBtn.Size = new Size(87, 31);
+            QuitarGrpBtn.TabIndex = 11;
+            QuitarGrpBtn.Text = "Quitar";
+            QuitarGrpBtn.UseVisualStyleBackColor = true;
             // 
-            // NombreGrpLbl
+            // listView1
             // 
-            NombreGrpLbl.AutoSize = true;
-            NombreGrpLbl.Location = new Point(28, 33);
-            NombreGrpLbl.Name = "NombreGrpLbl";
-            NombreGrpLbl.Size = new Size(57, 17);
-            NombreGrpLbl.TabIndex = 2;
-            NombreGrpLbl.Text = "Nombre";
+            listView1.Location = new Point(553, 68);
+            listView1.Margin = new Padding(3, 4, 3, 4);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(326, 123);
+            listView1.TabIndex = 10;
+            listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // NombreGrpTxb
+            // MateriasGrpCmb
             // 
-            NombreGrpTxb.Location = new Point(28, 53);
-            NombreGrpTxb.Name = "NombreGrpTxb";
-            NombreGrpTxb.Size = new Size(153, 23);
-            NombreGrpTxb.TabIndex = 3;
+            MateriasGrpCmb.FormattingEnabled = true;
+            MateriasGrpCmb.Location = new Point(264, 71);
+            MateriasGrpCmb.Margin = new Padding(3, 4, 3, 4);
+            MateriasGrpCmb.Name = "MateriasGrpCmb";
+            MateriasGrpCmb.Size = new Size(139, 28);
+            MateriasGrpCmb.TabIndex = 9;
             // 
-            // ApellidoGrpTxb
+            // MateriaGrpLbl
             // 
-            ApellidoGrpTxb.Location = new Point(28, 113);
-            ApellidoGrpTxb.Name = "ApellidoGrpTxb";
-            ApellidoGrpTxb.Size = new Size(153, 23);
-            ApellidoGrpTxb.TabIndex = 5;
-            // 
-            // ApellidoGrpLbl
-            // 
-            ApellidoGrpLbl.AutoSize = true;
-            ApellidoGrpLbl.Location = new Point(28, 93);
-            ApellidoGrpLbl.Name = "ApellidoGrpLbl";
-            ApellidoGrpLbl.Size = new Size(56, 17);
-            ApellidoGrpLbl.TabIndex = 4;
-            ApellidoGrpLbl.Text = "Apellido";
+            MateriaGrpLbl.AutoSize = true;
+            MateriaGrpLbl.Location = new Point(264, 44);
+            MateriaGrpLbl.Name = "MateriaGrpLbl";
+            MateriaGrpLbl.Size = new Size(66, 20);
+            MateriaGrpLbl.TabIndex = 8;
+            MateriaGrpLbl.Text = "Materias";
             // 
             // DniGrpTxb
             // 
-            DniGrpTxb.Location = new Point(28, 170);
+            DniGrpTxb.Location = new Point(32, 227);
+            DniGrpTxb.Margin = new Padding(3, 4, 3, 4);
             DniGrpTxb.Name = "DniGrpTxb";
-            DniGrpTxb.Size = new Size(153, 23);
+            DniGrpTxb.Size = new Size(174, 27);
             DniGrpTxb.TabIndex = 7;
             // 
             // DniGrpLbl
             // 
             DniGrpLbl.AutoSize = true;
-            DniGrpLbl.Location = new Point(28, 150);
+            DniGrpLbl.Location = new Point(32, 200);
             DniGrpLbl.Name = "DniGrpLbl";
-            DniGrpLbl.Size = new Size(30, 17);
+            DniGrpLbl.Size = new Size(35, 20);
             DniGrpLbl.TabIndex = 6;
             DniGrpLbl.Text = "DNI";
             // 
-            // MateriaGrpLbl
+            // ApellidoGrpTxb
             // 
-            MateriaGrpLbl.AutoSize = true;
-            MateriaGrpLbl.Location = new Point(231, 33);
-            MateriaGrpLbl.Name = "MateriaGrpLbl";
-            MateriaGrpLbl.Size = new Size(59, 17);
-            MateriaGrpLbl.TabIndex = 8;
-            MateriaGrpLbl.Text = "Materias";
+            ApellidoGrpTxb.Location = new Point(32, 151);
+            ApellidoGrpTxb.Margin = new Padding(3, 4, 3, 4);
+            ApellidoGrpTxb.Name = "ApellidoGrpTxb";
+            ApellidoGrpTxb.Size = new Size(174, 27);
+            ApellidoGrpTxb.TabIndex = 5;
             // 
-            // MateriasGrpCb
+            // ApellidoGrpLbl
             // 
-            MateriasGrpCb.FormattingEnabled = true;
-            MateriasGrpCb.Location = new Point(231, 53);
-            MateriasGrpCb.Name = "MateriasGrpCb";
-            MateriasGrpCb.Size = new Size(122, 23);
-            MateriasGrpCb.TabIndex = 9;
+            ApellidoGrpLbl.AutoSize = true;
+            ApellidoGrpLbl.Location = new Point(32, 124);
+            ApellidoGrpLbl.Name = "ApellidoGrpLbl";
+            ApellidoGrpLbl.Size = new Size(66, 20);
+            ApellidoGrpLbl.TabIndex = 4;
+            ApellidoGrpLbl.Text = "Apellido";
             // 
-            // listView1
+            // NombreGrpTxb
             // 
-            listView1.Location = new Point(484, 51);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(286, 93);
-            listView1.TabIndex = 10;
-            listView1.UseCompatibleStateImageBehavior = false;
+            NombreGrpTxb.Location = new Point(32, 71);
+            NombreGrpTxb.Margin = new Padding(3, 4, 3, 4);
+            NombreGrpTxb.Name = "NombreGrpTxb";
+            NombreGrpTxb.Size = new Size(174, 27);
+            NombreGrpTxb.TabIndex = 3;
             // 
-            // QuitarGrpBtn
+            // NombreGrpLbl
             // 
-            QuitarGrpBtn.Location = new Point(694, 150);
-            QuitarGrpBtn.Name = "QuitarGrpBtn";
-            QuitarGrpBtn.Size = new Size(76, 23);
-            QuitarGrpBtn.TabIndex = 11;
-            QuitarGrpBtn.Text = "Quitar";
-            QuitarGrpBtn.UseVisualStyleBackColor = true;
+            NombreGrpLbl.AutoSize = true;
+            NombreGrpLbl.Location = new Point(32, 44);
+            NombreGrpLbl.Name = "NombreGrpLbl";
+            NombreGrpLbl.Size = new Size(64, 20);
+            NombreGrpLbl.TabIndex = 2;
+            NombreGrpLbl.Text = "Nombre";
             // 
-            // AgregarGrpBtn
+            // AceptarGrpBtn
             // 
-            AgregarGrpBtn.Location = new Point(359, 49);
-            AgregarGrpBtn.Name = "AgregarGrpBtn";
-            AgregarGrpBtn.Size = new Size(76, 29);
-            AgregarGrpBtn.TabIndex = 12;
-            AgregarGrpBtn.Text = "Agregar";
-            AgregarGrpBtn.UseVisualStyleBackColor = true;
+            AceptarGrpBtn.Location = new Point(793, 333);
+            AceptarGrpBtn.Margin = new Padding(3, 4, 3, 4);
+            AceptarGrpBtn.Name = "AceptarGrpBtn";
+            AceptarGrpBtn.Size = new Size(87, 33);
+            AceptarGrpBtn.TabIndex = 1;
+            AceptarGrpBtn.Text = "Aceptar";
+            AceptarGrpBtn.UseVisualStyleBackColor = true;
+            // 
+            // CancelarGrpBtn
+            // 
+            CancelarGrpBtn.Location = new Point(699, 333);
+            CancelarGrpBtn.Margin = new Padding(3, 4, 3, 4);
+            CancelarGrpBtn.Name = "CancelarGrpBtn";
+            CancelarGrpBtn.Size = new Size(87, 33);
+            CancelarGrpBtn.TabIndex = 0;
+            CancelarGrpBtn.Text = "Cancelar";
+            CancelarGrpBtn.UseVisualStyleBackColor = true;
             // 
             // GestionAlumnosForms
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 685);
+            ClientSize = new Size(914, 913);
             Controls.Add(EdicionGroup);
             Controls.Add(NuevoAlumnoBtn);
             Controls.Add(EditarBtn);
-            Controls.Add(ModificarBtn);
+            Controls.Add(EliminarBtn);
             Controls.Add(AlumnosLbl);
             Controls.Add(AlumnosListView);
             Controls.Add(BuscarDniTxb);
             Controls.Add(BuscarAlumnoLbl);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "GestionAlumnosForms";
             Text = "Gestion de Almunos";
             EdicionGroup.ResumeLayout(false);
@@ -294,7 +311,7 @@
         private ColumnHeader NombreCol;
         private ColumnHeader ApellidoCol;
         private ColumnHeader DniCol;
-        private Button ModificarBtn;
+        private Button EliminarBtn;
         private Button EditarBtn;
         private Button NuevoAlumnoBtn;
         private GroupBox EdicionGroup;
@@ -308,7 +325,7 @@
         private Label DniGrpLbl;
         private Label MateriaGrpLbl;
         private ListView listView1;
-        private ComboBox MateriasGrpCb;
+        private ComboBox MateriasGrpCmb;
         private Button AgregarGrpBtn;
         private Button QuitarGrpBtn;
     }
