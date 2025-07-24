@@ -24,12 +24,14 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             _alumnoId = alumnoId;
             _carreraId = carreraId;
             _modelo = new InscripcionMateriasModelo();
+
+            this.Load += InscripcionMaterias_Load;
         }
         private void InscripcionMaterias_Load(object sender, EventArgs e)
         {
             try
             {
-                _materiasDisponibles = _modelo.ObtenerMateriasPorCarrera(_carreraId);
+                _materiasDisponibles = _modelo.ObtenerMateriasHabilitadas(_alumnoId, _carreraId);
                 CargarMateriasEnComboBox(Materia1Cmb);
                 CargarMateriasEnComboBox(Materia2Cmb);
                 CargarMateriasEnComboBox(Materia3Cmb);
@@ -39,12 +41,11 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 MessageBox.Show("Error al cargar materias: " + ex.Message);
             }
         }
-
         private void CargarMateriasEnComboBox(ComboBox comboBox)
         {
-            comboBox.DataSource = _materiasDisponibles.ToList(); // copiar
-            comboBox.DisplayMember = "Nombre";
-            comboBox.ValueMember = "Id";
+            comboBox.DataSource = _materiasDisponibles.ToList(); // importante: hacé ToList() para evitar referencia duplicada
+            comboBox.DisplayMember = "nombre"; // << asegurate que sea en minúscula
+            comboBox.ValueMember = "id";
             comboBox.SelectedIndex = -1;
         }
 
@@ -58,7 +59,14 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 if (Materia2Cmb.SelectedValue != null) idsSeleccionados.Add((long)Materia2Cmb.SelectedValue);
                 if (Materia3Cmb.SelectedValue != null) idsSeleccionados.Add((long)Materia3Cmb.SelectedValue);
 
-                // Validar que no haya materias duplicadas
+                // Validar que haya al menos una materia
+                if (idsSeleccionados.Count == 0)
+                {
+                    MessageBox.Show("Debe seleccionar al menos una materia.");
+                    return;
+                }
+
+                // Validar que no haya duplicados
                 if (idsSeleccionados.Count != idsSeleccionados.Distinct().Count())
                 {
                     MessageBox.Show("No se puede seleccionar la misma materia más de una vez.");
@@ -67,12 +75,16 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
                 _modelo.InscribirAlumnoAMaterias(_alumnoId, idsSeleccionados);
                 MessageBox.Show("Inscripción realizada correctamente.");
-                this.Close(); // o limpiar selección si querés seguir en el form
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al inscribirse: " + ex.Message);
             }
+        }
+        private void AtrasInscMatBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

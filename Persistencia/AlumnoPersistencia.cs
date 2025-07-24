@@ -29,6 +29,45 @@ namespace Persistencia
                 throw new Exception("Error al obtener los alumnos");
             }
         }
+
+
+        public List<InscripcionMateriaResponse> ObtenerMateriasAprobadas(long alumnoId)
+        {
+            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumnos/{alumnoId}/materias");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                var materias = JsonSerializer.Deserialize<List<InscripcionMateriaResponse>>(json);
+                return materias.Where(m => m.condicion.ToLower() == "aprobada").ToList();
+            }
+            else
+            {
+                throw new Exception("Error al obtener materias del alumno");
+            }
+        }
+    }
+}
+
+
+
+/* MODELO VIEJO DE BUSCAR ALUMNO
+if (response.IsSuccessStatusCode)
+{
+    string json = response.Content.ReadAsStringAsync().Result;
+    return JsonSerializer.Deserialize<Alumno>(json);
+}
+else
+{
+    Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+    throw new Exception("Error al obtener el alumno por ID");
+}
+
+
+
+
+
+SEGUNDO 
         public Alumno ObtenerAlumnoPorId(long id)
         {
             HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{id}");
@@ -36,13 +75,13 @@ namespace Persistencia
             if (response.IsSuccessStatusCode)
             {
                 string json = response.Content.ReadAsStringAsync().Result;
-                return JsonSerializer.Deserialize<Alumno>(json);
+                var alumno = JsonSerializer.Deserialize<Alumno>(json);
+                return alumno;
             }
             else
             {
-                Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
-                throw new Exception("Error al obtener el alumno por ID");
+                throw new Exception("No se pudo obtener el alumno");
             }
+
         }
-    }
-}
+*/
