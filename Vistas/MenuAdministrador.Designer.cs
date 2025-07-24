@@ -62,6 +62,7 @@
             GestionDeDesbloqueosBtn.TabIndex = 3;
             GestionDeDesbloqueosBtn.Text = "Gestion de Desbloqueos";
             GestionDeDesbloqueosBtn.UseVisualStyleBackColor = true;
+            GestionDeDesbloqueosBtn.Click += GestionDeDesbloqueosBtn_Click;
             // 
             // CerrarSesionBtn
             // 

@@ -10,17 +10,13 @@ namespace Negocio
 {
     public class InicioSesionModelo
     {
-        public int maxIntentosFallidos = 3;
-        public int contadorIntentosFallidos = 0;
         public string? mensajeError;
 
         public LoginResponse Login(string username, string password)
         {
             LoginPersistencia loginPersistencia = new LoginPersistencia();
             LoginResponse loginResponse = loginPersistencia.login(username, password);
-            //manejarErrores(loginPersistencia.error);
             mensajeError = loginPersistencia.errorMensaje;
-
             return loginResponse;
         }
 
