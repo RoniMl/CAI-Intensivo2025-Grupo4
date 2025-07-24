@@ -13,6 +13,22 @@ namespace Persistencia
     {
         public List<Materia> buscarMateriasPorCarrera(long carreraId)
         {
+            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/carreras/{carreraId}/materias");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                var materias = JsonSerializer.Deserialize<List<Materia>>(json);
+                return materias;
+            }
+            else
+            {
+                throw new Exception("No se pudieron obtener las materias.");
+            }
+        }
+        /*
+        public List<Materia> buscarMateriasPorCarrera(long carreraId)
+        {
             HttpResponseMessage response = WebHelper.Get($"tpIntensivo/materias/{carreraId}");
 
             if (response.IsSuccessStatusCode)
@@ -27,5 +43,6 @@ namespace Persistencia
                 throw new Exception("Error al obtener las materias de la carrera");
             }
         }
+        */
     }
 }

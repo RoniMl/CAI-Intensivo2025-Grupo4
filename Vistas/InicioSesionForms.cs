@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Datos; // Asegúrate de que el modelo esté en este espacio de nombres
 using Negocio;
+using Persistencia;
 using Vistas;
 using Windows.Graphics.Printing.OptionDetails; // Asegúrate de que la clase Usuario esté en este espacio de nombres
 
@@ -52,7 +53,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 switch (login.perfilUsuario)
                 {
                     case "ALUMNO":
-
+                       
                         long idAlumno = login.id;
                         long idCarrera = 1;
 
