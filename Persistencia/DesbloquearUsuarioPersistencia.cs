@@ -10,15 +10,18 @@ using Persistencia.utils;
 
 namespace Persistencia
 {
-    internal class DesbloquearUsuarioPersistencia
+    public class DesbloquearUsuarioPersistencia
     {
-        public DesbloquearUsuarioRequest desbloquearUsuario(int idUsuario)
+        
+        public bool desbloquearUsuario(int idUsuario)
         {
             DesbloquearUsuarioRequest datos = new DesbloquearUsuarioRequest();
             datos.idUsuario = idUsuario;
-
-            var jsonData = JsonSerializer.Serialize(datos);
+            var jsonData = JsonSerializer.Serialize(datos);           
             HttpResponseMessage response = WebHelper.Post("tpIntensivo/desbloquear", jsonData);
+
+            return response.IsSuccessStatusCode;
+
         }
     }
 }

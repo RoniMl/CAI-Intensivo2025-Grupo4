@@ -10,13 +10,13 @@ namespace Negocio
 {
     public class DesbloquearUsuarioNegocio
     {
-       public DesbloquearUsuarioRequest DesbloquearUsuario(int idUsuario)
+       
+        public bool DesbloquearUsuario(int idUsuario)
         {
-            DesbloquearUsuarioRequest desbloquearUsuarioRequest = new DesbloquearUsuarioRequest();
-            desbloquearUsuarioRequest.idUsuario = idUsuario;
             DesbloquearUsuarioPersistencia desbloquearUsuarioPersistencia = new DesbloquearUsuarioPersistencia();
-            desbloquearUsuarioPersistencia.desbloquearUsuario(desbloquearUsuarioRequest);
-            return desbloquearUsuarioRequest;
+            bool resultado = desbloquearUsuarioPersistencia.desbloquearUsuario(idUsuario);
+            
+            return resultado;
         }
     }
 }

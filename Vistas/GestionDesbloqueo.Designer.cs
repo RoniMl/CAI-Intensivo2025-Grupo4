@@ -48,7 +48,7 @@
             DesbloquearBtn.Name = "DesbloquearBtn";
             DesbloquearBtn.Size = new Size(98, 25);
             DesbloquearBtn.TabIndex = 1;
-            DesbloquearBtn.Text = "Desboquear";
+            DesbloquearBtn.Text = "Desbloquear";
             DesbloquearBtn.UseVisualStyleBackColor = true;
             DesbloquearBtn.Click += DesbloquearBtn_Click;
             // 
