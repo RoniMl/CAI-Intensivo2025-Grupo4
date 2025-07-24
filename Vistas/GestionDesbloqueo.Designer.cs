@@ -50,7 +50,7 @@
             DesbloquearBtn.TabIndex = 1;
             DesbloquearBtn.Text = "Desboquear";
             DesbloquearBtn.UseVisualStyleBackColor = true;
-            //DesbloquearBtn.Click += this.DesbloquearBtn_Click;
+            DesbloquearBtn.Click += DesbloquearBtn_Click;
             // 
             // DesbloquearTextBox
             // 
