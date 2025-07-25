@@ -11,6 +11,7 @@ namespace Negocio
     public class InscripcionFinalesModelo
     {
         private AlumnoPersistencia _alumnoPersistencia = new AlumnoPersistencia();
+        private InscripcionPersistencia _inscripcionPersistencia = new InscripcionPersistencia();
 
         public List<InscripcionMateriaResponse> ObtenerMateriasParaFinal(long alumnoId)
         {
@@ -20,10 +21,10 @@ namespace Negocio
                 .Where(m => m.condicion == "REGULAR" || m.condicion == "FINAL")
                 .ToList();
         }
+
         public void InscribirAFinal(long alumnoId, long materiaId)
         {
-            var persistencia = new InscripcionPersistencia();
-            persistencia.InscribirAFinal(alumnoId, materiaId);
+            _inscripcionPersistencia.InscribirAFinal(alumnoId, materiaId);
         }
     }
 

@@ -36,7 +36,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void btnInscripcionFinales_Click(object sender, EventArgs e)
         {
-            InscripcionFinales formFinales = new InscripcionFinales();
+            InscripcionFinales formFinales = new InscripcionFinales(_alumnoId);
             formFinales.Show();
         }
     }

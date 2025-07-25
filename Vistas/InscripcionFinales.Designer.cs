@@ -93,9 +93,9 @@
 
         #endregion
 
-        private Label MateriaFinalLbl;
-        private ComboBox MateriaFinalCmb;
-        private Button AtrasInscFinBtn;
-        private Button EnviarInscFinBtn;
+        public Label MateriaFinalLbl;
+        public ComboBox MateriaFinalCmb;
+        public Button AtrasInscFinBtn;
+        public Button EnviarInscFinBtn;
     }
 }

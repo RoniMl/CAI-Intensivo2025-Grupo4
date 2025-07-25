@@ -29,6 +29,13 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             {
                 var materiasFinales = _modelo.ObtenerMateriasParaFinal(_alumnoId);
 
+                if (materiasFinales == null || materiasFinales.Count == 0)
+                {
+                    MessageBox.Show("No hay materias disponibles para rendir final.");
+                    this.Close();
+                    return;
+                }
+
                 MateriaFinalCmb.DataSource = materiasFinales;
                 MateriaFinalCmb.DisplayMember = "nombre";
                 MateriaFinalCmb.ValueMember = "id";
