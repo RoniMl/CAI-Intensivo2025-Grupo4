@@ -1,4 +1,5 @@
 ﻿using CAI_Intensivo2025_Grupo4.Vistas;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,8 @@ namespace Vistas
 {
     public partial class GestionPersonal : Form
     {
+
+        private GestionarPersonalNegocio negocio = new GestionarPersonalNegocio();
         public GestionPersonal()
         {
             InitializeComponent();
@@ -24,6 +27,7 @@ namespace Vistas
             AceptarGroupbtn.Click += AceptarGroupbtn_Click;
             EditarBtn.Click += EditarBtn_Click;
             BuscarBtn.Click += BuscarBtn_Click;
+            EliminarBtn.Click += EliminarBtn_Click;
 
             PersonalListView.SelectedIndexChanged += PersonalListView_SelectedIndexChanged;
 
@@ -84,6 +88,90 @@ namespace Vistas
             // CargarPersonal();
         }
 
+        private void BuscarBtn_Click(object sender, EventArgs e)
+        {
+            string dni = BuscarDniTxb.Text.Trim();
+
+            if (string.IsNullOrEmpty(dni))
+            {
+                MessageBox.Show("Ingrese un DNI para buscar.");
+                return;
+            }
+
+            try
+            {
+                // Llama a la capa negocio para obtener el docente por dni
+                var docente = negocio.ObtenerDocentePorDni(dni);
+
+                // Limpia la lista antes de mostrar resultados
+                PersonalListView.Clear();
+
+                // Configura las columnas (títulos)
+                PersonalListView.View = View.Details;
+                PersonalListView.Columns.Add("ID", 50);
+                PersonalListView.Columns.Add("Nombre", 150);
+                PersonalListView.Columns.Add("Apellido", 150);
+                PersonalListView.Columns.Add("DNI", 100);
+
+                if (docente != null)
+                {
+                    // Crea el ítem con la info del docente
+                    ListViewItem item = new ListViewItem(docente.id.ToString());
+                    item.SubItems.Add(docente.nombre);
+                    item.SubItems.Add(docente.apellido);
+                    item.SubItems.Add(docente.dni);
+
+                    PersonalListView.Items.Add(item);
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró ningún docente con ese DNI.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar docente: " + ex.Message);
+            }
+        }
+
+        private void PersonalListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool tieneSeleccion = PersonalListView.SelectedItems.Count > 0;
+            EditarBtn.Enabled = tieneSeleccion;
+            EliminarBtn.Enabled = tieneSeleccion;
+        }
+
+        private void EliminarBtn_Click(object sender, EventArgs e)
+        {
+            if (PersonalListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Seleccione un docente para eliminar.");
+                return;
+            }
+
+            var item = PersonalListView.SelectedItems[0];
+            int idDocente = int.Parse(item.SubItems[0].Text);
+
+            try
+            {
+                bool eliminado = negocio.EliminarDocentePorId(idDocente);
+                if (eliminado)
+                {
+                    MessageBox.Show("Docente eliminado con éxito.");
+                    // Recargar lista o limpiar
+                    BuscarBtn_Click(null, null); // o el método que uses para refrescar la lista
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo eliminar el docente.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar docente: " + ex.Message);
+            }
+        }
+
         private void EditarBtn_Click(object sender, EventArgs e)
         {
             if (PersonalListView.SelectedItems.Count == 0)
@@ -103,27 +191,6 @@ namespace Vistas
             IdGroupTxb.Enabled = false;
 
             ActivarEdicion(true);
-        }
-
-        private void BuscarBtn_Click(object sender, EventArgs e)
-        {
-            string dni = BuscarDniTxb.Text.Trim();
-
-            if (string.IsNullOrEmpty(dni))
-            {
-                MessageBox.Show("Ingrese un DNI para buscar.");
-                return;
-            }
-
-            // TODO: Buscar personal y mostrar resultados en PersonalListView
-            MessageBox.Show($"Buscar por DNI: {dni}");
-        }
-
-        private void PersonalListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            bool tieneSeleccion = PersonalListView.SelectedItems.Count > 0;
-            EditarBtn.Enabled = tieneSeleccion;
-            EliminarBtn.Enabled = tieneSeleccion;
         }
 
     }

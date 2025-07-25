@@ -83,11 +83,14 @@
             // 
             // PersonalListView
             // 
+            PersonalListView.FullRowSelect = true;
             PersonalListView.Location = new Point(27, 147);
+            PersonalListView.MultiSelect = false;
             PersonalListView.Name = "PersonalListView";
             PersonalListView.Size = new Size(875, 171);
             PersonalListView.TabIndex = 3;
             PersonalListView.UseCompatibleStateImageBehavior = false;
+            PersonalListView.View = View.Details;
             // 
             // NuevoDocenteBtn
             // 
