@@ -61,6 +61,14 @@ namespace Persistencia
             }
         }
 
+        public bool EditarDocente(Docente docente)
+        {
+            var json = JsonSerializer.Serialize(docente);
+            HttpResponseMessage response = WebHelper.Put($"tpIntensivo/docentes/{docente.id}", json);
+
+            return response.IsSuccessStatusCode;
+        }
+
 
     }
 }

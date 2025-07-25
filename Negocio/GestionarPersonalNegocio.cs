@@ -21,5 +21,10 @@ namespace Negocio
         {
             return docentePersistencia.EliminarDocente(id);
         }
+
+        public bool EditarDocente(Docente docente)
+        {
+            return docentePersistencia.EditarDocente(docente);
+        }
     }
 }
