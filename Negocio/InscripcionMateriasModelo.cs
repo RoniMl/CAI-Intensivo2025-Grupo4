@@ -31,8 +31,38 @@ namespace Negocio
 
         public void InscribirAlumnoAMaterias(long alumnoId, List<long> materiasIds)
         {
-            inscripcionPersistencia.InscribirMaterias(alumnoId, materiasIds);
+            var materiasIdsInt = materiasIds.Select(id => (int)id).ToList(); // convertir
+            inscripcionPersistencia.InscribirMaterias(alumnoId, materiasIdsInt);
         }
+
+        //PRUEBA
+        public List<Materia> ObtenerMateriasHabilitadas(long alumnoId, long carreraId)
+        {
+            var todasLasMaterias = materiaPersistencia.buscarMateriasPorCarrera(carreraId);
+            var materiasAprobadas = alumnoPersistencia.ObtenerMateriasAprobadas(alumnoId);
+
+            // Convertimos a HashSet por eficiencia
+            var idsAprobadas = materiasAprobadas.Select(m => m.id).ToHashSet();
+
+            var materiasHabilitadas = todasLasMaterias
+                .Where(m =>
+                    // No esté aprobada
+                    !idsAprobadas.Contains(m.id) &&
+                    // Todas sus correlativas estén aprobadas (o no tenga correlativas)
+                    (m.correlativas == null || m.correlativas.All(c => idsAprobadas.Contains(c.id)))
+                )
+                .ToList();
+
+            // Debug opcional para consola Output
+            Console.WriteLine("Materias habilitadas para el alumno:");
+            foreach (var m in materiasHabilitadas)
+                Console.WriteLine($"✓ {m.nombre} (ID: {m.id})");
+
+            return materiasHabilitadas;
+        }
+
+
+        /*LO QUE VA
         public List<Materia> ObtenerMateriasHabilitadas(long alumnoId, long carreraId)
         {
             var todas = materiaPersistencia.buscarMateriasPorCarrera(carreraId);
@@ -40,29 +70,15 @@ namespace Negocio
 
             var aprobadas = alumnoPersistencia.ObtenerMateriasAprobadas(alumnoId);
             var idsAprobadas = aprobadas.Select(m => (long)m.id).ToHashSet();
-
-            //ultimo añadido
-            Console.WriteLine("Materias aprobadas: " + idsAprobadas.Count);
-            foreach (var id in idsAprobadas)
-            {
-                Console.WriteLine($"→ Aprobada ID: {id}");
-            }
-
             var habilitadas = todas
                 .Where(m =>
                     !idsAprobadas.Contains(m.id) &&   // no aprobadas
                     (m.correlativas == null || m.correlativas.All(c => idsAprobadas.Contains(c.id))) // correlativas OK
                 ).ToList();
 
-            //ultimo añadido
-            Console.WriteLine("Materias habilitadas para mostrar: " + habilitadas.Count);
-            foreach (var h in habilitadas)
-            {
-                Console.WriteLine($"→ Habilitada: {h.nombre}");
-            }
-
             return habilitadas;
         }
+        */
 
     }
 }

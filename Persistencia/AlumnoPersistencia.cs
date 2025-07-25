@@ -29,8 +29,6 @@ namespace Persistencia
                 throw new Exception("Error al obtener los alumnos");
             }
         }
-
-
         public List<InscripcionMateriaResponse> ObtenerMateriasAprobadas(long alumnoId)
         {
             HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{alumnoId}/materias");
@@ -39,8 +37,7 @@ namespace Persistencia
             {
                 string json = response.Content.ReadAsStringAsync().Result;
                 var materias = JsonSerializer.Deserialize<List<InscripcionMateriaResponse>>(json);
-                Console.WriteLine("JSON recibido para materias inscriptas:");//ultimo añadido
-                Console.WriteLine(json);
+
 
                 //ESTE FOREACH PUEDE VOLAR, ULTIMO AGREGADO.
                 foreach (var m in materias)
@@ -56,7 +53,6 @@ namespace Persistencia
         }
     }
 }
-
 
 
 /* MODELO VIEJO DE BUSCAR ALUMNO

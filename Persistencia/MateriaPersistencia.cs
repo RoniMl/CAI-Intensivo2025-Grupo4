@@ -26,6 +26,9 @@ namespace Persistencia
                 throw new Exception("No se pudieron obtener las materias.");
             }
         }
+
+
+
         /*
         public List<Materia> buscarMateriasPorCarrera(long carreraId)
         {
