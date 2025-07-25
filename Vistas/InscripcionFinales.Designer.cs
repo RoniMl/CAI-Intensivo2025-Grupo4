@@ -34,6 +34,7 @@
             this.AtrasInscFinBtn.Click += new System.EventHandler(this.AtrasBtn_Click);
             EnviarInscFinBtn = new Button();
             this.EnviarInscFinBtn.Click += new System.EventHandler(this.EnviarInscFinBtn_Click);
+            this.Load += new System.EventHandler(this.InscripcionFinales_Load);
             SuspendLayout();
             // 
             // MateriaFinalLbl

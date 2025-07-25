@@ -20,6 +20,11 @@ namespace Negocio
                 .Where(m => m.condicion == "REGULAR" || m.condicion == "FINAL")
                 .ToList();
         }
+        public void InscribirAFinal(long alumnoId, long materiaId)
+        {
+            var persistencia = new InscripcionPersistencia();
+            persistencia.InscribirAFinal(alumnoId, materiaId);
+        }
     }
 
 }
