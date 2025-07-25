@@ -41,5 +41,15 @@ namespace Persistencia
                 throw new Exception("No se pudieron inscribir las materias.");
             }
         }
+        public void InscribirAFinal(long alumnoId, long materiaId)
+        {
+            string json = JsonSerializer.Serialize(materiaId);
+            HttpResponseMessage response = WebHelper.Post($"tpIntensivo/alumno/{alumnoId}/finales", json);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("No se pudo inscribir al final");
+            }
+        }
     }
 }

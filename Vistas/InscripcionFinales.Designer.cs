@@ -31,7 +31,9 @@
             MateriaFinalLbl = new Label();
             MateriaFinalCmb = new ComboBox();
             AtrasInscFinBtn = new Button();
+            this.AtrasInscFinBtn.Click += new System.EventHandler(this.AtrasBtn_Click);
             EnviarInscFinBtn = new Button();
+            this.EnviarInscFinBtn.Click += new System.EventHandler(this.EnviarInscFinBtn_Click);
             SuspendLayout();
             // 
             // MateriaFinalLbl

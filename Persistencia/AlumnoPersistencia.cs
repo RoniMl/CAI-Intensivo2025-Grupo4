@@ -37,17 +37,29 @@ namespace Persistencia
             {
                 string json = response.Content.ReadAsStringAsync().Result;
                 var materias = JsonSerializer.Deserialize<List<InscripcionMateriaResponse>>(json);
-
-
-                //ESTE FOREACH PUEDE VOLAR, ULTIMO AGREGADO.
-                foreach (var m in materias)
-                {
-                    Console.WriteLine($"Materia: {m.nombre}, Condición: {m.condicion}");
-                }
                 return materias.Where(m => m.condicion.ToLower() == "aprobada").ToList();
             }
             else
             {
+                throw new Exception("Error al obtener materias del alumno");
+            }
+        }
+        public List<InscripcionMateriaResponse> ObtenerMateriasDelAlumno(long alumnoId)
+        {
+            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{alumnoId}/materias");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                var materias = JsonSerializer.Deserialize<List<InscripcionMateriaResponse>>(json, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+                return materias ?? new List<InscripcionMateriaResponse>();
+            }
+            else
+            {
+                Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
                 throw new Exception("Error al obtener materias del alumno");
             }
         }

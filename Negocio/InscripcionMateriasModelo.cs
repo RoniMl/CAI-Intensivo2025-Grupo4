@@ -35,34 +35,6 @@ namespace Negocio
             inscripcionPersistencia.InscribirMaterias(alumnoId, materiasIdsInt);
         }
 
-        //PRUEBA
-        public List<Materia> ObtenerMateriasHabilitadas(long alumnoId, long carreraId)
-        {
-            var todasLasMaterias = materiaPersistencia.buscarMateriasPorCarrera(carreraId);
-            var materiasAprobadas = alumnoPersistencia.ObtenerMateriasAprobadas(alumnoId);
-
-            // Convertimos a HashSet por eficiencia
-            var idsAprobadas = materiasAprobadas.Select(m => m.id).ToHashSet();
-
-            var materiasHabilitadas = todasLasMaterias
-                .Where(m =>
-                    // No esté aprobada
-                    !idsAprobadas.Contains(m.id) &&
-                    // Todas sus correlativas estén aprobadas (o no tenga correlativas)
-                    (m.correlativas == null || m.correlativas.All(c => idsAprobadas.Contains(c.id)))
-                )
-                .ToList();
-
-            // Debug opcional para consola Output
-            Console.WriteLine("Materias habilitadas para el alumno:");
-            foreach (var m in materiasHabilitadas)
-                Console.WriteLine($"✓ {m.nombre} (ID: {m.id})");
-
-            return materiasHabilitadas;
-        }
-
-
-        /*LO QUE VA
         public List<Materia> ObtenerMateriasHabilitadas(long alumnoId, long carreraId)
         {
             var todas = materiaPersistencia.buscarMateriasPorCarrera(carreraId);
@@ -78,7 +50,6 @@ namespace Negocio
 
             return habilitadas;
         }
-        */
 
     }
 }
