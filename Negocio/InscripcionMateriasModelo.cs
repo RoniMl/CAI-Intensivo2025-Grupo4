@@ -36,14 +36,30 @@ namespace Negocio
         public List<Materia> ObtenerMateriasHabilitadas(long alumnoId, long carreraId)
         {
             var todas = materiaPersistencia.buscarMateriasPorCarrera(carreraId);
+            Console.WriteLine("Materias de la carrera: " + todas.Count); //añadido utimo
+
             var aprobadas = alumnoPersistencia.ObtenerMateriasAprobadas(alumnoId);
             var idsAprobadas = aprobadas.Select(m => (long)m.id).ToHashSet();
 
+            //ultimo añadido
+            Console.WriteLine("Materias aprobadas: " + idsAprobadas.Count);
+            foreach (var id in idsAprobadas)
+            {
+                Console.WriteLine($"→ Aprobada ID: {id}");
+            }
+
             var habilitadas = todas
                 .Where(m =>
-                    !idsAprobadas.Contains(m.Id) &&
-                    (m.Correlativas == null || m.Correlativas.All(c => idsAprobadas.Contains(c.id)))
+                    !idsAprobadas.Contains(m.id) &&   // no aprobadas
+                    (m.correlativas == null || m.correlativas.All(c => idsAprobadas.Contains(c.id))) // correlativas OK
                 ).ToList();
+
+            //ultimo añadido
+            Console.WriteLine("Materias habilitadas para mostrar: " + habilitadas.Count);
+            foreach (var h in habilitadas)
+            {
+                Console.WriteLine($"→ Habilitada: {h.nombre}");
+            }
 
             return habilitadas;
         }

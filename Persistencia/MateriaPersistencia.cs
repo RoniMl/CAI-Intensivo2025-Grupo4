@@ -13,7 +13,7 @@ namespace Persistencia
     {
         public List<Materia> buscarMateriasPorCarrera(long carreraId)
         {
-            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/carreras/{carreraId}/materias");
+            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/materias/{carreraId}");
 
             if (response.IsSuccessStatusCode)
             {

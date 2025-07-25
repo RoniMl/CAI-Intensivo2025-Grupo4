@@ -55,9 +55,9 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             {
                 var idsSeleccionados = new List<long>();
 
-                if (Materia1Cmb.SelectedValue != null) idsSeleccionados.Add((long)Materia1Cmb.SelectedValue);
-                if (Materia2Cmb.SelectedValue != null) idsSeleccionados.Add((long)Materia2Cmb.SelectedValue);
-                if (Materia3Cmb.SelectedValue != null) idsSeleccionados.Add((long)Materia3Cmb.SelectedValue);
+                if (Materia1Cmb.SelectedValue != null) idsSeleccionados.Add(Convert.ToInt64(Materia1Cmb.SelectedValue));
+                if (Materia2Cmb.SelectedValue != null) idsSeleccionados.Add(Convert.ToInt64(Materia2Cmb.SelectedValue));
+                if (Materia3Cmb.SelectedValue != null) idsSeleccionados.Add(Convert.ToInt64(Materia3Cmb.SelectedValue));
 
                 // Validar que haya al menos una materia
                 if (idsSeleccionados.Count == 0)

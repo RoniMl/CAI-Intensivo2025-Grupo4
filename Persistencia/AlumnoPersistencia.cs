@@ -33,12 +33,20 @@ namespace Persistencia
 
         public List<InscripcionMateriaResponse> ObtenerMateriasAprobadas(long alumnoId)
         {
-            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumnos/{alumnoId}/materias");
+            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{alumnoId}/materias");
 
             if (response.IsSuccessStatusCode)
             {
                 string json = response.Content.ReadAsStringAsync().Result;
                 var materias = JsonSerializer.Deserialize<List<InscripcionMateriaResponse>>(json);
+                Console.WriteLine("JSON recibido para materias inscriptas:");//ultimo añadido
+                Console.WriteLine(json);
+
+                //ESTE FOREACH PUEDE VOLAR, ULTIMO AGREGADO.
+                foreach (var m in materias)
+                {
+                    Console.WriteLine($"Materia: {m.nombre}, Condición: {m.condicion}");
+                }
                 return materias.Where(m => m.condicion.ToLower() == "aprobada").ToList();
             }
             else
