@@ -44,7 +44,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(525, 380);
+            ClientSize = new Size(525, 187);
             Controls.Add(LiquidarBtn);
             Name = "MenuPersonal";
             Text = "Menu de Personal";

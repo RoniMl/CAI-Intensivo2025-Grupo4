@@ -15,8 +15,7 @@ namespace Datos
         public string cuit { get; set; }
         public string tipo { get; set; } // Puede ser "Profesor", "Ayudante" o "Ayudante ad honorem"
         public int antiguedad { get; set; } // Años de antigüedad en la institución
-        public List<Curso> cursos { get; set; } = new List<Curso>(); // Cursos que imparte el docente
-
+        public List<int> cursos { get; set; } = new List<int>(); // Id cursos que imparte el docente
 
     }
 

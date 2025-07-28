@@ -29,30 +29,93 @@
         private void InitializeComponent()
         {
             CalcularBtn = new Button();
+            liquidacionList = new ListView();
+            nombreCol = new ColumnHeader();
+            apellidoCol = new ColumnHeader();
+            cuitCol = new ColumnHeader();
+            horasCol = new ColumnHeader();
+            totalCol = new ColumnHeader();
+            LiquidacionLabel = new Label();
             SuspendLayout();
             // 
             // CalcularBtn
             // 
-            CalcularBtn.Location = new Point(661, 390);
+            CalcularBtn.Location = new Point(568, 218);
             CalcularBtn.Name = "CalcularBtn";
-            CalcularBtn.Size = new Size(98, 23);
+            CalcularBtn.Size = new Size(98, 31);
             CalcularBtn.TabIndex = 0;
             CalcularBtn.Text = "Calcular";
             CalcularBtn.UseVisualStyleBackColor = true;
+            // 
+            // liquidacionList
+            // 
+            liquidacionList.CheckBoxes = true;
+            liquidacionList.Columns.AddRange(new ColumnHeader[] { nombreCol, apellidoCol, cuitCol, horasCol, totalCol });
+            liquidacionList.FullRowSelect = true;
+            liquidacionList.Location = new Point(12, 37);
+            liquidacionList.Name = "liquidacionList";
+            liquidacionList.Size = new Size(654, 175);
+            liquidacionList.TabIndex = 1;
+            liquidacionList.UseCompatibleStateImageBehavior = false;
+            liquidacionList.View = View.Details;
+            // 
+            // nombreCol
+            // 
+            nombreCol.Text = "Nombre";
+            nombreCol.Width = 120;
+            // 
+            // apellidoCol
+            // 
+            apellidoCol.Text = "Apellido";
+            apellidoCol.Width = 120;
+            // 
+            // cuitCol
+            // 
+            cuitCol.Text = "CUIT";
+            cuitCol.Width = 120;
+            // 
+            // horasCol
+            // 
+            horasCol.Text = "Horas";
+            // 
+            // totalCol
+            // 
+            totalCol.Text = "Total a cobrar";
+            totalCol.Width = 200;
+            // 
+            // LiquidacionLabel
+            // 
+            LiquidacionLabel.AutoSize = true;
+            LiquidacionLabel.Location = new Point(12, 17);
+            LiquidacionLabel.Name = "LiquidacionLabel";
+            LiquidacionLabel.Size = new Size(136, 17);
+            LiquidacionLabel.TabIndex = 2;
+            LiquidacionLabel.Text = "Liquidacion de sueldo";
             // 
             // LiquidacionSueldo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(678, 261);
+            Controls.Add(LiquidacionLabel);
+            Controls.Add(liquidacionList);
             Controls.Add(CalcularBtn);
             Name = "LiquidacionSueldo";
             Text = "Liquidacion de Sueldo";
+            Load += LiquidacionSueldo_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button CalcularBtn;
+        private ListView liquidacionList;
+        private ColumnHeader nombreCol;
+        private ColumnHeader apellidoCol;
+        private ColumnHeader cuitCol;
+        private ColumnHeader horasCol;
+        private ColumnHeader totalCol;
+        private Label LiquidacionLabel;
     }
 }

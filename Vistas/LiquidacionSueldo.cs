@@ -16,5 +16,10 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         {
             InitializeComponent();
         }
+
+        private void LiquidacionSueldo_Load(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

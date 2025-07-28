@@ -86,8 +86,6 @@ namespace Vistas
             LimpiarCampos();
         }
 
-        
-
         private void BuscarBtn_Click(object sender, EventArgs e)
         {
             string dni = BuscarDniTxb.Text.Trim();
