@@ -9,6 +9,7 @@ namespace Persistencia
 {
     public class DocentePersistencia
     {
+        public Docente docenteEncontrado = new Docente();  
         //public List<Docente> buscarDocentes()
         //{
         //    List<Docente> docentes = new List<Docente>();
@@ -37,8 +38,9 @@ namespace Persistencia
                 var contentStream = response.Content.ReadAsStringAsync().Result;
                 var docentes = JsonSerializer.Deserialize<List<Docente>>(contentStream);
 
+                docenteEncontrado = docentes.Find(d => d.dni.Trim() == dni.Trim());
                 // Busca el docente que tenga el mismo DNI (sin espacios, por las dudas)
-                return docentes.Find(d => d.dni.Trim() == dni.Trim());
+                return docenteEncontrado;
             }
             else
             {

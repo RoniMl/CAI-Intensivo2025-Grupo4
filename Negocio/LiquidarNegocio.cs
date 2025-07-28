@@ -10,15 +10,17 @@ namespace Negocio
 {
     public class LiquidarNegocio
     {
-        Docente docenteEnLiquidacion = new Docente();
+        public Docente? docenteEnLiquidacion;
+        public CarreraPersistencia carreraPersistencia = new CarreraPersistencia();
+        public CursoPersistencia cursoPersistencia = new CursoPersistencia();
 
-        public int LiquidarDocente(long idDocente)
+
+        public List<CarreraResponse> ObtenerCarreras()
         {
-            docenteEnLiquidacion = new DocentePersistencia().BuscarDocentePorDni(idDocente.ToString()); 
-
-            return;
+            return carreraPersistencia.buscarCarrera();
         }
 
-       
+        //Obtener los cursos de todas las carreras
+        
     }
 }

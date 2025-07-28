@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Persistencia
 {
-    class CarreraPersistencia
+    public class CarreraPersistencia
     {
 
         public List<CarreraResponse> buscarCarrera()

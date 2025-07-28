@@ -26,7 +26,7 @@ namespace Persistencia
                 Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
                 throw new Exception("Error al obtener los cursos de la materia");
             }
-        }
+        }     
     }
 }
 
