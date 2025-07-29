@@ -71,34 +71,34 @@ namespace Negocio
             return (horasTotales, sueldo, mensajeError);
         }
 
-        public Docente ValidarDocentePuedeLiquidar(string idDocente, out string mensaje)
-        {
-            try
-            {
-                Docente docenteTipo = docentePersistencia.BuscarDocentePorDni(idDocente);
+        //public Docente ValidarDocentePuedeLiquidar(int idDocente, out string mensaje)
+        //{
+        //    try
+        //    {
+        //        Docente docenteTipo = docentePersistencia.BuscarDocentePorId(idDocente);
 
-                if (docenteTipo == null)
-                {
-                    mensaje = "No se encontró al docente.";
+        //        if (docenteTipo == null)
+        //        {
+        //            mensaje = "No se encontró al docente.";
                     
-                }
+        //        }
 
-                if (docenteTipo.tipo == "AYUDANTE_AD_HONOREM")
-                {
-                    mensaje = "El docente es Ad Honorem, por lo tanto no corresponde liquidación.";
+        //        if (docenteTipo.tipo == "AYUDANTE_AD_HONOREM")
+        //        {
+        //            mensaje = "El docente es Ad Honorem, por lo tanto no corresponde liquidación.";
                     
-                }
+        //        }
 
-                mensaje = string.Empty;
-                return docenteTipo;
-            }
-            catch (Exception ex)
-            {
-                mensaje = $"Error al validar el docente: {ex.Message}";
+        //        mensaje = string.Empty;
+        //        return docenteTipo;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        mensaje = $"Error al validar el docente: {ex.Message}";
                 
-            }
-            return null;
-        }
+        //    }
+        //    return null;
+        //}
 
 
 
