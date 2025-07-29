@@ -14,8 +14,10 @@ namespace Vistas
 {
     public partial class MenuPersonal : Form
     {
-        private long idDocente;
-        public MenuPersonal(long idDocente)
+
+
+        private string idDocente;
+        public MenuPersonal(string idDocente)
         {
             InitializeComponent();
             this.idDocente = idDocente;
@@ -26,11 +28,7 @@ namespace Vistas
 
         private void LiquidarBtn_Click(object? sender, EventArgs e)
         {
-            if (idDocente.TipoDocente == "AYUDANTE_AD_HONOREM")
-            {
-                MessageBox.Show("No es posible liquidar el sueldo. El docente es Ad Honorem.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            
 
             // Mostrar el formulario de liquidación si no es ad honorem
             var form = new LiquidacionSueldo(idDocente);

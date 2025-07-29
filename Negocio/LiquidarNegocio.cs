@@ -71,7 +71,7 @@ namespace Negocio
             return (horasTotales, sueldo, mensajeError);
         }
 
-        public bool ValidarDocentePuedeLiquidar(string idDocente, out string mensaje)
+        public Docente ValidarDocentePuedeLiquidar(string idDocente, out string mensaje)
         {
             try
             {
@@ -80,24 +80,30 @@ namespace Negocio
                 if (docenteTipo == null)
                 {
                     mensaje = "No se encontró al docente.";
-                    return false;
+                    
                 }
 
                 if (docenteTipo.tipo == "AYUDANTE_AD_HONOREM")
                 {
                     mensaje = "El docente es Ad Honorem, por lo tanto no corresponde liquidación.";
-                    return false;
+                    
                 }
 
                 mensaje = string.Empty;
-                return true;
+                return docenteTipo;
             }
             catch (Exception ex)
             {
                 mensaje = $"Error al validar el docente: {ex.Message}";
-                return false;
+                
             }
+            return null;
         }
+
+
+
+
+
 
         //public int CalcularHorasTotalesDocente(int idProfesor)
         //{
