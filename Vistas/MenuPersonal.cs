@@ -1,11 +1,13 @@
 ﻿using CAI_Intensivo2025_Grupo4.Vistas;
 using Datos;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +16,7 @@ namespace Vistas
 {
     public partial class MenuPersonal : Form
     {
-
+        private MenuPersonalNegocio negocio = new MenuPersonalNegocio();
 
         public int idDocente;
         public MenuPersonal(int idDocente)
@@ -27,9 +29,7 @@ namespace Vistas
         private void LiquidarBtn_Click(object? sender, EventArgs e)
         {
             // Mostrar el formulario de liquidación si no es ad honorem
-
-
-
+            var docente = negocio.ObtenerDocentePorId(idDocente);
             var form = new LiquidacionSueldo();
             form.Show();
         }
