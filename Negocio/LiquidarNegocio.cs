@@ -25,11 +25,22 @@ namespace Negocio
         private const decimal CoefAntiguedadPor5Anos = 1.1m;
 
         // Método principal para calcular horas y sueldo
-        public (int horasTotales, decimal sueldo, string mensajeError) LiquidarDocente(int idDocente, string tipoDocente, int antiguedad)
+        public DocenteLiquidacion LiquidarDocente(Docente docente)
         {
             int horasTotales = 0;
             decimal sueldo = 0;
             string mensajeError = "";
+            
+            DocenteLiquidacion DocenteLiquidacion = new DocenteLiquidacion
+            {
+                nombre = docente.nombre,
+                apellido = docente.apellido,
+                cuit = docente.cuit,
+                horasTotales = horasTotales, 
+                sueldo = sueldo,
+                mensajeError = mensajeError
+            };
+            
 
             try
             {
@@ -48,7 +59,7 @@ namespace Negocio
 
                         foreach (var curso in cursos)
                         {
-                            if (curso.idDocentes != null && curso.idDocentes.Contains(idDocente))
+                            if (curso.idDocentes != null && curso.idDocentes.Contains(docente.id))
                             {
                                 horasTotales += materia.horasSemanales;
                             }
@@ -57,8 +68,8 @@ namespace Negocio
                 }
 
                 // Cálculo de sueldo
-                decimal coefCargo = tipoDocente == "PROFESOR" ? CoefProfesor : CoefAyudante;
-                int bloquesDeCincoAnios = antiguedad / 5; // Se aplica por bloques de 5 años completos
+                decimal coefCargo = docente.tipo == "PROFESOR" ? CoefProfesor : CoefAyudante;
+                int bloquesDeCincoAnios = docente.antiguedad / 5; // Se aplica por bloques de 5 años completos
                 decimal coefAntiguedad = (decimal)Math.Pow((double)CoefAntiguedadPor5Anos, bloquesDeCincoAnios);
                 sueldo = horasTotales * PrecioHora * coefCargo * coefAntiguedad;
 
@@ -68,7 +79,7 @@ namespace Negocio
                 mensajeError = "Error al calcular liquidación: " + ex.Message;
             }
 
-            return (horasTotales, sueldo, mensajeError);
+            return DocenteLiquidacion;
         }
 
         //public Docente ValidarDocentePuedeLiquidar(int idDocente, out string mensaje)

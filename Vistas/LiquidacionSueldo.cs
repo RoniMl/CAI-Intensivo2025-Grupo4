@@ -7,12 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Datos;
 using Negocio;
+using Vistas;
 
 namespace CAI_Intensivo2025_Grupo4.Vistas
 {
     public partial class LiquidacionSueldo : Form
     {
+        public MenuPersonalNegocio menuPersonalNegocio = new MenuPersonalNegocio();
+
+        public LiquidarNegocio LiquidarNegocio = new LiquidarNegocio();
+        public Docente docente = menuPersonalNegocio.docenteEncontrado  ;
+
         public LiquidacionSueldo()
         {
             InitializeComponent();
@@ -21,6 +28,8 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         private void LiquidacionSueldo_Load(object sender, EventArgs e)
         {
            
+           DocenteLiquidacion = LiquidarNegocio.LiquidarDocente(docente);
+
         }
 
 

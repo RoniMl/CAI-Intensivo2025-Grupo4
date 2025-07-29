@@ -12,6 +12,7 @@ namespace Negocio
     {
         private DocentePersistencia docentePersistencia = new DocentePersistencia();
         public string? mensajeError;
+        public Docente docenteEncontrado = new Docente();
 
         public Docente ObtenerDocentePorId(int id)
         {
@@ -23,6 +24,7 @@ namespace Negocio
             try
             {
                 Docente docenteTipo = docentePersistencia.BuscarDocentePorId(idDocente);
+                docenteEncontrado = docenteTipo;    
 
                 if (docenteTipo == null)
                 {
@@ -37,7 +39,7 @@ namespace Negocio
                 }
 
                 //mensajeError = string.Empty;
-                return docenteTipo;
+                return docenteEncontrado;
             }
             catch (Exception ex)
             {
