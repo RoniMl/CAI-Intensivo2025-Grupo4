@@ -9,7 +9,7 @@ namespace Datos
     public class CarreraResponse
     {
         long _id;
-        String _nombre;
+        string _nombre;
 
         public long Id { get => _id; set => _id = value; }
         public string Nombre { get => _nombre; set => _nombre = value; }

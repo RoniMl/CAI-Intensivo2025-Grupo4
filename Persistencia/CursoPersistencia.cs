@@ -11,14 +11,14 @@ namespace Persistencia
 {
     public class CursoPersistencia
     {
-        public List<Curso> buscarCursosPorMateria(long materiaId)
+        public List<CursoResumenDTO> buscarCursosPorMateria(long materiaId)
         {
             HttpResponseMessage response = WebHelper.Get($"tpIntensivo/cursos/{materiaId}");
 
             if (response.IsSuccessStatusCode)
             {
                 string json = response.Content.ReadAsStringAsync().Result;
-                var cursos = JsonSerializer.Deserialize<List<Curso>>(json);
+                var cursos = JsonSerializer.Deserialize<List<CursoResumenDTO>>(json);
                 return cursos;
             }
             else

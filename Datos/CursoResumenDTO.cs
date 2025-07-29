@@ -9,10 +9,10 @@ namespace Datos
     public class CursoResumenDTO
     {
         public int _id;
-        public String _profesorNombre;
+        public string _profesorNombre;
         public List<string> _dias;
         public List<Horario> _horarios;
-        public List<int> _idDocente;
+        public List<int> _idDocentes;
 
         public int id
         {
@@ -34,10 +34,10 @@ namespace Datos
             get { return _horarios; }
             set { _horarios = value; }
         }
-        public List<int> idDocente
+        public List<int> idDocentes
         {
-            get { return _idDocente; }
-            set { _idDocente = value; }
+            get { return _idDocentes; }
+            set { _idDocentes = value; }
         }
     }
 }
