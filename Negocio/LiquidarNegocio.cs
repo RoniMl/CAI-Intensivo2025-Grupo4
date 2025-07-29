@@ -71,11 +71,11 @@ namespace Negocio
             return (horasTotales, sueldo, mensajeError);
         }
 
-        public bool ValidarDocentePuedeLiquidar(long idDocente, out string mensaje)
+        public bool ValidarDocentePuedeLiquidar(string idDocente, out string mensaje)
         {
             try
             {
-                Docente docenteTipo = docentePersistencia.ObtenerDocentePorId(idDocente);
+                Docente docenteTipo = docentePersistencia.BuscarDocentePorDni(idDocente);
 
                 if (docenteTipo == null)
                 {
@@ -83,7 +83,7 @@ namespace Negocio
                     return false;
                 }
 
-                if (docenteTipo.adHonorem)
+                if (docenteTipo.tipo == "AYUDANTE_AD_HONOREM")
                 {
                     mensaje = "El docente es Ad Honorem, por lo tanto no corresponde liquidación.";
                     return false;
