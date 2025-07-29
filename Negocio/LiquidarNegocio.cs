@@ -11,6 +11,7 @@ namespace Negocio
     public class LiquidarNegocio
     {
         public Docente? docenteEnLiquidacion;
+        public DocentePersistencia docentePersistencia = new DocentePersistencia();
         public CarreraPersistencia carreraPersistencia = new CarreraPersistencia();
         public CursoPersistencia cursoPersistencia = new CursoPersistencia();
         public MateriaPersistencia materiaPersistencia = new MateriaPersistencia();
@@ -68,6 +69,34 @@ namespace Negocio
             }
 
             return (horasTotales, sueldo, mensajeError);
+        }
+
+        public bool ValidarDocentePuedeLiquidar(long idDocente, out string mensaje)
+        {
+            try
+            {
+                Docente docenteTipo = docentePersistencia.ObtenerDocentePorId(idDocente);
+
+                if (docenteTipo == null)
+                {
+                    mensaje = "No se encontró al docente.";
+                    return false;
+                }
+
+                if (docenteTipo.adHonorem)
+                {
+                    mensaje = "El docente es Ad Honorem, por lo tanto no corresponde liquidación.";
+                    return false;
+                }
+
+                mensaje = string.Empty;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                mensaje = $"Error al validar el docente: {ex.Message}";
+                return false;
+            }
         }
 
         //public int CalcularHorasTotalesDocente(int idProfesor)

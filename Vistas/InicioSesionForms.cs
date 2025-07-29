@@ -70,8 +70,11 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                         break;
 
                     case "PERSONAL":
+
+                        long idDocente = login.id;
+
                         this.Hide();
-                        MenuPersonal menuPersonal = new MenuPersonal();
+                        MenuPersonal menuPersonal = new MenuPersonal(idDocente);
                         //liquidarNegocio.LiquidarDocente(login.id); // Llamada al método de liquidación de docente
                         menuPersonal.ShowDialog();
                         break;
