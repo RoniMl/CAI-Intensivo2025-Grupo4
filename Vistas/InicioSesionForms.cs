@@ -55,7 +55,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 {
                     case "ALUMNO":
                        
-                        long idAlumno = login.id;
+                        int idAlumno = login.id;
                         long idCarrera = 1;
 
                         this.Hide();
@@ -71,10 +71,10 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
                     case "PERSONAL":
 
-                        long idDocente = login.id;
+                        int idDocenteLogin = login.id;
 
                         this.Hide();
-                        MenuPersonal menuPersonal = new MenuPersonal(idDocente);
+                        MenuPersonal menuPersonal = new MenuPersonal(idDocenteLogin);
                         //liquidarNegocio.LiquidarDocente(login.id); // Llamada al método de liquidación de docente
                         menuPersonal.ShowDialog();
                         break;

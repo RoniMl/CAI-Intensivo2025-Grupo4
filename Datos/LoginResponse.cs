@@ -8,10 +8,10 @@ namespace Datos
 {
     public class LoginResponse
     {
-        private long _id;
+        private int _id;
         private String _perfilUsuario;
 
-        public long id { get => _id; set => _id = value; }
+        public int id { get => _id; set => _id = value; }
         public string perfilUsuario { get => _perfilUsuario; set => _perfilUsuario = value; }
     }
 }

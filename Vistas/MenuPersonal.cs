@@ -16,22 +16,21 @@ namespace Vistas
     {
 
 
-        private string idDocente;
-        public MenuPersonal(string idDocente)
+        public int idDocente;
+        public MenuPersonal(int idDocente)
         {
             InitializeComponent();
             this.idDocente = idDocente;
-
-            LiquidarBtn.Click += LiquidarBtn_Click;
-            this.idDocente = idDocente;
+            LiquidarBtn.Click += LiquidarBtn_Click;            
         }
 
         private void LiquidarBtn_Click(object? sender, EventArgs e)
         {
-            
-
             // Mostrar el formulario de liquidación si no es ad honorem
-            var form = new LiquidacionSueldo(idDocente);
+
+
+
+            var form = new LiquidacionSueldo();
             form.Show();
         }
     }

@@ -9,7 +9,8 @@ namespace Persistencia
 {
     public class DocentePersistencia
     {
-        public Docente docenteEncontrado = new Docente();  
+        public Docente docenteEncontradoDni = new Docente();
+        public Docente docenteEncontradoId = new Docente();
         //public List<Docente> buscarDocentes()
         //{
         //    List<Docente> docentes = new List<Docente>();
@@ -38,9 +39,29 @@ namespace Persistencia
                 var contentStream = response.Content.ReadAsStringAsync().Result;
                 var docentes = JsonSerializer.Deserialize<List<Docente>>(contentStream);
 
-                docenteEncontrado = docentes.Find(d => d.dni.Trim() == dni.Trim());
+                docenteEncontradoDni = docentes.Find(d => d.dni.Trim() == dni.Trim());
                 // Busca el docente que tenga el mismo DNI (sin espacios, por las dudas)
-                return docenteEncontrado;
+                return docenteEncontradoDni;
+            }
+            else
+            {
+                Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+                throw new Exception("Error al obtener docentes");
+            }
+        }
+
+        public Docente BuscarDocentePorId(int id)
+        {
+            HttpResponseMessage response = WebHelper.Get("tpIntensivo/docentes");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var contentStream = response.Content.ReadAsStringAsync().Result;
+                var docentes = JsonSerializer.Deserialize<List<Docente>>(contentStream);
+
+                docenteEncontradoId = docentes.Find(d => d.id == id);
+                // Busca el docente que tenga el mismo DNI (sin espacios, por las dudas)
+                return docenteEncontradoId;
             }
             else
             {
