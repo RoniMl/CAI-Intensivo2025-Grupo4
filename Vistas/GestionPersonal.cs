@@ -415,27 +415,25 @@ namespace Vistas
         {
             if (MatAsignadasGroupListView.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Seleccione un curso para quitar.");
-                return;
+               MessageBox.Show("Seleccione un curso para quitar.");
+               return;
             }
 
-            // Obtengo el primer item seleccionado
+             // Obtengo el primer item seleccionado
             var itemSeleccionado = MatAsignadasGroupListView.SelectedItems[0];
 
-            // NombreMateria está en la primera columna
+             // NombreMateria está en la primera columna
             string nombreMateria = itemSeleccionado.SubItems[0].Text;
-            // Para identificar el curso, usamos el texto formateado que está en la segunda columna
+             // Para identificar el curso, usamos el texto formateado que está en la segunda columna
             string cursoTexto = itemSeleccionado.SubItems[1].Text;
 
-            // Buscamos el CursoAsignado en la lista cursosAsignados que coincida
-            var cursoAEliminar = cursosAsignados.FirstOrDefault(ca =>
-                ca.NombreMateria == nombreMateria &&
-                FormatearCurso(ca.Curso) == cursoTexto);
+             // Buscamos el CursoAsignado en la lista cursosAsignados que coincida
+            var cursoAEliminar = cursosAsignados.FirstOrDefault(ca =>ca.NombreMateria == nombreMateria &&FormatearCurso(ca.Curso) == cursoTexto);
 
             if (cursoAEliminar != null)
             {
-                cursosAsignados.Remove(cursoAEliminar);
-                RefrescarListViewCursosAsignados();
+               cursosAsignados.Remove(cursoAEliminar);
+               RefrescarListViewCursosAsignados();
             }
         }
     }

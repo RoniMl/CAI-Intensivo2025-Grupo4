@@ -92,6 +92,12 @@ namespace Persistencia
             return response.IsSuccessStatusCode;
         }
 
+        public bool CrearDocente(Docente docente)
+        {
+            var json = JsonSerializer.Serialize(docente);
+            HttpResponseMessage response = WebHelper.Post("tpIntensivo/docentes", json);
 
+            return response.IsSuccessStatusCode;
+        }
     }
 }
