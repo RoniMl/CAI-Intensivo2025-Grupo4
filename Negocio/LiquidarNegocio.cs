@@ -10,6 +10,8 @@ namespace Negocio
 {
     public class LiquidarNegocio
     {
+
+
         public Docente? docenteEnLiquidacion;
         public DocentePersistencia docentePersistencia = new DocentePersistencia();
         public CarreraPersistencia carreraPersistencia = new CarreraPersistencia();
@@ -49,7 +51,7 @@ namespace Negocio
 
                 foreach (var carrera in carreras)
                 {
-                    var materias = materiaPersistencia.buscarMateriasPorCarrera(carrera.Id);
+                    var materias = materiaPersistencia.buscarMateriasPorCarrera(carrera.id);
                     if (materias == null) continue;
 
                     foreach (var materia in materias)

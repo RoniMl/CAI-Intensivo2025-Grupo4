@@ -8,10 +8,13 @@ namespace Datos
 {
     public class CarreraResponse
     {
-        long _id;
-        string _nombre;
+        //int _id;
+        //string _nombre;
 
-        public long Id { get => _id; set => _id = value; }
-        public string Nombre { get => _nombre; set => _nombre = value; }
+        //public int id { get => _id; set => _id = value; }
+        //public string nombre { get => _nombre; set => _nombre = value; }
+
+        public int id { get; set; }
+        public string nombre { get; set; }
     }
 }

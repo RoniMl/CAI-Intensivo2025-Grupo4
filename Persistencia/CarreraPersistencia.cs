@@ -13,6 +13,33 @@ namespace Persistencia
     public class CarreraPersistencia
     {
 
+        //public List<CarreraResponse> buscarCarrera()
+        //{
+        //    HttpResponseMessage response = WebHelper.Get("tpIntensivo/carreras");
+
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var contentStream = response.Content.ReadAsStringAsync().Result;
+
+        //        try
+        //        {
+        //            List<CarreraResponse> listadoCarrera = JsonSerializer.Deserialize<List<CarreraResponse>>(contentStream);
+        //            return listadoCarrera ?? new List<CarreraResponse>();
+        //        }
+        //        catch (JsonException ex)
+        //        {
+        //            Console.WriteLine($"Error de deserialización: {ex.Message}");
+        //            throw new Exception("Formato de datos incorrecto al buscar carreras.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+        //        throw new Exception("Error al momento de buscar las carreras");
+        //    }
+        //}
+
+
         public List<CarreraResponse> buscarCarrera()
         {
             List<CarreraResponse> carreras = new List<CarreraResponse>();
@@ -23,6 +50,7 @@ namespace Persistencia
             {
                 var contentStream = response.Content.ReadAsStringAsync().Result;
                 List<CarreraResponse> listadoCarrera = JsonSerializer.Deserialize<List<CarreraResponse>>(contentStream);
+                Console.WriteLine($"ListadoCarrera tiene: {listadoCarrera?.Count ?? 0} carreras");
                 return listadoCarrera;
             }
             else
@@ -31,7 +59,6 @@ namespace Persistencia
                 throw new Exception("Error al momento de buscar las carreras");
             }
 
-            return carreras;
         }
 
     }
