@@ -33,15 +33,6 @@ namespace Negocio
             decimal sueldo = 0;
             string mensajeError = "";
             
-            DocenteLiquidacion DocenteLiquidacion = new DocenteLiquidacion
-            {
-                nombre = docente.nombre,
-                apellido = docente.apellido,
-                cuit = docente.cuit,
-                horasTotales = horasTotales, 
-                sueldo = sueldo,
-                mensajeError = mensajeError
-            };
             
 
             try
@@ -63,7 +54,7 @@ namespace Negocio
                         {
                             if (curso.idDocentes != null && curso.idDocentes.Contains(docente.id))
                             {
-                                horasTotales += materia.horasSemanales;
+                                horasTotales += materia.horasSemanales * 4;
                             }
                         }
                     }
@@ -80,6 +71,17 @@ namespace Negocio
             {
                 mensajeError = "Error al calcular liquidación: " + ex.Message;
             }
+
+            DocenteLiquidacion DocenteLiquidacion = new DocenteLiquidacion
+            {
+                nombre = docente.nombre,
+                apellido = docente.apellido,
+                cuit = docente.cuit,
+                horasTotales = horasTotales, 
+                sueldo = sueldo,
+                mensajeError = mensajeError
+            };
+
 
             return DocenteLiquidacion;
         }

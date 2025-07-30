@@ -49,8 +49,7 @@ namespace Persistencia
             if (response.IsSuccessStatusCode)
             {
                 var contentStream = response.Content.ReadAsStringAsync().Result;
-                List<CarreraResponse> listadoCarrera = JsonSerializer.Deserialize<List<CarreraResponse>>(contentStream);
-                Console.WriteLine($"ListadoCarrera tiene: {listadoCarrera?.Count ?? 0} carreras");
+                List<CarreraResponse> listadoCarrera = JsonSerializer.Deserialize<List<CarreraResponse>>(contentStream);              
                 return listadoCarrera;
             }
             else
