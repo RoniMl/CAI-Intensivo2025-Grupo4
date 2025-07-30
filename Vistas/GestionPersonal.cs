@@ -18,6 +18,8 @@ namespace Vistas
     {
 
         private GestionarPersonalNegocio negocio = new GestionarPersonalNegocio();
+        private List<Materia> listaMaterias = new List<Materia>();
+        private List<CursoResumenDTO> listaCursos = new List<CursoResumenDTO>();
         public GestionPersonal()
         {
             InitializeComponent();
@@ -45,9 +47,14 @@ namespace Vistas
             EliminarBtn.Enabled = false;
 
             // Cargar las materias en el ComboBox
-            foreach (var nombre in negocio.Materias().Select(m => m.nombre))
+            //foreach (var nombre in negocio.Materias().Select(m => m.nombre))
+            //{
+            //    MateriasGroupCmb.Items.Add(nombre);
+            //}
+            listaMaterias = negocio.Materias();
+            foreach (var materia in listaMaterias)
             {
-                MateriasGroupCmb.Items.Add(nombre);
+                MateriasGroupCmb.Items.Add(materia.nombre); 
             }
 
             MateriasGroupCmb.SelectedIndex = -1; // Ninguna seleccionada inicialmente
@@ -256,23 +263,47 @@ namespace Vistas
 
         private void MateriasGroupCmb_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Materia materiaSeleccionada = MateriasGroupCmb.SelectedItem as Materia;
+            string materiaSeleccionada = MateriasGroupCmb.SelectedItem.ToString();
 
-           
-                List<CursoResumenDTO> cursos = negocio.buscarCursos(materiaSeleccionada.id);
+            Materia materia = listaMaterias.FirstOrDefault(m => m.nombre == materiaSeleccionada);
 
-                CursosComboBox.Items.Clear();
+            if (materia != null)
+            {
+                int idMateria = materia.id;
 
-                foreach (var curso in cursos)
-                {
-                    CursosComboBox.Items.Add(curso);
-                }
+                List<CursoResumenDTO> cursos = negocio.buscarCursos(idMateria);
 
-                if (CursosComboBox.Items.Count > 0)
-                    CursosComboBox.SelectedIndex = 0;
-            
+                CargarCursosEnCombo(cursos);
+            }
+
         }
+        private string FormatearCurso(CursoResumenDTO curso)
+        {
+            var dias = curso.horarios.Select(h => h.dia).Distinct().ToList();
 
+            // Tomar el primer horario como referencia
+            var horario = curso.horarios.FirstOrDefault();
+
+            if (horario == null)
+                return "Sin horarios";
+
+            // Armar el string final
+            string diasString = string.Join(" - ", dias);
+            string horarioString = $"{horario.horaInicio} - {horario.horaFin}";
+
+            return $"{diasString} ({horarioString})";
+        }
+        private void CargarCursosEnCombo(List<CursoResumenDTO> cursos)
+        {
+            CursosComboBox.Items.Clear();
+            listaCursos = cursos;
+
+            foreach (var curso in cursos)
+            {
+                string texto = FormatearCurso(curso);
+                CursosComboBox.Items.Add(texto); // Mostrás solo el texto formateado
+            }
+        }
     }
     
 }
