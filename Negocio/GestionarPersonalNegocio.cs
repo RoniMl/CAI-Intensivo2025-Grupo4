@@ -62,16 +62,38 @@ namespace Negocio
         }
 
 
+        public List<CursoAsignado> CursosAsignados(int idDocente)
+        {
+            List<CursoAsignado> cursosAsignados = new List<CursoAsignado>();
 
+            var carreras = carreraPersistencia.buscarCarrera();
 
+            foreach (var carrera in carreras)
+            {
+                var materias = materiaPersistencia.buscarMateriasPorCarrera(carrera.id);
+                if (materias == null) continue;
 
+                foreach (var materia in materias)
+                {
+                    var cursos = cursoPersistencia.buscarCursosPorMateria(materia.id);
+                    if (cursos == null) continue;
 
+                    foreach (var curso in cursos)
+                    {
+                        if (curso.idDocentes != null && curso.idDocentes.Contains(idDocente))
+                        {
+                            cursosAsignados.Add(new()
+                            {
+                                NombreMateria = materia.nombre,
+                                Curso = curso
+                            });
+                        }
+                    }
+                }
+            }
 
-
-
-
-
-
+            return cursosAsignados;
+        }
 
 
 

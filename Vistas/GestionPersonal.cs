@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -105,7 +106,7 @@ namespace Vistas
             LimpiarCampos();
         }
 
-        private void BuscarBtn_Click(object sender, EventArgs e)
+        public void BuscarBtn_Click(object sender, EventArgs e)
         {
             string dni = BuscarDniTxb.Text.Trim();
 
@@ -141,6 +142,7 @@ namespace Vistas
                     item.SubItems.Add(docente.tipo);
 
                     PersonalListView.Items.Add(item);
+                  
                 }
                 else
                 {
@@ -208,9 +210,11 @@ namespace Vistas
             DniGroupTxb.Text = item.SubItems[3].Text;
             TipoDocenteGroupCmb.SelectedItem = item.SubItems[4].Text;
             
-            
-
             IdGroupTxb.Enabled = false;
+
+            
+            int idDocente = int.Parse(IdGroupTxb.Text);
+            CargarCursosAsignadosEnListView(idDocente);
 
             ActivarEdicion(true);
         }
@@ -302,6 +306,21 @@ namespace Vistas
             {
                 string texto = FormatearCurso(curso);
                 CursosComboBox.Items.Add(texto); // Mostrás solo el texto formateado
+            }
+        }
+
+        private void CargarCursosAsignadosEnListView(int idDocente)
+        {
+            var cursosAsignados = negocio.CursosAsignados(idDocente);
+
+            foreach (var item in cursosAsignados)
+            {
+                string textoCurso = FormatearCurso(item.Curso); // Ya tienes este método para el formato días-horarios
+
+                ListViewItem listItem = new ListViewItem(item.NombreMateria);
+                listItem.SubItems.Add(textoCurso);
+
+                MatAsignadasGroupListView.Items.Add(listItem);
             }
         }
     }
