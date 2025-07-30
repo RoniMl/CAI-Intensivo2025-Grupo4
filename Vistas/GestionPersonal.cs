@@ -21,12 +21,13 @@ namespace Vistas
         private GestionarPersonalNegocio negocio = new GestionarPersonalNegocio();
         private List<Materia> listaMaterias = new List<Materia>();
         private List<CursoResumenDTO> listaCursos = new List<CursoResumenDTO>();
+        private List<CursoAsignado> cursosAsignados = new List<CursoAsignado>();
         public GestionPersonal()
         {
             InitializeComponent();
 
             this.Load += GestionPersonal_Load;
-            
+
 
         }
 
@@ -52,11 +53,8 @@ namespace Vistas
             //{
             //    MateriasGroupCmb.Items.Add(nombre);
             //}
-            listaMaterias = negocio.Materias();
-            foreach (var materia in listaMaterias)
-            {
-                MateriasGroupCmb.Items.Add(materia.nombre); 
-            }
+
+            CargarMaterias();
 
             MateriasGroupCmb.SelectedIndex = -1; // Ninguna seleccionada inicialmente
             MateriasGroupCmb.SelectedIndexChanged += MateriasGroupCmb_SelectedIndexChanged;
@@ -142,7 +140,7 @@ namespace Vistas
                     item.SubItems.Add(docente.tipo);
 
                     PersonalListView.Items.Add(item);
-                  
+
                 }
                 else
                 {
@@ -193,6 +191,17 @@ namespace Vistas
             }
         }
 
+        private void CargarMaterias()
+        {
+            listaMaterias = negocio.Materias(); // o el método que uses para traer las materias
+
+            MateriasGroupCmb.Items.Clear();
+
+            foreach (var materia in listaMaterias)
+            {
+                MateriasGroupCmb.Items.Add(materia.nombre);
+            }
+        }
         private void EditarBtn_Click(object sender, EventArgs e)
         {
             if (PersonalListView.SelectedItems.Count == 0)
@@ -209,10 +218,10 @@ namespace Vistas
             ApellidoGroupTxb.Text = item.SubItems[2].Text;
             DniGroupTxb.Text = item.SubItems[3].Text;
             TipoDocenteGroupCmb.SelectedItem = item.SubItems[4].Text;
-            
+
             IdGroupTxb.Enabled = false;
 
-            
+
             int idDocente = int.Parse(IdGroupTxb.Text);
             CargarCursosAsignadosEnListView(idDocente);
 
@@ -267,53 +276,57 @@ namespace Vistas
 
         private void MateriasGroupCmb_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string materiaSeleccionada = MateriasGroupCmb.SelectedItem.ToString();
+            int indexMateria = MateriasGroupCmb.SelectedIndex;
+            if (indexMateria < 0) return;
 
-            Materia materia = listaMaterias.FirstOrDefault(m => m.nombre == materiaSeleccionada);
+            var materiaSeleccionada = listaMaterias[indexMateria];
+            listaCursos = negocio.buscarCursos(materiaSeleccionada.id);
 
-            if (materia != null)
+            // Evitás duplicados por ID de curso
+            listaCursos = listaCursos.GroupBy(c => c.id).Select(g => g.First()).ToList();
+
+            CursosComboBox.Items.Clear();
+            foreach (var curso in listaCursos)
             {
-                int idMateria = materia.id;
-
-                List<CursoResumenDTO> cursos = negocio.buscarCursos(idMateria);
-
-                CargarCursosEnCombo(cursos);
+                CursosComboBox.Items.Add(FormatearCurso(curso));
             }
 
         }
+        //private void CargarCursosEnCombo(List<CursoResumenDTO> cursos)
+        //{
+        //    CursosComboBox.Items.Clear();
+        //    listaCursos = cursos;
+
+        //    foreach (var curso in cursos)
+        //    {
+        //        string texto = FormatearCurso(curso);
+        //        CursosComboBox.Items.Add(texto); // Mostrás solo el texto formateado
+        //    }
+        //}
         private string FormatearCurso(CursoResumenDTO curso)
         {
-            var dias = curso.horarios.Select(h => h.dia).Distinct().ToList();
-
-            // Tomar el primer horario como referencia
-            var horario = curso.horarios.FirstOrDefault();
-
-            if (horario == null)
+            if (curso.horarios == null || curso.horarios.Count == 0)
                 return "Sin horarios";
 
-            // Armar el string final
+            var dias = curso.horarios.Select(h => h.dia).Distinct();
+            var horario = curso.horarios.First();
+
             string diasString = string.Join(" - ", dias);
             string horarioString = $"{horario.horaInicio} - {horario.horaFin}";
 
             return $"{diasString} ({horarioString})";
         }
-        private void CargarCursosEnCombo(List<CursoResumenDTO> cursos)
-        {
-            CursosComboBox.Items.Clear();
-            listaCursos = cursos;
 
-            foreach (var curso in cursos)
-            {
-                string texto = FormatearCurso(curso);
-                CursosComboBox.Items.Add(texto); // Mostrás solo el texto formateado
-            }
-        }
 
         private void CargarCursosAsignadosEnListView(int idDocente)
         {
-            var cursosAsignados = negocio.CursosAsignados(idDocente);
+            cursosAsignados = negocio.CursosAsignados(idDocente);
 
-            foreach (var item in cursosAsignados)
+            var cursosUnicos = cursosAsignados
+             .DistinctBy(c => (c.NombreMateria, c.Curso.id))
+             .ToList();
+
+            foreach (var item in cursosUnicos)
             {
                 string textoCurso = FormatearCurso(item.Curso); // Ya tienes este método para el formato días-horarios
 
@@ -323,6 +336,85 @@ namespace Vistas
                 MatAsignadasGroupListView.Items.Add(listItem);
             }
         }
+
+        private void AgregarGroupBtn_Click(object sender, EventArgs e)
+        {
+
+            int indexMateria = MateriasGroupCmb.SelectedIndex;
+            int indexCurso = CursosComboBox.SelectedIndex;
+
+            if (indexMateria < 0 || indexCurso < 0)
+            {
+                MessageBox.Show("Seleccioná una materia y un curso.");
+                return;
+            }
+
+            var materiaSeleccionada = listaMaterias[indexMateria];
+            var cursoSeleccionado = listaCursos[indexCurso];
+
+            foreach (var cursoAsignado in cursosAsignados)
+            {
+                if (HaySuperposicionHoraria(cursoAsignado.Curso, cursoSeleccionado))
+                {
+                    MessageBox.Show("No se puede agregar el curso porque se superpone con otro asignado.");
+                    return;
+                }
+            }
+
+            // Evitar duplicados
+            if (cursosAsignados.Any(c => c.Curso.id == cursoSeleccionado.id))
+            {
+                MessageBox.Show("Este curso ya está asignado.");
+                return;
+            }
+
+                       
+
+            cursosAsignados.Add(new CursoAsignado
+            {
+                NombreMateria = materiaSeleccionada.nombre,
+                Curso = cursoSeleccionado
+            });
+
+            RefrescarListViewCursosAsignados();
+        }
+        private bool HaySuperposicionHoraria(CursoResumenDTO cursoExistente, CursoResumenDTO cursoNuevo)
+        {
+            foreach (var h1 in cursoExistente.horarios)
+            {
+                foreach (var h2 in cursoNuevo.horarios)
+                {
+                    // Si coinciden los días
+                    if (h1.dia == h2.dia)
+                    {
+                        // Comparación de strings de hora para verificar superposición
+                        // No hay superposición si el horario nuevo termina antes que empiece el existente
+                        // o si el horario nuevo empieza después que termine el existente
+                        if (!(h2.horaFin.CompareTo(h1.horaInicio) <= 0 || h2.horaInicio.CompareTo(h1.horaFin) >= 0))
+                        {
+                            return true; // Sí hay superposición
+                        }
+                    }
+                }
+            }
+            return false; // No hay superposición
+        }
+        private void RefrescarListViewCursosAsignados()
+        {
+            MatAsignadasGroupListView.Items.Clear();
+
+            foreach (var item in cursosAsignados)
+            {
+                var listItem = new ListViewItem(item.NombreMateria);
+                listItem.SubItems.Add(FormatearCurso(item.Curso));
+                MatAsignadasGroupListView.Items.Add(listItem);
+            }
+        }
+
+        private void QuitarGroupBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-    
+
 }

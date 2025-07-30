@@ -196,6 +196,7 @@
             AgregarGroupBtn.TabIndex = 15;
             AgregarGroupBtn.Text = "Agregar";
             AgregarGroupBtn.UseVisualStyleBackColor = true;
+            AgregarGroupBtn.Click += AgregarGroupBtn_Click;
             // 
             // NombreGroupTxb
             // 
@@ -239,10 +240,12 @@
             QuitarGroupBtn.TabIndex = 10;
             QuitarGroupBtn.Text = "Quitar";
             QuitarGroupBtn.UseVisualStyleBackColor = true;
+            QuitarGroupBtn.Click += QuitarGroupBtn_Click;
             // 
             // MatAsignadasGroupListView
             // 
             MatAsignadasGroupListView.Columns.AddRange(new ColumnHeader[] { MateriaColumna, CursoColumna });
+            MatAsignadasGroupListView.FullRowSelect = true;
             MatAsignadasGroupListView.Location = new Point(750, 79);
             MatAsignadasGroupListView.Name = "MatAsignadasGroupListView";
             MatAsignadasGroupListView.Size = new Size(401, 128);
