@@ -45,7 +45,7 @@
             CancelarGroupbtn = new Button();
             QuitarGroupBtn = new Button();
             MatAsignadasGroupListView = new ListView();
-            MatAsignadasGroupLbl = new Label();
+            CursosAsignadosGroupLbl = new Label();
             MateriasGroupCmb = new ComboBox();
             MateriasGroupLbl = new Label();
             DniGroupLbl = new Label();
@@ -55,6 +55,8 @@
             IdGroupTxb = new TextBox();
             IdGroupLbl = new Label();
             BuscarBtn = new Button();
+            CursosComboBox = new ComboBox();
+            CursosLbl = new Label();
             EdicionGroup.SuspendLayout();
             SuspendLayout();
             // 
@@ -128,6 +130,8 @@
             // 
             // EdicionGroup
             // 
+            EdicionGroup.Controls.Add(CursosComboBox);
+            EdicionGroup.Controls.Add(CursosLbl);
             EdicionGroup.Controls.Add(TipoDocenteGroupCmb);
             EdicionGroup.Controls.Add(TipoDocenteGroupLbl);
             EdicionGroup.Controls.Add(AgregarGroupBtn);
@@ -137,7 +141,7 @@
             EdicionGroup.Controls.Add(CancelarGroupbtn);
             EdicionGroup.Controls.Add(QuitarGroupBtn);
             EdicionGroup.Controls.Add(MatAsignadasGroupListView);
-            EdicionGroup.Controls.Add(MatAsignadasGroupLbl);
+            EdicionGroup.Controls.Add(CursosAsignadosGroupLbl);
             EdicionGroup.Controls.Add(MateriasGroupCmb);
             EdicionGroup.Controls.Add(MateriasGroupLbl);
             EdicionGroup.Controls.Add(DniGroupLbl);
@@ -150,10 +154,11 @@
             EdicionGroup.Margin = new Padding(3, 2, 3, 2);
             EdicionGroup.Name = "EdicionGroup";
             EdicionGroup.Padding = new Padding(3, 2, 3, 2);
-            EdicionGroup.Size = new Size(766, 247);
+            EdicionGroup.Size = new Size(884, 247);
             EdicionGroup.TabIndex = 7;
             EdicionGroup.TabStop = false;
             EdicionGroup.Text = "Edicion";
+          
             // 
             // TipoDocenteGroupCmb
             // 
@@ -175,10 +180,10 @@
             // 
             // AgregarGroupBtn
             // 
-            AgregarGroupBtn.Location = new Point(399, 58);
+            AgregarGroupBtn.Location = new Point(488, 55);
             AgregarGroupBtn.Margin = new Padding(3, 2, 3, 2);
             AgregarGroupBtn.Name = "AgregarGroupBtn";
-            AgregarGroupBtn.Size = new Size(83, 22);
+            AgregarGroupBtn.Size = new Size(83, 25);
             AgregarGroupBtn.TabIndex = 15;
             AgregarGroupBtn.Text = "Agregar";
             AgregarGroupBtn.UseVisualStyleBackColor = true;
@@ -202,7 +207,7 @@
             // 
             // AceptarGroupbtn
             // 
-            AceptarGroupbtn.Location = new Point(652, 213);
+            AceptarGroupbtn.Location = new Point(795, 214);
             AceptarGroupbtn.Margin = new Padding(3, 2, 3, 2);
             AceptarGroupbtn.Name = "AceptarGroupbtn";
             AceptarGroupbtn.Size = new Size(84, 25);
@@ -212,7 +217,7 @@
             // 
             // CancelarGroupbtn
             // 
-            CancelarGroupbtn.Location = new Point(541, 213);
+            CancelarGroupbtn.Location = new Point(684, 214);
             CancelarGroupbtn.Margin = new Padding(3, 2, 3, 2);
             CancelarGroupbtn.Name = "CancelarGroupbtn";
             CancelarGroupbtn.Size = new Size(89, 25);
@@ -222,7 +227,7 @@
             // 
             // QuitarGroupBtn
             // 
-            QuitarGroupBtn.Location = new Point(667, 160);
+            QuitarGroupBtn.Location = new Point(810, 161);
             QuitarGroupBtn.Margin = new Padding(3, 2, 3, 2);
             QuitarGroupBtn.Name = "QuitarGroupBtn";
             QuitarGroupBtn.Size = new Size(67, 24);
@@ -232,26 +237,26 @@
             // 
             // MatAsignadasGroupListView
             // 
-            MatAsignadasGroupListView.Location = new Point(541, 59);
+            MatAsignadasGroupListView.Location = new Point(684, 60);
             MatAsignadasGroupListView.Margin = new Padding(3, 2, 3, 2);
             MatAsignadasGroupListView.Name = "MatAsignadasGroupListView";
             MatAsignadasGroupListView.Size = new Size(194, 97);
             MatAsignadasGroupListView.TabIndex = 9;
             MatAsignadasGroupListView.UseCompatibleStateImageBehavior = false;
             // 
-            // MatAsignadasGroupLbl
+            // CursosAsignadosGroupLbl
             // 
-            MatAsignadasGroupLbl.AutoSize = true;
-            MatAsignadasGroupLbl.Location = new Point(541, 38);
-            MatAsignadasGroupLbl.Name = "MatAsignadasGroupLbl";
-            MatAsignadasGroupLbl.Size = new Size(123, 17);
-            MatAsignadasGroupLbl.TabIndex = 8;
-            MatAsignadasGroupLbl.Text = "Materias Asignadas";
+            CursosAsignadosGroupLbl.AutoSize = true;
+            CursosAsignadosGroupLbl.Location = new Point(684, 39);
+            CursosAsignadosGroupLbl.Name = "CursosAsignadosGroupLbl";
+            CursosAsignadosGroupLbl.Size = new Size(113, 17);
+            CursosAsignadosGroupLbl.TabIndex = 8;
+            CursosAsignadosGroupLbl.Text = "Cursos Asignados";
             // 
             // MateriasGroupCmb
             // 
             MateriasGroupCmb.FormattingEnabled = true;
-            MateriasGroupCmb.Location = new Point(262, 59);
+            MateriasGroupCmb.Location = new Point(192, 57);
             MateriasGroupCmb.Margin = new Padding(3, 2, 3, 2);
             MateriasGroupCmb.Name = "MateriasGroupCmb";
             MateriasGroupCmb.Size = new Size(123, 23);
@@ -260,7 +265,7 @@
             // MateriasGroupLbl
             // 
             MateriasGroupLbl.AutoSize = true;
-            MateriasGroupLbl.Location = new Point(262, 38);
+            MateriasGroupLbl.Location = new Point(192, 39);
             MateriasGroupLbl.Name = "MateriasGroupLbl";
             MateriasGroupLbl.Size = new Size(59, 17);
             MateriasGroupLbl.TabIndex = 6;
@@ -319,19 +324,37 @@
             // 
             // BuscarBtn
             // 
-            BuscarBtn.Location = new Point(354, 26);
+            BuscarBtn.Location = new Point(327, 25);
             BuscarBtn.Margin = new Padding(3, 2, 3, 2);
             BuscarBtn.Name = "BuscarBtn";
-            BuscarBtn.Size = new Size(102, 20);
+            BuscarBtn.Size = new Size(102, 24);
             BuscarBtn.TabIndex = 8;
             BuscarBtn.Text = "Buscar";
             BuscarBtn.UseVisualStyleBackColor = true;
+            // 
+            // CursosComboBox
+            // 
+            CursosComboBox.FormattingEnabled = true;
+            CursosComboBox.Location = new Point(359, 57);
+            CursosComboBox.Margin = new Padding(3, 2, 3, 2);
+            CursosComboBox.Name = "CursosComboBox";
+            CursosComboBox.Size = new Size(123, 23);
+            CursosComboBox.TabIndex = 19;
+            // 
+            // CursosLbl
+            // 
+            CursosLbl.AutoSize = true;
+            CursosLbl.Location = new Point(359, 39);
+            CursosLbl.Name = "CursosLbl";
+            CursosLbl.Size = new Size(48, 17);
+            CursosLbl.TabIndex = 18;
+            CursosLbl.Text = "Cursos";
             // 
             // GestionPersonal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 572);
+            ClientSize = new Size(920, 572);
             Controls.Add(BuscarBtn);
             Controls.Add(EdicionGroup);
             Controls.Add(EliminarBtn);
@@ -368,7 +391,7 @@
         private TextBox ApellidoGroupTxb;
         private Label MateriasGroupLbl;
         private ListView MatAsignadasGroupListView;
-        private Label MatAsignadasGroupLbl;
+        private Label CursosAsignadosGroupLbl;
         private ComboBox MateriasGroupCmb;
         private Button QuitarGroupBtn;
         private Button AceptarGroupbtn;
@@ -379,5 +402,7 @@
         private Button AgregarGroupBtn;
         private ComboBox TipoDocenteGroupCmb;
         private Label TipoDocenteGroupLbl;
+        private ComboBox CursosComboBox;
+        private Label CursosLbl;
     }
 }

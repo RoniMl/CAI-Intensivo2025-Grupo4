@@ -10,7 +10,9 @@ namespace Negocio
 {
     public class GestionarPersonalNegocio
     {
-        private DocentePersistencia docentePersistencia = new DocentePersistencia();
+        public DocentePersistencia docentePersistencia = new DocentePersistencia();
+        public CarreraPersistencia carreraPersistencia = new CarreraPersistencia();
+        public MateriaPersistencia materiaPersistencia = new MateriaPersistencia(); 
 
         public Docente ObtenerDocentePorDni(string dni)
         {
@@ -26,5 +28,48 @@ namespace Negocio
         {
             return docentePersistencia.EditarDocente(docente);
         }
+
+        public List<Materia> Materias()
+        {
+            List<Materia> materiasEncontradas = new List<Materia>();
+            List<CarreraResponse> carreras = carreraPersistencia.buscarCarrera();
+            foreach (var carrera in carreras)
+            {
+                var materias = materiaPersistencia.buscarMateriasPorCarrera(carrera.id);
+                if (materias == null) continue;
+                foreach (var materia in materias)
+                {
+                  //Chequear si no esta la materia en la lista de materiasEncontradas
+                    if (!materiasEncontradas.Any(m => m.id == materia.id))
+                    {                                             
+                          materiasEncontradas.Add(materia);                        
+                    }
+                }
+            }
+            return materiasEncontradas;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
