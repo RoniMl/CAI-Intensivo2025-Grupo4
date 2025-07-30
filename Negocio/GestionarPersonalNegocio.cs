@@ -80,9 +80,11 @@ namespace Negocio
 
                     foreach (var curso in cursos)
                     {
-                        if (curso.idDocentes != null && curso.idDocentes.Contains(idDocente))
+                        bool yaAgregado = cursosAsignados.Any(ca => ca.Curso.id == curso.id);
+
+                        if (curso.idDocentes != null && curso.idDocentes.Contains(idDocente) && !yaAgregado)
                         {
-                            cursosAsignados.Add(new()
+                            cursosAsignados.Add(new CursoAsignado
                             {
                                 NombreMateria = materia.nombre,
                                 Curso = curso
