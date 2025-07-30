@@ -180,7 +180,7 @@
             // TipoDocenteGroupCmb
             // 
             TipoDocenteGroupCmb.FormattingEnabled = true;
-            TipoDocenteGroupCmb.Location = new Point(192, 199);
+            TipoDocenteGroupCmb.Location = new Point(170, 200);
             TipoDocenteGroupCmb.Margin = new Padding(3, 2, 3, 2);
             TipoDocenteGroupCmb.Name = "TipoDocenteGroupCmb";
             TipoDocenteGroupCmb.Size = new Size(140, 23);
@@ -189,7 +189,7 @@
             // TipoDocenteGroupLbl
             // 
             TipoDocenteGroupLbl.AutoSize = true;
-            TipoDocenteGroupLbl.Location = new Point(192, 182);
+            TipoDocenteGroupLbl.Location = new Point(170, 183);
             TipoDocenteGroupLbl.Name = "TipoDocenteGroupLbl";
             TipoDocenteGroupLbl.Size = new Size(105, 17);
             TipoDocenteGroupLbl.TabIndex = 16;
@@ -273,16 +273,16 @@
             // MateriasGroupCmb
             // 
             MateriasGroupCmb.FormattingEnabled = true;
-            MateriasGroupCmb.Location = new Point(192, 57);
+            MateriasGroupCmb.Location = new Point(170, 57);
             MateriasGroupCmb.Margin = new Padding(3, 2, 3, 2);
             MateriasGroupCmb.Name = "MateriasGroupCmb";
-            MateriasGroupCmb.Size = new Size(194, 23);
+            MateriasGroupCmb.Size = new Size(216, 23);
             MateriasGroupCmb.TabIndex = 7;
             // 
             // MateriasGroupLbl
             // 
             MateriasGroupLbl.AutoSize = true;
-            MateriasGroupLbl.Location = new Point(192, 39);
+            MateriasGroupLbl.Location = new Point(170, 39);
             MateriasGroupLbl.Name = "MateriasGroupLbl";
             MateriasGroupLbl.Size = new Size(59, 17);
             MateriasGroupLbl.TabIndex = 6;

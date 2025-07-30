@@ -11,7 +11,7 @@ namespace Persistencia
 {
     public class CursoPersistencia
     {
-        public List<CursoResumenDTO> buscarCursosPorMateria(long materiaId)
+        public List<CursoResumenDTO> buscarCursosPorMateria(int materiaId)
         {
             HttpResponseMessage response = WebHelper.Get($"tpIntensivo/cursos/{materiaId}");
 

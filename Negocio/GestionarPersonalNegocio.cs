@@ -13,6 +13,7 @@ namespace Negocio
         public DocentePersistencia docentePersistencia = new DocentePersistencia();
         public CarreraPersistencia carreraPersistencia = new CarreraPersistencia();
         public MateriaPersistencia materiaPersistencia = new MateriaPersistencia(); 
+        public CursoPersistencia cursoPersistencia = new CursoPersistencia();
 
         public Docente ObtenerDocentePorDni(string dni)
         {
@@ -49,6 +50,16 @@ namespace Negocio
             return materiasEncontradas;
         }
 
+        public List<CursoResumenDTO> buscarCursos(int idMateria)
+        {
+            List<CursoResumenDTO> cursosEncontrados = new List<CursoResumenDTO>();
+            var cursos = cursoPersistencia.buscarCursosPorMateria(idMateria);
+            foreach (var curso in cursos)
+            {
+                cursosEncontrados.Add(curso);
+            }
+            return cursosEncontrados;
+        }
 
 
 

@@ -1,6 +1,7 @@
 ﻿using CAI_Intensivo2025_Grupo4.Vistas;
 using Datos;
 using Negocio;
+using Persistencia;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace Vistas
 
             this.Load += GestionPersonal_Load;
             
+
         }
 
         private void GestionPersonal_Load(object sender, EventArgs e)
@@ -48,6 +50,8 @@ namespace Vistas
                 MateriasGroupCmb.Items.Add(nombre);
             }
 
+            MateriasGroupCmb.SelectedIndex = -1; // Ninguna seleccionada inicialmente
+            MateriasGroupCmb.SelectedIndexChanged += MateriasGroupCmb_SelectedIndexChanged;
 
 
             TipoDocenteGroupCmb.Items.Clear();
@@ -196,6 +200,8 @@ namespace Vistas
             ApellidoGroupTxb.Text = item.SubItems[2].Text;
             DniGroupTxb.Text = item.SubItems[3].Text;
             TipoDocenteGroupCmb.SelectedItem = item.SubItems[4].Text;
+            
+            
 
             IdGroupTxb.Enabled = false;
 
@@ -248,7 +254,24 @@ namespace Vistas
             }
         }
 
+        private void MateriasGroupCmb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Materia materiaSeleccionada = MateriasGroupCmb.SelectedItem as Materia;
 
+           
+                List<CursoResumenDTO> cursos = negocio.buscarCursos(materiaSeleccionada.id);
+
+                CursosComboBox.Items.Clear();
+
+                foreach (var curso in cursos)
+                {
+                    CursosComboBox.Items.Add(curso);
+                }
+
+                if (CursosComboBox.Items.Count > 0)
+                    CursosComboBox.SelectedIndex = 0;
+            
+        }
 
     }
     
