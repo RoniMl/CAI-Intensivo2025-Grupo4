@@ -37,7 +37,7 @@ namespace Vistas
             else
             {
                 var docente = negocio.ObtenerDocentePorId(idDocente);
-                var form = new LiquidacionSueldo();
+                var form = new LiquidacionSueldo(docente);
                 form.Show();
             }
                 // Mostrar el formulario de liquidación si no es ad honorem

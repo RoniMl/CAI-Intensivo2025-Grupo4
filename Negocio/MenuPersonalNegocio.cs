@@ -12,7 +12,7 @@ namespace Negocio
     {
         private DocentePersistencia docentePersistencia = new DocentePersistencia();
         public string? mensajeError;
-        public Docente docenteEncontrado = new Docente();
+        public Docente? docenteEncontrado;
 
         public Docente ObtenerDocentePorId(int id)
         {
