@@ -42,6 +42,14 @@ namespace Vistas
             EditarBtn.Enabled = false;
             EliminarBtn.Enabled = false;
 
+            // Cargar las materias en el ComboBox
+            foreach (var nombre in negocio.Materias().Select(m => m.nombre))
+            {
+                MateriasGroupCmb.Items.Add(nombre);
+            }
+
+
+
             TipoDocenteGroupCmb.Items.Clear();
             TipoDocenteGroupCmb.Items.Add("PROFESOR");
             TipoDocenteGroupCmb.Items.Add("AYUDANTE");

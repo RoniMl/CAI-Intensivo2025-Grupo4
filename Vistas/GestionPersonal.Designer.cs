@@ -36,6 +36,8 @@
             EditarBtn = new Button();
             EliminarBtn = new Button();
             EdicionGroup = new GroupBox();
+            CursosComboBox = new ComboBox();
+            CursosLbl = new Label();
             TipoDocenteGroupCmb = new ComboBox();
             TipoDocenteGroupLbl = new Label();
             AgregarGroupBtn = new Button();
@@ -55,8 +57,6 @@
             IdGroupTxb = new TextBox();
             IdGroupLbl = new Label();
             BuscarBtn = new Button();
-            CursosComboBox = new ComboBox();
-            CursosLbl = new Label();
             EdicionGroup.SuspendLayout();
             SuspendLayout();
             // 
@@ -158,7 +158,24 @@
             EdicionGroup.TabIndex = 7;
             EdicionGroup.TabStop = false;
             EdicionGroup.Text = "Edicion";
-          
+            // 
+            // CursosComboBox
+            // 
+            CursosComboBox.FormattingEnabled = true;
+            CursosComboBox.Location = new Point(392, 57);
+            CursosComboBox.Margin = new Padding(3, 2, 3, 2);
+            CursosComboBox.Name = "CursosComboBox";
+            CursosComboBox.Size = new Size(186, 23);
+            CursosComboBox.TabIndex = 19;
+            // 
+            // CursosLbl
+            // 
+            CursosLbl.AutoSize = true;
+            CursosLbl.Location = new Point(392, 39);
+            CursosLbl.Name = "CursosLbl";
+            CursosLbl.Size = new Size(48, 17);
+            CursosLbl.TabIndex = 18;
+            CursosLbl.Text = "Cursos";
             // 
             // TipoDocenteGroupCmb
             // 
@@ -180,7 +197,7 @@
             // 
             // AgregarGroupBtn
             // 
-            AgregarGroupBtn.Location = new Point(488, 55);
+            AgregarGroupBtn.Location = new Point(584, 55);
             AgregarGroupBtn.Margin = new Padding(3, 2, 3, 2);
             AgregarGroupBtn.Name = "AgregarGroupBtn";
             AgregarGroupBtn.Size = new Size(83, 25);
@@ -259,7 +276,7 @@
             MateriasGroupCmb.Location = new Point(192, 57);
             MateriasGroupCmb.Margin = new Padding(3, 2, 3, 2);
             MateriasGroupCmb.Name = "MateriasGroupCmb";
-            MateriasGroupCmb.Size = new Size(123, 23);
+            MateriasGroupCmb.Size = new Size(194, 23);
             MateriasGroupCmb.TabIndex = 7;
             // 
             // MateriasGroupLbl
@@ -331,24 +348,6 @@
             BuscarBtn.TabIndex = 8;
             BuscarBtn.Text = "Buscar";
             BuscarBtn.UseVisualStyleBackColor = true;
-            // 
-            // CursosComboBox
-            // 
-            CursosComboBox.FormattingEnabled = true;
-            CursosComboBox.Location = new Point(359, 57);
-            CursosComboBox.Margin = new Padding(3, 2, 3, 2);
-            CursosComboBox.Name = "CursosComboBox";
-            CursosComboBox.Size = new Size(123, 23);
-            CursosComboBox.TabIndex = 19;
-            // 
-            // CursosLbl
-            // 
-            CursosLbl.AutoSize = true;
-            CursosLbl.Location = new Point(359, 39);
-            CursosLbl.Name = "CursosLbl";
-            CursosLbl.Size = new Size(48, 17);
-            CursosLbl.TabIndex = 18;
-            CursosLbl.Text = "Cursos";
             // 
             // GestionPersonal
             // 
