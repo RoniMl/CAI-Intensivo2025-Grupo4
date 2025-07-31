@@ -37,7 +37,9 @@ namespace Persistencia
             {
                 string json = response.Content.ReadAsStringAsync().Result;
                 var materias = JsonSerializer.Deserialize<List<InscripcionMateriaResponse>>(json);
-                return materias.Where(m => m.condicion.ToLower() == "aprobada").ToList();
+                var materiasAprobadas = materias.Where(m => m.condicion == "APROBADO").ToList();
+                return materiasAprobadas;
+
             }
             else
             {
