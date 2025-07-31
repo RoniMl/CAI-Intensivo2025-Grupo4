@@ -55,55 +55,53 @@
             // TipoCmb
             // 
             TipoCmb.FormattingEnabled = true;
-            TipoCmb.Location = new Point(194, 355);
-            TipoCmb.Margin = new Padding(3, 4, 3, 4);
+            TipoCmb.Location = new Point(170, 266);
             TipoCmb.Name = "TipoCmb";
-            TipoCmb.Size = new Size(148, 28);
+            TipoCmb.Size = new Size(130, 23);
             TipoCmb.TabIndex = 0;
             // 
             // TipoLbl
             // 
             TipoLbl.AutoSize = true;
-            TipoLbl.Location = new Point(129, 355);
+            TipoLbl.Location = new Point(113, 266);
             TipoLbl.Name = "TipoLbl";
-            TipoLbl.Size = new Size(39, 20);
+            TipoLbl.Size = new Size(34, 17);
             TipoLbl.TabIndex = 1;
             TipoLbl.Text = "Tipo";
             // 
             // NombreLbl
             // 
             NombreLbl.AutoSize = true;
-            NombreLbl.Location = new Point(129, 131);
+            NombreLbl.Location = new Point(113, 98);
             NombreLbl.Name = "NombreLbl";
-            NombreLbl.Size = new Size(64, 20);
+            NombreLbl.Size = new Size(57, 17);
             NombreLbl.TabIndex = 2;
             NombreLbl.Text = "Nombre";
             // 
             // ApellidoLbl
             // 
             ApellidoLbl.AutoSize = true;
-            ApellidoLbl.Location = new Point(129, 203);
+            ApellidoLbl.Location = new Point(113, 152);
             ApellidoLbl.Name = "ApellidoLbl";
-            ApellidoLbl.Size = new Size(66, 20);
+            ApellidoLbl.Size = new Size(56, 17);
             ApellidoLbl.TabIndex = 3;
             ApellidoLbl.Text = "Apellido";
             // 
             // AtrasBtn
             // 
-            AtrasBtn.Location = new Point(82, 543);
-            AtrasBtn.Margin = new Padding(3, 4, 3, 4);
+            AtrasBtn.Location = new Point(72, 407);
             AtrasBtn.Name = "AtrasBtn";
-            AtrasBtn.Size = new Size(86, 31);
+            AtrasBtn.Size = new Size(75, 23);
             AtrasBtn.TabIndex = 6;
             AtrasBtn.Text = "Atras";
             AtrasBtn.UseVisualStyleBackColor = true;
+            AtrasBtn.Click += AtrasBtn_Click;
             // 
             // CrearPersonalBtn
             // 
-            CrearPersonalBtn.Location = new Point(714, 543);
-            CrearPersonalBtn.Margin = new Padding(3, 4, 3, 4);
+            CrearPersonalBtn.Location = new Point(625, 407);
             CrearPersonalBtn.Name = "CrearPersonalBtn";
-            CrearPersonalBtn.Size = new Size(128, 31);
+            CrearPersonalBtn.Size = new Size(112, 23);
             CrearPersonalBtn.TabIndex = 7;
             CrearPersonalBtn.Text = "Crear Personal";
             CrearPersonalBtn.UseVisualStyleBackColor = true;
@@ -111,44 +109,42 @@
             // 
             // NombreTxb
             // 
-            NombreTxb.Location = new Point(194, 127);
-            NombreTxb.Margin = new Padding(3, 4, 3, 4);
+            NombreTxb.Location = new Point(170, 95);
             NombreTxb.Name = "NombreTxb";
-            NombreTxb.Size = new Size(148, 27);
+            NombreTxb.Size = new Size(130, 23);
             NombreTxb.TabIndex = 8;
             // 
             // ApellidoTxb
             // 
-            ApellidoTxb.Location = new Point(194, 199);
-            ApellidoTxb.Margin = new Padding(3, 4, 3, 4);
+            ApellidoTxb.Location = new Point(170, 149);
             ApellidoTxb.Name = "ApellidoTxb";
-            ApellidoTxb.Size = new Size(148, 27);
+            ApellidoTxb.Size = new Size(130, 23);
             ApellidoTxb.TabIndex = 9;
             // 
             // MateriasLbl
             // 
             MateriasLbl.AutoSize = true;
-            MateriasLbl.Location = new Point(500, 37);
+            MateriasLbl.Location = new Point(438, 28);
             MateriasLbl.Name = "MateriasLbl";
-            MateriasLbl.Size = new Size(60, 20);
+            MateriasLbl.Size = new Size(53, 17);
             MateriasLbl.TabIndex = 10;
             MateriasLbl.Text = "Materia";
             // 
             // CursosLbl
             // 
             CursosLbl.AutoSize = true;
-            CursosLbl.Location = new Point(500, 136);
+            CursosLbl.Location = new Point(438, 102);
             CursosLbl.Name = "CursosLbl";
-            CursosLbl.Size = new Size(46, 20);
+            CursosLbl.Size = new Size(42, 17);
             CursosLbl.TabIndex = 11;
             CursosLbl.Text = "Curso";
             // 
             // CursosAsignadosLbl
             // 
             CursosAsignadosLbl.AutoSize = true;
-            CursosAsignadosLbl.Location = new Point(500, 255);
+            CursosAsignadosLbl.Location = new Point(438, 191);
             CursosAsignadosLbl.Name = "CursosAsignadosLbl";
-            CursosAsignadosLbl.Size = new Size(125, 20);
+            CursosAsignadosLbl.Size = new Size(113, 17);
             CursosAsignadosLbl.TabIndex = 12;
             CursosAsignadosLbl.Text = "Cursos Asignados";
             // 
@@ -156,9 +152,10 @@
             // 
             CursosAsignadosListView.Columns.AddRange(new ColumnHeader[] { MateriaCol, CursoCol });
             CursosAsignadosListView.FullRowSelect = true;
-            CursosAsignadosListView.Location = new Point(500, 287);
+            CursosAsignadosListView.Location = new Point(438, 215);
+            CursosAsignadosListView.Margin = new Padding(3, 2, 3, 2);
             CursosAsignadosListView.Name = "CursosAsignadosListView";
-            CursosAsignadosListView.Size = new Size(391, 172);
+            CursosAsignadosListView.Size = new Size(343, 130);
             CursosAsignadosListView.TabIndex = 13;
             CursosAsignadosListView.UseCompatibleStateImageBehavior = false;
             CursosAsignadosListView.View = View.Details;
@@ -176,24 +173,27 @@
             // MateriasCmb
             // 
             MateriasCmb.FormattingEnabled = true;
-            MateriasCmb.Location = new Point(500, 73);
+            MateriasCmb.Location = new Point(438, 55);
+            MateriasCmb.Margin = new Padding(3, 2, 3, 2);
             MateriasCmb.Name = "MateriasCmb";
-            MateriasCmb.Size = new Size(249, 28);
+            MateriasCmb.Size = new Size(218, 23);
             MateriasCmb.TabIndex = 14;
             // 
             // CursosCmb
             // 
             CursosCmb.FormattingEnabled = true;
-            CursosCmb.Location = new Point(500, 165);
+            CursosCmb.Location = new Point(438, 124);
+            CursosCmb.Margin = new Padding(3, 2, 3, 2);
             CursosCmb.Name = "CursosCmb";
-            CursosCmb.Size = new Size(249, 28);
+            CursosCmb.Size = new Size(218, 23);
             CursosCmb.TabIndex = 15;
             // 
             // AgregarBtn
             // 
-            AgregarBtn.Location = new Point(795, 165);
+            AgregarBtn.Location = new Point(696, 124);
+            AgregarBtn.Margin = new Padding(3, 2, 3, 2);
             AgregarBtn.Name = "AgregarBtn";
-            AgregarBtn.Size = new Size(96, 33);
+            AgregarBtn.Size = new Size(84, 25);
             AgregarBtn.TabIndex = 16;
             AgregarBtn.Text = "Agregar";
             AgregarBtn.UseVisualStyleBackColor = true;
@@ -201,9 +201,10 @@
             // 
             // QuitarBtn
             // 
-            QuitarBtn.Location = new Point(810, 465);
+            QuitarBtn.Location = new Point(709, 349);
+            QuitarBtn.Margin = new Padding(3, 2, 3, 2);
             QuitarBtn.Name = "QuitarBtn";
-            QuitarBtn.Size = new Size(81, 37);
+            QuitarBtn.Size = new Size(71, 28);
             QuitarBtn.TabIndex = 17;
             QuitarBtn.Text = "Quitar";
             QuitarBtn.UseVisualStyleBackColor = true;
@@ -212,38 +213,41 @@
             // CuitLbl
             // 
             CuitLbl.AutoSize = true;
-            CuitLbl.Location = new Point(128, 284);
+            CuitLbl.Location = new Point(112, 213);
             CuitLbl.Name = "CuitLbl";
-            CuitLbl.Size = new Size(40, 20);
+            CuitLbl.Size = new Size(35, 17);
             CuitLbl.TabIndex = 18;
             CuitLbl.Text = "CUIT";
             // 
             // Cuit1Txb
             // 
-            Cuit1Txb.Location = new Point(195, 287);
+            Cuit1Txb.Location = new Point(171, 215);
+            Cuit1Txb.Margin = new Padding(3, 2, 3, 2);
             Cuit1Txb.Name = "Cuit1Txb";
-            Cuit1Txb.Size = new Size(34, 27);
+            Cuit1Txb.Size = new Size(30, 23);
             Cuit1Txb.TabIndex = 19;
             // 
             // Cuit2Txb
             // 
-            Cuit2Txb.Location = new Point(235, 287);
+            Cuit2Txb.Location = new Point(206, 215);
+            Cuit2Txb.Margin = new Padding(3, 2, 3, 2);
             Cuit2Txb.Name = "Cuit2Txb";
-            Cuit2Txb.Size = new Size(79, 27);
+            Cuit2Txb.Size = new Size(70, 23);
             Cuit2Txb.TabIndex = 20;
             // 
             // Cuit3Txb
             // 
-            Cuit3Txb.Location = new Point(320, 287);
+            Cuit3Txb.Location = new Point(280, 215);
+            Cuit3Txb.Margin = new Padding(3, 2, 3, 2);
             Cuit3Txb.Name = "Cuit3Txb";
-            Cuit3Txb.Size = new Size(23, 27);
+            Cuit3Txb.Size = new Size(21, 23);
             Cuit3Txb.TabIndex = 21;
             // 
             // CrearPersonal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(800, 450);
             Controls.Add(Cuit3Txb);
             Controls.Add(Cuit2Txb);
             Controls.Add(Cuit1Txb);
@@ -264,7 +268,6 @@
             Controls.Add(NombreLbl);
             Controls.Add(TipoLbl);
             Controls.Add(TipoCmb);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "CrearPersonal";
             Text = "Crear Personal";
             ResumeLayout(false);

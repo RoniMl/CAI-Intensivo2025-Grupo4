@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 {
     public partial class GenerarReportes : Form
     {
+        GenerarReportesNegocio generarReportesNegocio = new GenerarReportesNegocio();
         public GenerarReportes()
         {
             InitializeComponent();
@@ -19,7 +21,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void GenerarReportes_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void GenerarBtn_Click(object sender, EventArgs e)

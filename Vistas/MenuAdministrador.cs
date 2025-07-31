@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vistas;
-
+using Datos;
 namespace CAI_Intensivo2025_Grupo4.Vistas
 {
     public partial class MenuAdministrador : Form
@@ -34,9 +34,11 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         }
 
-        private void button1_Click_2(object sender, EventArgs e)
+        public void GenerarReportesBtn_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            GenerarReportes generarReporte = new GenerarReportes();
+            generarReporte.ShowDialog();
         }
 
         private void GestionDeDesbloqueosBtn_Click(object sender, EventArgs e)

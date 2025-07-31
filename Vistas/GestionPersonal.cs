@@ -83,7 +83,9 @@ namespace Vistas
             IdGroupTxb.Text = "";
             NombreGroupTxb.Text = "";
             ApellidoGroupTxb.Text = "";
-            DniGroupTxb.Text = "";
+            Cuit1GroupTxb.Text = "";
+            Cuit2GroupTxb.Text = "";
+            Cuit3GroupTxb.Text = "";
             MateriasGroupCmb.SelectedIndex = -1;
             MatAsignadasGroupListView.Items.Clear();
         }
@@ -226,9 +228,24 @@ namespace Vistas
             IdGroupTxb.Text = item.SubItems[0].Text;
             NombreGroupTxb.Text = item.SubItems[1].Text;
             ApellidoGroupTxb.Text = item.SubItems[2].Text;
-            DniGroupTxb.Text = item.SubItems[3].Text;
-            Cuit1GroupTxb.Text = item.SubItems[4].Text;
             TipoDocenteGroupCmb.SelectedItem = item.SubItems[5].Text;
+
+            string cuitCompleto = item.SubItems[4].Text;
+
+            string[] partes = cuitCompleto.Split('-');
+
+            if (partes.Length == 3)
+            {
+                Cuit1GroupTxb.Text = partes[0];
+                Cuit2GroupTxb.Text = partes[1];
+                Cuit3GroupTxb.Text = partes[2];
+            }
+            else
+            {
+                Cuit1GroupTxb.Text = "";
+                Cuit2GroupTxb.Text = "";
+                Cuit3GroupTxb.Text = "";
+            }
 
             IdGroupTxb.Enabled = false;
 
@@ -528,9 +545,11 @@ namespace Vistas
         {
             MenuAdministrador menuAdmin = new MenuAdministrador();
             menuAdmin.Show();
-                        
+
             this.Close();
         }
+
+        
     }
 
 }

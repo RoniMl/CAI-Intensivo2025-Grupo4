@@ -11,6 +11,23 @@ namespace Negocio
     public class GenerarReportesNegocio
     {
         AlumnoPersistencia alumnoPersistencia = new AlumnoPersistencia();
+        CarreraPersistencia carreraPersistencia = new CarreraPersistencia();
+        public List<MateriaReporte> carrerasReporte()
+        {
+            List<MateriaReporte> reportes = new List<MateriaReporte>();
+            List<CarreraResponse> carreras = carreraPersistencia.buscarCarrera();
+            foreach (var carrera in carreras)
+            {
+                MateriaReporte materiaReporte = materiaReportes(carrera);
+                reportes.Add(materiaReporte);
+            }
+            return reportes;
+
+        }
+
+
+
+
 
         public MateriaReporte materiaReportes(CarreraResponse carrera)
         {

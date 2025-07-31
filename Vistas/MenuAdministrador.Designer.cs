@@ -83,7 +83,7 @@
             GenerarReportesBtn.TabIndex = 5;
             GenerarReportesBtn.Text = "Generar Reportes";
             GenerarReportesBtn.UseVisualStyleBackColor = true;
-            GenerarReportesBtn.Click += button1_Click_2;
+            GenerarReportesBtn.Click += GenerarReportesBtn_Click;
             // 
             // MenuAdministrador
             // 

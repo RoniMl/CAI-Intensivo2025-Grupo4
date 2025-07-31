@@ -30,7 +30,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         {
             CargarMaterias();
 
-            MateriasCmb.SelectedIndexChanged += MateriasCmb_SelectedIndexChanged;                       
+            MateriasCmb.SelectedIndexChanged += MateriasCmb_SelectedIndexChanged;
 
             TipoCmb.Items.Clear();
             TipoCmb.Items.Add("PROFESOR");
@@ -110,7 +110,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             {
                 MessageBox.Show("El curso ya fue asignado.");
                 return;
-            }            
+            }
 
             if (TieneSuperposicionHoraria(cursoSeleccionado))
             {
@@ -166,7 +166,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             string nombreMateria = itemSeleccionado.SubItems[0].Text;
             string cursoTexto = itemSeleccionado.SubItems[1].Text;
 
-            var cursoAEliminar = cursosAsignados.FirstOrDefault(ca =>ca.NombreMateria == nombreMateria && FormatearCurso(ca.Curso) == cursoTexto);
+            var cursoAEliminar = cursosAsignados.FirstOrDefault(ca => ca.NombreMateria == nombreMateria && FormatearCurso(ca.Curso) == cursoTexto);
 
             if (cursoAEliminar != null)
             {
@@ -177,7 +177,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         private void RefrescarListViewCursosAsignados()
         {
             CursosAsignadosListView.Items.Clear();
-            
+
 
             foreach (var item in cursosAsignados)
             {
@@ -292,7 +292,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             Cuit3Txb.Text = "";
             TipoCmb.SelectedIndex = -1;
 
-            MateriasCmb.SelectedIndex = -1;            
+            MateriasCmb.SelectedIndex = -1;
 
             cursosAsignados.Clear();
             CursosAsignadosListView.Items.Clear();
@@ -302,5 +302,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         {
             this.Close();
         }
+
+        
     }
 }
