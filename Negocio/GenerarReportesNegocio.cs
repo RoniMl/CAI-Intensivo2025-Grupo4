@@ -28,9 +28,12 @@ namespace Negocio
            return reportes;
         }
 
+
+
         public MateriaReporte materiaReportes(CarreraResponse carrera)
         {
             List<Alumno> alumnos = alumnoPersistencia.buscarAlumnos();
+            MateriaReporte materiaReporte = new MateriaReporte();
 
             string nombreCarrera = carrera.nombre;
             int cumLaude = 0;
@@ -70,14 +73,8 @@ namespace Negocio
             
             }
 
-            return new MateriaReporte
-            {
-                nombre = nombreCarrera,
-                cumLaude = cumLaude,
-                summaCumLaude = summaCumLaude,
-                magnumSummaCumLaude = magnumSummaCumLaude,
-                totalEgresados = totalEgresados
-            };
+
+            return materiaReporte;
         }
 
 
