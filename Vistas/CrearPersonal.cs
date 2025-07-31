@@ -23,16 +23,14 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private List<Materia> listaMaterias = new List<Materia>();
         private List<CursoResumenDTO> listaCursos = new List<CursoResumenDTO>();
-        private List<CursoResumenDTO> cursosAsignados = new List<CursoResumenDTO>();
+        private List<CursoAsignado> cursosAsignados = new List<CursoAsignado>();
         private GestionarPersonalNegocio negocio = new GestionarPersonalNegocio();
 
         private void CrearPersonal_Load(object sender, EventArgs e)
         {
             CargarMaterias();
 
-            MateriasCmb.SelectedIndexChanged += MateriasCmb_SelectedIndexChanged;
-            AgregarBtn.Click += AgregarBtn_Click;
-            CrearPersonalBtn.Click += CrearPersonalBtn_Click;
+            MateriasCmb.SelectedIndexChanged += MateriasCmb_SelectedIndexChanged;                       
 
             TipoCmb.Items.Clear();
             TipoCmb.Items.Add("PROFESOR");
@@ -106,57 +104,134 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             var cursoSeleccionado = listaCursos[indexCurso];
             var materiaSeleccionada = listaMaterias[indexMateria];
 
+
             // Evitar duplicados por id de curso
-            if (cursosAsignados.Any(c => c.id == cursoSeleccionado.id))
+            if (cursosAsignados.Any(c => c.Curso.id == cursoSeleccionado.id))
             {
                 MessageBox.Show("El curso ya fue asignado.");
                 return;
+            }            
+
+            if (TieneSuperposicionHoraria(cursoSeleccionado))
+            {
+                MessageBox.Show("El curso tiene un horario que se superpone con otro ya asignado.");
+                return;
             }
 
-            cursosAsignados.Add(cursoSeleccionado);
+            cursosAsignados.Add(new CursoAsignado
+            {
+                NombreMateria = materiaSeleccionada.nombre,
+                Curso = cursoSeleccionado
+            });
 
             RefrescarListViewCursosAsignados();
+
+            CursosCmb.SelectedIndex = -1;
+        }
+
+        private bool TieneSuperposicionHoraria(CursoResumenDTO nuevoCurso)
+        {
+            foreach (var cursoAsignado in cursosAsignados)
+            {
+                foreach (var h1 in cursoAsignado.Curso.horarios)
+                {
+                    foreach (var h2 in nuevoCurso.horarios)
+                    {
+                        if (h1.dia == h2.dia)
+                        {
+                            // No hay superposición si el nuevo curso termina antes que empiece el asignado
+                            // o si el nuevo curso empieza después que termine el asignado
+                            if (!(h2.horaFin.CompareTo(h1.horaInicio) <= 0 || h2.horaInicio.CompareTo(h1.horaFin) >= 0))
+                            {
+                                return true; // Superposición detectada
+                            }
+                        }
+                    }
+                }
+            }
+            return false; // No hay superposición
         }
 
         private void QuitarBtn_Click(object sender, EventArgs e)
         {
-            if (CursosAsignadosListView.SelectedItems.Count > 0)
+            if (CursosAsignadosListView.SelectedItems.Count == 0)
             {
-                foreach (ListViewItem item in CursosAsignadosListView.SelectedItems)
-                {
-                    CursosAsignadosListView.Items.Remove(item);
-                }
-                RefrescarListViewCursosAsignados();
+                MessageBox.Show("Seleccione un curso para quitar.");
+                return;
             }
-            else
+
+            // Tomamos el primer ítem seleccionado (si querés podés hacer un foreach para eliminar varios)
+            var itemSeleccionado = CursosAsignadosListView.SelectedItems[0];
+
+            string nombreMateria = itemSeleccionado.SubItems[0].Text;
+            string cursoTexto = itemSeleccionado.SubItems[1].Text;
+
+            var cursoAEliminar = cursosAsignados.FirstOrDefault(ca =>ca.NombreMateria == nombreMateria && FormatearCurso(ca.Curso) == cursoTexto);
+
+            if (cursoAEliminar != null)
             {
-                MessageBox.Show("Seleccioná un curso de la lista para quitarlo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cursosAsignados.Remove(cursoAEliminar);
+                RefrescarListViewCursosAsignados();
             }
         }
         private void RefrescarListViewCursosAsignados()
         {
             CursosAsignadosListView.Items.Clear();
+            
 
-            foreach (var curso in cursosAsignados)
+            foreach (var item in cursosAsignados)
             {
-                string textoCurso = FormatearCurso(curso);
-                // Si querés también mostrar la materia podrías agregarla, pero acá solo el curso
-
-                ListViewItem item = new ListViewItem(textoCurso);
-                item.Tag = curso; // guardamos el curso para referencia futura
-                CursosAsignadosListView.Items.Add(item);
+                var listItem = new ListViewItem(item.NombreMateria);
+                listItem.SubItems.Add(FormatearCurso(item.Curso));
+                CursosAsignadosListView.Items.Add(listItem);
             }
         }
         private async void CrearPersonalBtn_Click(object sender, EventArgs e)
         {
+            // Validar campos vacíos
             if (string.IsNullOrWhiteSpace(NombreTxb.Text) ||
                 string.IsNullOrWhiteSpace(ApellidoTxb.Text) ||
-                string.IsNullOrWhiteSpace(DniTxb.Text) ||
+                string.IsNullOrWhiteSpace(Cuit1Txb.Text) ||
+                string.IsNullOrWhiteSpace(Cuit2Txb.Text) ||
+                string.IsNullOrWhiteSpace(Cuit3Txb.Text) ||
                 TipoCmb.SelectedIndex < 0)
             {
                 MessageBox.Show("Complete todos los campos.");
                 return;
             }
+
+            // Validar que nombre y apellido no tengan números usando regex
+            var regexSoloLetras = new System.Text.RegularExpressions.Regex("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$");
+            if (!regexSoloLetras.IsMatch(NombreTxb.Text.Trim()))
+            {
+                MessageBox.Show("El nombre sólo puede contener letras y espacios.");
+                return;
+            }
+            if (!regexSoloLetras.IsMatch(ApellidoTxb.Text.Trim()))
+            {
+                MessageBox.Show("El apellido sólo puede contener letras y espacios.");
+                return;
+            }
+
+            // Validar que CUIT sólo tenga números en cada parte
+            if (!Cuit1Txb.Text.All(char.IsDigit) ||
+                !Cuit2Txb.Text.All(char.IsDigit) ||
+                !Cuit3Txb.Text.All(char.IsDigit))
+            {
+                MessageBox.Show("El CUIT debe contener sólo números.");
+                return;
+            }
+
+            // Validar longitud CUIT
+            if (Cuit1Txb.Text.Length != 2 || Cuit2Txb.Text.Length != 8 || Cuit3Txb.Text.Length != 1)
+            {
+                MessageBox.Show("CUIT inválido. Debe tener formato XX-XXXXXXXX-X");
+                return;
+            }
+
+            // Construcción del CUIT y DNI
+            string cuit = $"{Cuit1Txb.Text}-{Cuit2Txb.Text}-{Cuit3Txb.Text}";
+            string dni = Cuit2Txb.Text;
 
             if (cursosAsignados.Count == 0)
             {
@@ -168,11 +243,22 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             {
                 nombre = NombreTxb.Text.Trim(),
                 apellido = ApellidoTxb.Text.Trim(),
-                cuit = CuitTxb.Text.Trim(),
-                dni = DniTxb.Text.Trim(),
+                cuit = cuit,
+                dni = dni,
                 tipo = TipoCmb.SelectedItem.ToString(),
-                cursos = cursosAsignados.Select(c => c.id).ToList()
+                cursos = cursosAsignados.Select(c => c.Curso.id).ToList()
             };
+
+            string mensaje = $"{{\n" +
+                 $"  \"nombre\": \"{nuevoDocente.nombre}\",\n" +
+                 $"  \"apellido\": \"{nuevoDocente.apellido}\",\n" +
+                 $"  \"cuit\": \"{nuevoDocente.cuit}\",\n" +
+                 $"  \"dni\": \"{nuevoDocente.dni}\",\n" +
+                 $"  \"tipo\": \"{nuevoDocente.tipo}\",\n" +
+                 $"  \"cursos\": [{string.Join(", ", nuevoDocente.cursos)}]\n" +
+                 $"}}";
+
+            MessageBox.Show(mensaje, "Docente a crear (Preview)");
 
             try
             {
@@ -200,11 +286,12 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         {
             NombreTxb.Text = "";
             ApellidoTxb.Text = "";
-            CuitTxb.Text = "";
-            DniTxb.Text = "";
+            Cuit1Txb.Text = "";
+            Cuit2Txb.Text = "";
+            Cuit3Txb.Text = "";
+            TipoCmb.SelectedIndex = -1;
 
-            MateriasCmb.SelectedIndex = -1;
-            CursosCmb.SelectedIndex = -1;
+            MateriasCmb.SelectedIndex = -1;            
 
             cursosAsignados.Clear();
             CursosAsignadosListView.Items.Clear();
