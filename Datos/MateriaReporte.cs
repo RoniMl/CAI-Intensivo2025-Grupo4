@@ -8,7 +8,7 @@ namespace Datos
 {
     public class MateriaReporte
     {
-        public string Nombre { get; set; }
+        public string nombre { get; set; }
         public int cumLaude { get; set; }
         public int summaCumLaude { get; set; } 
         public int magnumSummaCumLaude { get; set; }

@@ -35,6 +35,7 @@
             magnaCumLaudeListView = new ColumnHeader();
             summaCumLaudeListView = new ColumnHeader();
             totalListView = new ColumnHeader();
+            generarBtn = new Button();
             SuspendLayout();
             // 
             // GenerarReporteLbl
@@ -81,11 +82,22 @@
             totalListView.Text = "Total";
             totalListView.Width = 150;
             // 
+            // generarBtn
+            // 
+            generarBtn.Location = new Point(655, 248);
+            generarBtn.Name = "generarBtn";
+            generarBtn.Size = new Size(138, 30);
+            generarBtn.TabIndex = 3;
+            generarBtn.Text = "Generar reportes";
+            generarBtn.UseVisualStyleBackColor = true;
+            generarBtn.Click += generarBtn_Click;
+            // 
             // GenerarReportes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(835, 337);
+            ClientSize = new Size(825, 319);
+            Controls.Add(generarBtn);
             Controls.Add(reporteListView);
             Controls.Add(GenerarReporteLbl);
             Name = "GenerarReportes";
@@ -103,5 +115,6 @@
         private ColumnHeader magnaCumLaudeListView;
         private ColumnHeader summaCumLaudeListView;
         private ColumnHeader totalListView;
+        private Button generarBtn;
     }
 }

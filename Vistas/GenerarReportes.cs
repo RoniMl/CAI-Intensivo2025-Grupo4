@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Datos;
 
 namespace CAI_Intensivo2025_Grupo4.Vistas
 {
@@ -21,14 +22,29 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void GenerarReportes_Load(object sender, EventArgs e)
         {
-            
+
         }
 
-        private void GenerarBtn_Click(object sender, EventArgs e)
+        private void generarBtn_Click(object sender, EventArgs e)
         {
+            List<MateriaReporte> reportes = generarReportesNegocio.carrerasReporte();
+            reporteListView.Items.Clear();
 
+            foreach (var reporte in reportes)
+            {
+
+
+
+                ListViewItem item = new ListViewItem(reporte.nombre);
+                item.SubItems.Add(reporte.cumLaude.ToString());
+                item.SubItems.Add(reporte.magnumSummaCumLaude.ToString());
+                item.SubItems.Add(reporte.summaCumLaude.ToString());
+                item.SubItems.Add(reporte.totalEgresados.ToString());
+                reporteListView.Items.Add(item);
+            }
         }
 
-       
+
+
     }
 }

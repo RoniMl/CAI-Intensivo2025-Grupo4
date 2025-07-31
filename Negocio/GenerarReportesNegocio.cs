@@ -12,60 +12,74 @@ namespace Negocio
     {
         AlumnoPersistencia alumnoPersistencia = new AlumnoPersistencia();
         CarreraPersistencia carreraPersistencia = new CarreraPersistencia();
+
         public List<MateriaReporte> carrerasReporte()
         {
             List<MateriaReporte> reportes = new List<MateriaReporte>();
             List<CarreraResponse> carreras = carreraPersistencia.buscarCarrera();
+
             foreach (var carrera in carreras)
             {
-                MateriaReporte materiaReporte = materiaReportes(carrera);
-                reportes.Add(materiaReporte);
+                MateriaReporte materiaReporte = new MateriaReporte();
+                materiaReporte = materiaReportes(carrera);
+               reportes.Add(materiaReporte);
             }
-            return reportes;
 
+           return reportes;
         }
-
-
-
-
 
         public MateriaReporte materiaReportes(CarreraResponse carrera)
         {
-            MateriaReporte materiaReporte = new MateriaReporte();
             List<Alumno> alumnos = alumnoPersistencia.buscarAlumnos();
 
-            string nombreMateria = carrera.nombre;
+            string nombreCarrera = carrera.nombre;
             int cumLaude = 0;
             int summaCumLaude = 0;
             int magnumSummaCumLaude = 0;
             int totalEgresados = 0;
 
-
             foreach (var alumno in alumnos)
             {
-                // Obtener alumnos que no le queden materias no aprobadas
-                List<InscripcionMateriaResponse> materiasNoAprobadas = alumnoPersistencia.ObtenerMateriasNoAprobadas(alumno.id);
-                List<InscripcionMateriaResponse> materiasAprobadas = alumnoPersistencia.ObtenerMateriasAprobadas(alumno.id);
-                decimal promedio = 0;
-                int notasSumadas = 0;
-                if (materiasNoAprobadas.Count == 0)
+                foreach (int carreraAlumno in alumno.carrerasId)
                 {
-                    totalEgresados++;                    
+                    if (carreraAlumno != carrera.id)
+                        continue; // Solo consideramos alumnos de la carrera actual
                 }
-                //foreach (int nota in materiasAprobadas.nota)
-                //{
-                //    notasSumadas += nota;
-                //}
 
+                var materiasNoAprobadas = alumnoPersistencia.ObtenerMateriasNoAprobadas(alumno.id);
+                if (materiasNoAprobadas.Count > 0)
+                    continue;
 
+                // Ahora sí es egresado
+                totalEgresados++;
 
+                var materiasAprobadas = alumnoPersistencia.ObtenerMateriasAprobadas(alumno.id);
+                if (materiasAprobadas.Count == 0)
+                    continue; // Por seguridad
+
+                int sumaNotas = materiasAprobadas.Sum(m => m.nota ?? 0);
+                decimal promedio = (decimal)sumaNotas / materiasAprobadas.Count;
+
+                // Clasificación por promedio
+                if (promedio >= 8 && promedio < 9)
+                    cumLaude++;
+                else if (promedio >= 9 && promedio < 10)
+                    summaCumLaude++;
+                else if (promedio == 10)
+                    magnumSummaCumLaude++;
+            
             }
 
-
-
-
-            return materiaReporte;
+            return new MateriaReporte
+            {
+                nombre = nombreCarrera,
+                cumLaude = cumLaude,
+                summaCumLaude = summaCumLaude,
+                magnumSummaCumLaude = magnumSummaCumLaude,
+                totalEgresados = totalEgresados
+            };
         }
+
 
 
 
