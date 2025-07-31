@@ -128,7 +128,8 @@ namespace Vistas
                 PersonalListView.Columns.Add("Nombre", 150);
                 PersonalListView.Columns.Add("Apellido", 150);
                 PersonalListView.Columns.Add("DNI", 100);
-                PersonalListView.Columns.Add("Tipo de docente", 120);
+                PersonalListView.Columns.Add("CUIT", 110);
+                PersonalListView.Columns.Add("Tipo de docente", 180);
 
                 if (docente != null)
                 {
@@ -137,6 +138,7 @@ namespace Vistas
                     item.SubItems.Add(docente.nombre);
                     item.SubItems.Add(docente.apellido);
                     item.SubItems.Add(docente.dni);
+                    item.SubItems.Add(docente.cuit);
                     item.SubItems.Add(docente.tipo);
 
                     PersonalListView.Items.Add(item);
@@ -217,7 +219,8 @@ namespace Vistas
             NombreGroupTxb.Text = item.SubItems[1].Text;
             ApellidoGroupTxb.Text = item.SubItems[2].Text;
             DniGroupTxb.Text = item.SubItems[3].Text;
-            TipoDocenteGroupCmb.SelectedItem = item.SubItems[4].Text;
+            CuitGroupTxb.Text = item.SubItems[4].Text;
+            TipoDocenteGroupCmb.SelectedItem = item.SubItems[5].Text;
 
             IdGroupTxb.Enabled = false;
 
@@ -231,6 +234,14 @@ namespace Vistas
         {
             try
             {
+                if (cursosAsignados.Count == 0)
+                {
+                    MessageBox.Show("Debe asignar al menos un curso.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                
+
                 // Crear el objeto docente con los datos modificados
                 Docente docenteEditado = new Docente()
                 {
@@ -238,9 +249,11 @@ namespace Vistas
                     nombre = NombreGroupTxb.Text,
                     apellido = ApellidoGroupTxb.Text,
                     dni = DniGroupTxb.Text,
-                    tipo = TipoDocenteGroupCmb.SelectedItem?.ToString() ?? ""
-                    // Completar con otros campos si hace falta
-                };
+                    cuit = CuitGroupTxb.Text,
+                    tipo = TipoDocenteGroupCmb.SelectedItem?.ToString() ?? "",
+                    cursos = cursosAsignados.Select(ca => ca.Curso.id).ToList()
+                };                
+                
 
                 // Guardar la edición en la capa negocio
                 bool resultado = negocio.EditarDocente(docenteEditado);
