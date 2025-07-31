@@ -173,6 +173,14 @@ namespace Vistas
             var item = PersonalListView.SelectedItems[0];
             int idDocente = int.Parse(item.SubItems[0].Text);
 
+            string mensaje = $"Va a eliminar al docente con ID: {idDocente}\n" +
+                     $"Nombre: {item.SubItems[1].Text}\n" +
+                     $"Apellido: {item.SubItems[2].Text}\n" +
+                     $"DNI: {item.SubItems[3].Text}\n" +
+                     $"Tipo: {item.SubItems[4].Text}";
+
+            MessageBox.Show(mensaje, "Verificación antes de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             try
             {
                 bool eliminado = negocio.EliminarDocentePorId(idDocente);

@@ -13,8 +13,8 @@ namespace Datos
         public string apellido { get; set; }
         public string dni { get; set; }
         public string cuit { get; set; }
-        public string tipo { get; set; } // Puede ser "Profesor", "Ayudante" o "Ayudante ad honorem"
         public int antiguedad { get; set; } // Años de antigüedad en la institución
+        public string tipo { get; set; } // Puede ser "Profesor", "Ayudante" o "Ayudante ad honorem"       
         public List<int> cursos { get; set; } = new List<int>(); // Id cursos que imparte el docente
 
     }
