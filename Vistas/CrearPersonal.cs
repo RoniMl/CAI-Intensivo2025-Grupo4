@@ -249,16 +249,17 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 cursos = cursosAsignados.Select(c => c.Curso.id).ToList()
             };
 
-            string mensaje = $"{{\n" +
-                 $"  \"nombre\": \"{nuevoDocente.nombre}\",\n" +
-                 $"  \"apellido\": \"{nuevoDocente.apellido}\",\n" +
-                 $"  \"cuit\": \"{nuevoDocente.cuit}\",\n" +
-                 $"  \"dni\": \"{nuevoDocente.dni}\",\n" +
-                 $"  \"tipo\": \"{nuevoDocente.tipo}\",\n" +
-                 $"  \"cursos\": [{string.Join(", ", nuevoDocente.cursos)}]\n" +
-                 $"}}";
+            //MENSAJE DE PRUEBA DE CREACION
+            //string mensaje = $"{{\n" +
+            //     $"  \"nombre\": \"{nuevoDocente.nombre}\",\n" +
+            //     $"  \"apellido\": \"{nuevoDocente.apellido}\",\n" +
+            //     $"  \"cuit\": \"{nuevoDocente.cuit}\",\n" +
+            //     $"  \"dni\": \"{nuevoDocente.dni}\",\n" +
+            //     $"  \"tipo\": \"{nuevoDocente.tipo}\",\n" +
+            //     $"  \"cursos\": [{string.Join(", ", nuevoDocente.cursos)}]\n" +
+            //     $"}}";
 
-            MessageBox.Show(mensaje, "Docente a crear (Preview)");
+            //MessageBox.Show(mensaje, "Docente a crear (Preview)");
 
             try
             {
@@ -295,6 +296,11 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
             cursosAsignados.Clear();
             CursosAsignadosListView.Items.Clear();
+        }
+
+        private void AtrasBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

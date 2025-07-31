@@ -227,7 +227,7 @@ namespace Vistas
             NombreGroupTxb.Text = item.SubItems[1].Text;
             ApellidoGroupTxb.Text = item.SubItems[2].Text;
             DniGroupTxb.Text = item.SubItems[3].Text;
-            CuitGroupTxb.Text = item.SubItems[4].Text;
+            Cuit1GroupTxb.Text = item.SubItems[4].Text;
             TipoDocenteGroupCmb.SelectedItem = item.SubItems[5].Text;
 
             IdGroupTxb.Enabled = false;
@@ -242,13 +242,21 @@ namespace Vistas
         {
             try
             {
+                // Validaciones
+                if (!ValidarCamposObligatorios()) return;
+                if (!ValidarNombreApellido()) return;
+                if (!ValidarCUIT()) return;
+
+
                 if (cursosAsignados.Count == 0)
                 {
                     MessageBox.Show("Debe asignar al menos un curso.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                
+                string cuit = $"{Cuit1GroupTxb.Text}-{Cuit2GroupTxb.Text}-{Cuit3GroupTxb.Text}";
+                string dni = Cuit2GroupTxb.Text;
+
 
                 // Crear el objeto docente con los datos modificados
                 Docente docenteEditado = new Docente()
@@ -256,13 +264,23 @@ namespace Vistas
                     id = int.Parse(IdGroupTxb.Text),
                     nombre = NombreGroupTxb.Text,
                     apellido = ApellidoGroupTxb.Text,
-                    dni = DniGroupTxb.Text,
-                    cuit = CuitGroupTxb.Text,
+                    dni = dni,
+                    cuit = cuit,
                     tipo = TipoDocenteGroupCmb.SelectedItem?.ToString() ?? "",
                     cursos = cursosAsignados.Select(ca => ca.Curso.id).ToList()
-                };                
-                
+                };
 
+                //MENSAJE DE PRUEBA  PARA VER QUE SE ENVIA EN EL PUT
+                string cursosTexto = string.Join(", ", docenteEditado.cursos);
+                string mensaje = $"ID: {docenteEditado.id}\n" +
+                                 $"Nombre: {docenteEditado.nombre}\n" +
+                                 $"Apellido: {docenteEditado.apellido}\n" +
+                                 $"DNI: {docenteEditado.dni}\n" +
+                                 $"CUIT: {docenteEditado.cuit}\n" +
+                                 $"Tipo: {docenteEditado.tipo}\n" +
+                                 $"Cursos: {cursosTexto}";
+
+                MessageBox.Show(mensaje, "Datos a enviar (Edición)", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 // Guardar la edición en la capa negocio
                 bool resultado = negocio.EditarDocente(docenteEditado);
 
@@ -389,7 +407,7 @@ namespace Vistas
                 return;
             }
 
-                       
+
 
             cursosAsignados.Add(new CursoAsignado
             {
@@ -436,26 +454,82 @@ namespace Vistas
         {
             if (MatAsignadasGroupListView.SelectedItems.Count == 0)
             {
-               MessageBox.Show("Seleccione un curso para quitar.");
-               return;
+                MessageBox.Show("Seleccione un curso para quitar.");
+                return;
             }
 
-             // Obtengo el primer item seleccionado
+            // Obtengo el primer item seleccionado
             var itemSeleccionado = MatAsignadasGroupListView.SelectedItems[0];
 
-             // NombreMateria está en la primera columna
+            // NombreMateria está en la primera columna
             string nombreMateria = itemSeleccionado.SubItems[0].Text;
-             // Para identificar el curso, usamos el texto formateado que está en la segunda columna
+            // Para identificar el curso, usamos el texto formateado que está en la segunda columna
             string cursoTexto = itemSeleccionado.SubItems[1].Text;
 
-             // Buscamos el CursoAsignado en la lista cursosAsignados que coincida
-            var cursoAEliminar = cursosAsignados.FirstOrDefault(ca =>ca.NombreMateria == nombreMateria &&FormatearCurso(ca.Curso) == cursoTexto);
+            // Buscamos el CursoAsignado en la lista cursosAsignados que coincida
+            var cursoAEliminar = cursosAsignados.FirstOrDefault(ca => ca.NombreMateria == nombreMateria && FormatearCurso(ca.Curso) == cursoTexto);
 
             if (cursoAEliminar != null)
             {
-               cursosAsignados.Remove(cursoAEliminar);
-               RefrescarListViewCursosAsignados();
+                cursosAsignados.Remove(cursoAEliminar);
+                RefrescarListViewCursosAsignados();
             }
+        }
+
+        private bool ValidarCamposObligatorios()
+        {
+            if (string.IsNullOrWhiteSpace(NombreGroupTxb.Text) ||
+                string.IsNullOrWhiteSpace(ApellidoGroupTxb.Text) ||
+                string.IsNullOrWhiteSpace(Cuit1GroupTxb.Text) ||
+                string.IsNullOrWhiteSpace(Cuit2GroupTxb.Text) ||
+                string.IsNullOrWhiteSpace(Cuit3GroupTxb.Text) ||
+                TipoDocenteGroupCmb.SelectedIndex < 0)
+            {
+                MessageBox.Show("Complete todos los campos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidarNombreApellido()
+        {
+            var regex = new System.Text.RegularExpressions.Regex("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$");
+            if (!regex.IsMatch(NombreGroupTxb.Text.Trim()) || !regex.IsMatch(ApellidoGroupTxb.Text.Trim()))
+            {
+                MessageBox.Show("Nombre y Apellido sólo deben contener letras y espacios.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidarCUIT()
+        {
+            var regexCuit = new System.Text.RegularExpressions.Regex("^[0-9]{2}$");
+            var regexDni = new System.Text.RegularExpressions.Regex("^[0-9]{8}$");
+            var regexVerificador = new System.Text.RegularExpressions.Regex("^[0-9]{1}$");
+
+            if (Cuit1GroupTxb.Text.Length != 2 || Cuit2GroupTxb.Text.Length != 8 || Cuit3GroupTxb.Text.Length != 1)
+            {
+                MessageBox.Show("CUIT inválido. Debe tener formato XX-XXXXXXXX-X", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!regexCuit.IsMatch(Cuit1GroupTxb.Text) ||
+                !regexDni.IsMatch(Cuit2GroupTxb.Text) ||
+                !regexVerificador.IsMatch(Cuit3GroupTxb.Text))
+            {
+                MessageBox.Show("CUIT debe contener sólo números.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        private void AtrasBtn_Click(object sender, EventArgs e)
+        {
+            MenuAdministrador menuAdmin = new MenuAdministrador();
+            menuAdmin.Show();
+                        
+            this.Close();
         }
     }
 

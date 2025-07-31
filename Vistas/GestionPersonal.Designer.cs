@@ -36,6 +36,10 @@
             EditarBtn = new Button();
             EliminarBtn = new Button();
             EdicionGroup = new GroupBox();
+            Cuit3GroupTxb = new TextBox();
+            Cuit2GroupTxb = new TextBox();
+            Cuit1GroupTxb = new TextBox();
+            CuitGroupLbl = new Label();
             CursosComboBox = new ComboBox();
             CursosLbl = new Label();
             TipoDocenteGroupCmb = new ComboBox();
@@ -52,15 +56,12 @@
             CursosAsignadosGroupLbl = new Label();
             MateriasGroupCmb = new ComboBox();
             MateriasGroupLbl = new Label();
-            DniGroupLbl = new Label();
             NombreGroupLbl = new Label();
-            DniGroupTxb = new TextBox();
             ApellidoGroupTxb = new TextBox();
             IdGroupTxb = new TextBox();
             IdGroupLbl = new Label();
             BuscarBtn = new Button();
-            CuitGroupLbl = new Label();
-            CuitGroupTxb = new TextBox();
+            AtrasBtn = new Button();
             EdicionGroup.SuspendLayout();
             SuspendLayout();
             // 
@@ -129,7 +130,9 @@
             // 
             // EdicionGroup
             // 
-            EdicionGroup.Controls.Add(CuitGroupTxb);
+            EdicionGroup.Controls.Add(Cuit3GroupTxb);
+            EdicionGroup.Controls.Add(Cuit2GroupTxb);
+            EdicionGroup.Controls.Add(Cuit1GroupTxb);
             EdicionGroup.Controls.Add(CuitGroupLbl);
             EdicionGroup.Controls.Add(CursosComboBox);
             EdicionGroup.Controls.Add(CursosLbl);
@@ -145,18 +148,46 @@
             EdicionGroup.Controls.Add(CursosAsignadosGroupLbl);
             EdicionGroup.Controls.Add(MateriasGroupCmb);
             EdicionGroup.Controls.Add(MateriasGroupLbl);
-            EdicionGroup.Controls.Add(DniGroupLbl);
             EdicionGroup.Controls.Add(NombreGroupLbl);
-            EdicionGroup.Controls.Add(DniGroupTxb);
             EdicionGroup.Controls.Add(ApellidoGroupTxb);
             EdicionGroup.Controls.Add(IdGroupTxb);
             EdicionGroup.Controls.Add(IdGroupLbl);
             EdicionGroup.Location = new Point(27, 421);
             EdicionGroup.Name = "EdicionGroup";
-            EdicionGroup.Size = new Size(1176, 329);
+            EdicionGroup.Size = new Size(1176, 339);
             EdicionGroup.TabIndex = 7;
             EdicionGroup.TabStop = false;
             EdicionGroup.Text = "Edicion";
+            // 
+            // Cuit3GroupTxb
+            // 
+            Cuit3GroupTxb.Location = new Point(176, 244);
+            Cuit3GroupTxb.Name = "Cuit3GroupTxb";
+            Cuit3GroupTxb.Size = new Size(19, 27);
+            Cuit3GroupTxb.TabIndex = 23;
+            // 
+            // Cuit2GroupTxb
+            // 
+            Cuit2GroupTxb.Location = new Point(100, 244);
+            Cuit2GroupTxb.Name = "Cuit2GroupTxb";
+            Cuit2GroupTxb.Size = new Size(70, 27);
+            Cuit2GroupTxb.TabIndex = 22;
+            // 
+            // Cuit1GroupTxb
+            // 
+            Cuit1GroupTxb.Location = new Point(73, 244);
+            Cuit1GroupTxb.Name = "Cuit1GroupTxb";
+            Cuit1GroupTxb.Size = new Size(21, 27);
+            Cuit1GroupTxb.TabIndex = 21;
+            // 
+            // CuitGroupLbl
+            // 
+            CuitGroupLbl.AutoSize = true;
+            CuitGroupLbl.Location = new Point(71, 222);
+            CuitGroupLbl.Name = "CuitGroupLbl";
+            CuitGroupLbl.Size = new Size(35, 20);
+            CuitGroupLbl.TabIndex = 20;
+            CuitGroupLbl.Text = "Cuit";
             // 
             // CursosComboBox
             // 
@@ -178,7 +209,7 @@
             // TipoDocenteGroupCmb
             // 
             TipoDocenteGroupCmb.FormattingEnabled = true;
-            TipoDocenteGroupCmb.Location = new Point(228, 295);
+            TipoDocenteGroupCmb.Location = new Point(73, 301);
             TipoDocenteGroupCmb.Name = "TipoDocenteGroupCmb";
             TipoDocenteGroupCmb.Size = new Size(159, 28);
             TipoDocenteGroupCmb.TabIndex = 17;
@@ -186,7 +217,7 @@
             // TipoDocenteGroupLbl
             // 
             TipoDocenteGroupLbl.AutoSize = true;
-            TipoDocenteGroupLbl.Location = new Point(228, 272);
+            TipoDocenteGroupLbl.Location = new Point(73, 278);
             TipoDocenteGroupLbl.Name = "TipoDocenteGroupLbl";
             TipoDocenteGroupLbl.Size = new Size(120, 20);
             TipoDocenteGroupLbl.TabIndex = 16;
@@ -293,15 +324,6 @@
             MateriasGroupLbl.TabIndex = 6;
             MateriasGroupLbl.Text = "Materias";
             // 
-            // DniGroupLbl
-            // 
-            DniGroupLbl.AutoSize = true;
-            DniGroupLbl.Location = new Point(73, 216);
-            DniGroupLbl.Name = "DniGroupLbl";
-            DniGroupLbl.Size = new Size(35, 20);
-            DniGroupLbl.TabIndex = 5;
-            DniGroupLbl.Text = "DNI";
-            // 
             // NombreGroupLbl
             // 
             NombreGroupLbl.AutoSize = true;
@@ -311,25 +333,18 @@
             NombreGroupLbl.TabIndex = 4;
             NombreGroupLbl.Text = "Nombre";
             // 
-            // DniGroupTxb
-            // 
-            DniGroupTxb.Location = new Point(73, 240);
-            DniGroupTxb.Name = "DniGroupTxb";
-            DniGroupTxb.Size = new Size(122, 27);
-            DniGroupTxb.TabIndex = 3;
-            // 
             // ApellidoGroupTxb
             // 
             ApellidoGroupTxb.Location = new Point(73, 182);
             ApellidoGroupTxb.Name = "ApellidoGroupTxb";
-            ApellidoGroupTxb.Size = new Size(119, 27);
+            ApellidoGroupTxb.Size = new Size(122, 27);
             ApellidoGroupTxb.TabIndex = 2;
             // 
             // IdGroupTxb
             // 
             IdGroupTxb.Location = new Point(73, 52);
             IdGroupTxb.Name = "IdGroupTxb";
-            IdGroupTxb.Size = new Size(117, 27);
+            IdGroupTxb.Size = new Size(64, 27);
             IdGroupTxb.TabIndex = 1;
             // 
             // IdGroupLbl
@@ -350,27 +365,21 @@
             BuscarBtn.Text = "Buscar";
             BuscarBtn.UseVisualStyleBackColor = true;
             // 
-            // CuitGroupLbl
+            // AtrasBtn
             // 
-            CuitGroupLbl.AutoSize = true;
-            CuitGroupLbl.Location = new Point(71, 274);
-            CuitGroupLbl.Name = "CuitGroupLbl";
-            CuitGroupLbl.Size = new Size(35, 20);
-            CuitGroupLbl.TabIndex = 20;
-            CuitGroupLbl.Text = "Cuit";
-            // 
-            // CuitGroupTxb
-            // 
-            CuitGroupTxb.Location = new Point(73, 296);
-            CuitGroupTxb.Name = "CuitGroupTxb";
-            CuitGroupTxb.Size = new Size(122, 27);
-            CuitGroupTxb.TabIndex = 21;
+            AtrasBtn.Location = new Point(38, 777);
+            AtrasBtn.Name = "AtrasBtn";
+            AtrasBtn.Size = new Size(103, 28);
+            AtrasBtn.TabIndex = 9;
+            AtrasBtn.Text = "Atrás";
+            AtrasBtn.UseVisualStyleBackColor = true;
             // 
             // GestionPersonal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1230, 763);
+            ClientSize = new Size(1243, 810);
+            Controls.Add(AtrasBtn);
             Controls.Add(BuscarBtn);
             Controls.Add(EdicionGroup);
             Controls.Add(EliminarBtn);
@@ -400,9 +409,7 @@
         private GroupBox EdicionGroup;
         private Label IdGroupLbl;
         private TextBox IdGroupTxb;
-        private Label DniGroupLbl;
         private Label NombreGroupLbl;
-        private TextBox DniGroupTxb;
         private TextBox ApellidoGroupTxb;
         private Label MateriasGroupLbl;
         private ListView MatAsignadasGroupListView;
@@ -421,7 +428,10 @@
         private Label CursosLbl;
         private ColumnHeader MateriaColumna;
         private ColumnHeader CursoColumna;
-        private TextBox CuitGroupTxb;
+        private TextBox Cuit1GroupTxb;
         private Label CuitGroupLbl;
+        private TextBox Cuit3GroupTxb;
+        private TextBox Cuit2GroupTxb;
+        private Button AtrasBtn;
     }
 }
