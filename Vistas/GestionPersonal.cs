@@ -128,7 +128,8 @@ namespace Vistas
                 PersonalListView.Columns.Add("Nombre", 150);
                 PersonalListView.Columns.Add("Apellido", 150);
                 PersonalListView.Columns.Add("DNI", 100);
-                PersonalListView.Columns.Add("Tipo de docente", 120);
+                PersonalListView.Columns.Add("CUIT", 110);
+                PersonalListView.Columns.Add("Tipo de docente", 180);
 
                 if (docente != null)
                 {
@@ -137,6 +138,7 @@ namespace Vistas
                     item.SubItems.Add(docente.nombre);
                     item.SubItems.Add(docente.apellido);
                     item.SubItems.Add(docente.dni);
+                    item.SubItems.Add(docente.cuit);
                     item.SubItems.Add(docente.tipo);
 
                     PersonalListView.Items.Add(item);
@@ -217,7 +219,8 @@ namespace Vistas
             NombreGroupTxb.Text = item.SubItems[1].Text;
             ApellidoGroupTxb.Text = item.SubItems[2].Text;
             DniGroupTxb.Text = item.SubItems[3].Text;
-            TipoDocenteGroupCmb.SelectedItem = item.SubItems[4].Text;
+            CuitGroupTxb.Text = item.SubItems[4].Text;
+            TipoDocenteGroupCmb.SelectedItem = item.SubItems[5].Text;
 
             IdGroupTxb.Enabled = false;
 
@@ -231,6 +234,14 @@ namespace Vistas
         {
             try
             {
+                if (cursosAsignados.Count == 0)
+                {
+                    MessageBox.Show("Debe asignar al menos un curso.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                
+
                 // Crear el objeto docente con los datos modificados
                 Docente docenteEditado = new Docente()
                 {
@@ -238,9 +249,11 @@ namespace Vistas
                     nombre = NombreGroupTxb.Text,
                     apellido = ApellidoGroupTxb.Text,
                     dni = DniGroupTxb.Text,
-                    tipo = TipoDocenteGroupCmb.SelectedItem?.ToString() ?? ""
-                    // Completar con otros campos si hace falta
-                };
+                    cuit = CuitGroupTxb.Text,
+                    tipo = TipoDocenteGroupCmb.SelectedItem?.ToString() ?? "",
+                    cursos = cursosAsignados.Select(ca => ca.Curso.id).ToList()
+                };                
+                
 
                 // Guardar la edición en la capa negocio
                 bool resultado = negocio.EditarDocente(docenteEditado);
@@ -415,27 +428,25 @@ namespace Vistas
         {
             if (MatAsignadasGroupListView.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Seleccione un curso para quitar.");
-                return;
+               MessageBox.Show("Seleccione un curso para quitar.");
+               return;
             }
 
-            // Obtengo el primer item seleccionado
+             // Obtengo el primer item seleccionado
             var itemSeleccionado = MatAsignadasGroupListView.SelectedItems[0];
 
-            // NombreMateria está en la primera columna
+             // NombreMateria está en la primera columna
             string nombreMateria = itemSeleccionado.SubItems[0].Text;
-            // Para identificar el curso, usamos el texto formateado que está en la segunda columna
+             // Para identificar el curso, usamos el texto formateado que está en la segunda columna
             string cursoTexto = itemSeleccionado.SubItems[1].Text;
 
-            // Buscamos el CursoAsignado en la lista cursosAsignados que coincida
-            var cursoAEliminar = cursosAsignados.FirstOrDefault(ca =>
-                ca.NombreMateria == nombreMateria &&
-                FormatearCurso(ca.Curso) == cursoTexto);
+             // Buscamos el CursoAsignado en la lista cursosAsignados que coincida
+            var cursoAEliminar = cursosAsignados.FirstOrDefault(ca =>ca.NombreMateria == nombreMateria &&FormatearCurso(ca.Curso) == cursoTexto);
 
             if (cursoAEliminar != null)
             {
-                cursosAsignados.Remove(cursoAEliminar);
-                RefrescarListViewCursosAsignados();
+               cursosAsignados.Remove(cursoAEliminar);
+               RefrescarListViewCursosAsignados();
             }
         }
     }

@@ -20,6 +20,10 @@ namespace Negocio
             return docentePersistencia.BuscarDocentePorDni(dni);
         }
 
+        public bool CrearDocente(Docente docente)
+        {
+            return docentePersistencia.CrearDocente(docente);
+        }
         public bool EliminarDocentePorId(int id)
         {
             return docentePersistencia.EliminarDocente(id);
@@ -97,7 +101,7 @@ namespace Negocio
             return cursosAsignados;
         }
 
-
+        
 
 
 
