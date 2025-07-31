@@ -41,10 +41,6 @@
             CarreraListView = new ListView();
             CarrerasLbl = new Label();
             AñadirBtn = new Button();
-            ContraseñaTbx = new TextBox();
-            ContraseñaLbl = new Label();
-            UsuarioTxb = new TextBox();
-            UsuarioLbl = new Label();
             SuspendLayout();
             // 
             // NombreLbl
@@ -98,7 +94,7 @@
             // CarreraLbl
             // 
             CarreraLbl.AutoSize = true;
-            CarreraLbl.Location = new Point(125, 291);
+            CarreraLbl.Location = new Point(124, 209);
             CarreraLbl.Name = "CarreraLbl";
             CarreraLbl.Size = new Size(52, 17);
             CarreraLbl.TabIndex = 6;
@@ -107,7 +103,7 @@
             // CarreraCmbBox
             // 
             CarreraCmbBox.FormattingEnabled = true;
-            CarreraCmbBox.Location = new Point(183, 291);
+            CarreraCmbBox.Location = new Point(182, 209);
             CarreraCmbBox.Name = "CarreraCmbBox";
             CarreraCmbBox.Size = new Size(138, 23);
             CarreraCmbBox.TabIndex = 7;
@@ -150,7 +146,7 @@
             // 
             // AñadirBtn
             // 
-            AñadirBtn.Location = new Point(327, 291);
+            AñadirBtn.Location = new Point(326, 209);
             AñadirBtn.Name = "AñadirBtn";
             AñadirBtn.Size = new Size(75, 23);
             AñadirBtn.TabIndex = 12;
@@ -158,47 +154,11 @@
             AñadirBtn.UseVisualStyleBackColor = true;
             AñadirBtn.Click += AñadirBtn_Click;
             // 
-            // ContraseñaTbx
-            // 
-            ContraseñaTbx.Location = new Point(183, 249);
-            ContraseñaTbx.Name = "ContraseñaTbx";
-            ContraseñaTbx.Size = new Size(138, 23);
-            ContraseñaTbx.TabIndex = 16;
-            // 
-            // ContraseñaLbl
-            // 
-            ContraseñaLbl.AutoSize = true;
-            ContraseñaLbl.Location = new Point(103, 252);
-            ContraseñaLbl.Name = "ContraseñaLbl";
-            ContraseñaLbl.Size = new Size(74, 17);
-            ContraseñaLbl.TabIndex = 15;
-            ContraseñaLbl.Text = "Contraseña";
-            // 
-            // UsuarioTxb
-            // 
-            UsuarioTxb.Location = new Point(183, 207);
-            UsuarioTxb.Name = "UsuarioTxb";
-            UsuarioTxb.Size = new Size(138, 23);
-            UsuarioTxb.TabIndex = 14;
-            // 
-            // UsuarioLbl
-            // 
-            UsuarioLbl.AutoSize = true;
-            UsuarioLbl.Location = new Point(121, 210);
-            UsuarioLbl.Name = "UsuarioLbl";
-            UsuarioLbl.Size = new Size(53, 17);
-            UsuarioLbl.TabIndex = 13;
-            UsuarioLbl.Text = "Usuario";
-            // 
             // CrearAlumno
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 447);
-            Controls.Add(ContraseñaTbx);
-            Controls.Add(ContraseñaLbl);
-            Controls.Add(UsuarioTxb);
-            Controls.Add(UsuarioLbl);
             Controls.Add(AñadirBtn);
             Controls.Add(CarrerasLbl);
             Controls.Add(CarreraListView);
@@ -233,9 +193,5 @@
         private ListView CarreraListView;
         private Label CarrerasLbl;
         private Button AñadirBtn;
-        private TextBox ContraseñaTbx;
-        private Label ContraseñaLbl;
-        private TextBox UsuarioTxb;
-        private Label UsuarioLbl;
     }
 }

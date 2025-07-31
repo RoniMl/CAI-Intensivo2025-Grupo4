@@ -21,5 +21,12 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         {
 
         }
+
+        private void GenerarBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

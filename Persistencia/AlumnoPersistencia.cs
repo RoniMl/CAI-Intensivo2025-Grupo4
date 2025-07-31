@@ -46,6 +46,23 @@ namespace Persistencia
                 throw new Exception("Error al obtener materias del alumno");
             }
         }
+        public List<InscripcionMateriaResponse> ObtenerMateriasNoAprobadas(long alumnoId)
+        {
+            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{alumnoId}/materias");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                var materias = JsonSerializer.Deserialize<List<InscripcionMateriaResponse>>(json);
+                var materiasAprobadas = materias.Where(m => m.condicion != "APROBADO").ToList();
+                return materiasAprobadas;
+
+            }
+            else
+            {
+                throw new Exception("Error al obtener materias del alumno");
+            }
+        }
         public List<InscripcionMateriaResponse> ObtenerMateriasDelAlumno(long alumnoId)
         {
             HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{alumnoId}/materias");

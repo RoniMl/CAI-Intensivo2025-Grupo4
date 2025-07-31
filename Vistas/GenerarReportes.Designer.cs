@@ -28,45 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            GenerarBtn = new Button();
-            CarreraCmbBox = new ComboBox();
-            CarreraLbl = new Label();
+            GenerarReporteLbl = new Label();
+            reporteListView = new ListView();
+            carreraListView = new ColumnHeader();
+            cumLaudeListview = new ColumnHeader();
+            magnaCumLaudeListView = new ColumnHeader();
+            summaCumLaudeListView = new ColumnHeader();
+            totalListView = new ColumnHeader();
             SuspendLayout();
             // 
-            // GenerarBtn
+            // GenerarReporteLbl
             // 
-            GenerarBtn.Location = new Point(713, 412);
-            GenerarBtn.Name = "GenerarBtn";
-            GenerarBtn.Size = new Size(75, 26);
-            GenerarBtn.TabIndex = 0;
-            GenerarBtn.Text = "Generar";
-            GenerarBtn.UseVisualStyleBackColor = true;
+            GenerarReporteLbl.AutoSize = true;
+            GenerarReporteLbl.Location = new Point(40, 20);
+            GenerarReporteLbl.Name = "GenerarReporteLbl";
+            GenerarReporteLbl.Size = new Size(150, 17);
+            GenerarReporteLbl.TabIndex = 1;
+            GenerarReporteLbl.Text = "Generacion de Reportes";
             // 
-            // CarreraCmbBox
+            // reporteListView
             // 
-            CarreraCmbBox.FormattingEnabled = true;
-            CarreraCmbBox.Location = new Point(153, 39);
-            CarreraCmbBox.Name = "CarreraCmbBox";
-            CarreraCmbBox.Size = new Size(206, 23);
-            CarreraCmbBox.TabIndex = 1;
+            reporteListView.Columns.AddRange(new ColumnHeader[] { carreraListView, cumLaudeListview, magnaCumLaudeListView, summaCumLaudeListView, totalListView });
+            reporteListView.Location = new Point(40, 40);
+            reporteListView.Name = "reporteListView";
+            reporteListView.Size = new Size(753, 202);
+            reporteListView.TabIndex = 2;
+            reporteListView.UseCompatibleStateImageBehavior = false;
+            reporteListView.View = View.Details;
             // 
-            // CarreraLbl
+            // carreraListView
             // 
-            CarreraLbl.AutoSize = true;
-            CarreraLbl.Location = new Point(24, 42);
-            CarreraLbl.Name = "CarreraLbl";
-            CarreraLbl.Size = new Size(123, 17);
-            CarreraLbl.TabIndex = 2;
-            CarreraLbl.Text = "Seleccione Carrera..";
+            carreraListView.Text = "Carrera";
+            carreraListView.Width = 150;
+            // 
+            // cumLaudeListview
+            // 
+            cumLaudeListview.Text = "Cum Laude";
+            cumLaudeListview.Width = 150;
+            // 
+            // magnaCumLaudeListView
+            // 
+            magnaCumLaudeListView.Text = "Magna Cum Laude";
+            magnaCumLaudeListView.Width = 150;
+            // 
+            // summaCumLaudeListView
+            // 
+            summaCumLaudeListView.Text = "Summa Cum Laude";
+            summaCumLaudeListView.Width = 150;
+            // 
+            // totalListView
+            // 
+            totalListView.Text = "Total";
+            totalListView.Width = 150;
             // 
             // GenerarReportes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(CarreraLbl);
-            Controls.Add(CarreraCmbBox);
-            Controls.Add(GenerarBtn);
+            ClientSize = new Size(835, 337);
+            Controls.Add(reporteListView);
+            Controls.Add(GenerarReporteLbl);
             Name = "GenerarReportes";
             Text = "Generar Reportes";
             Load += GenerarReportes_Load;
@@ -75,9 +96,12 @@
         }
 
         #endregion
-
-        private Button GenerarBtn;
-        private ComboBox CarreraCmbBox;
-        private Label CarreraLbl;
+        private Label GenerarReporteLbl;
+        private ListView reporteListView;
+        private ColumnHeader carreraListView;
+        private ColumnHeader cumLaudeListview;
+        private ColumnHeader magnaCumLaudeListView;
+        private ColumnHeader summaCumLaudeListView;
+        private ColumnHeader totalListView;
     }
 }
