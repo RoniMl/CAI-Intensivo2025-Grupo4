@@ -27,14 +27,11 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void generarBtn_Click(object sender, EventArgs e)
         {
-            List<MateriaReporte> reportes = generarReportesNegocio.carrerasReporte();
+            List<MateriaReporte> reportes = generarReportesNegocio.generarReportes();
             reporteListView.Items.Clear();
 
             foreach (var reporte in reportes)
             {
-
-
-
                 ListViewItem item = new ListViewItem(reporte.nombre);
                 item.SubItems.Add(reporte.cumLaude.ToString());
                 item.SubItems.Add(reporte.magnumSummaCumLaude.ToString());
