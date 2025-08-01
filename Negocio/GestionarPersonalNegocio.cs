@@ -15,7 +15,7 @@ namespace Negocio
         public MateriaPersistencia materiaPersistencia = new MateriaPersistencia(); 
         public CursoPersistencia cursoPersistencia = new CursoPersistencia();
 
-        public Docente ObtenerDocentePorDni(string dni)
+        public Docente BuscarDocentePorDni(string dni)
         {
             return docentePersistencia.BuscarDocentePorDni(dni);
         }

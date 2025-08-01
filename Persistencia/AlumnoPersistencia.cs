@@ -13,6 +13,42 @@ namespace Persistencia
 {
     public class AlumnoPersistencia
     {
+        public Alumno alumnoEncontradoDni = new Alumno();
+        public Alumno alumnoEncontradoId = new Alumno();
+        public Alumno BuscarAlumnoPorDni(string dni)
+        {
+            HttpResponseMessage response = WebHelper.Get("tpIntensivo/alumnos");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var contentStream = response.Content.ReadAsStringAsync().Result;
+                var alumnos = JsonSerializer.Deserialize<List<Alumno>>(contentStream);
+
+                var alumnoEncontradoDni = alumnos.Find(a => a.dni.Trim() == dni.Trim());
+                return alumnoEncontradoDni;
+            }
+            else
+            {
+                Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+                throw new Exception("Error al obtener alumnos");
+            }
+        }
+        public Alumno BuscarAlumnoPorId(int id)
+        {
+            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                var alumnoEncontradoId = JsonSerializer.Deserialize<Alumno>(json);
+                return alumnoEncontradoId;
+            }
+            else
+            {
+                throw new Exception("No se pudo obtener el alumno");
+            }
+
+        }
         public List<Alumno> buscarAlumnos()
         {
             HttpResponseMessage response = WebHelper.Get("tpIntensivo/alumnos");
@@ -82,41 +118,24 @@ namespace Persistencia
                 throw new Exception("Error al obtener materias del alumno");
             }
         }
+        public bool CrearAlumno(Alumno alumno)
+        {
+            var json = JsonSerializer.Serialize(alumno);
+            HttpResponseMessage response = WebHelper.Post("tpIntensivo/alumnos", json);
+            return response.IsSuccessStatusCode;
+        }
+        public bool EditarAlumno(Alumno alumno)
+        {
+            var json = JsonSerializer.Serialize(alumno);
+            HttpResponseMessage response = WebHelper.Put($"tpIntensivo/alumnos/{alumno.id}", json);
+            return response.IsSuccessStatusCode;
+        }
+        public bool EliminarAlumno(int id)
+        {
+            HttpResponseMessage response = WebHelper.Delete($"tpIntensivo/alumnos/{id}");
+            return response.IsSuccessStatusCode;
+        }
     }
 }
 
 
-/* MODELO VIEJO DE BUSCAR ALUMNO
-if (response.IsSuccessStatusCode)
-{
-    string json = response.Content.ReadAsStringAsync().Result;
-    return JsonSerializer.Deserialize<Alumno>(json);
-}
-else
-{
-    Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
-    throw new Exception("Error al obtener el alumno por ID");
-}
-
-
-
-
-
-SEGUNDO 
-        public Alumno ObtenerAlumnoPorId(long id)
-        {
-            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{id}");
-
-            if (response.IsSuccessStatusCode)
-            {
-                string json = response.Content.ReadAsStringAsync().Result;
-                var alumno = JsonSerializer.Deserialize<Alumno>(json);
-                return alumno;
-            }
-            else
-            {
-                throw new Exception("No se pudo obtener el alumno");
-            }
-
-        }
-*/

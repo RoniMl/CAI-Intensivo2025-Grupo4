@@ -18,10 +18,6 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             InitializeComponent();
         }
 
-        private void GestionatAlumnosBtn_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void CerrarSesionBtn_Click(object sender, EventArgs e)
         {
@@ -29,10 +25,6 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             Application.Exit();
         }
 
-        private void MenuAdministrador_Load(object sender, EventArgs e)
-        {
-
-        }
 
         public void GenerarReportesBtn_Click(object sender, EventArgs e)
         {
@@ -53,6 +45,13 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             this.Hide();
             GestionPersonal gestionPersonal = new GestionPersonal();
             gestionPersonal.ShowDialog();
+        }
+
+        private void GestionarAlumnosBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            GestionAlumnos gestionAlumnos = new GestionAlumnos();
+            gestionAlumnos.ShowDialog();
         }
     }
 }
