@@ -14,11 +14,11 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 {
     public partial class InscripcionMaterias : Form
     {
-        private long _alumnoId;
-        private long _carreraId;
+        private int _alumnoId;
+        private int _carreraId;
         private InscripcionMateriasModelo _modelo;
         private List<Materia> _materiasDisponibles;
-        public InscripcionMaterias(long alumnoId, long carreraId)
+        public InscripcionMaterias(int alumnoId, int carreraId)
         {
             InitializeComponent();
             _alumnoId = alumnoId;
@@ -40,6 +40,13 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             {
                 MessageBox.Show("Error al cargar materias: " + ex.Message);
             }
+            // Mostrar ranking en el rankingListView
+            int ranking = _modelo.calcularRanking(_alumnoId);
+            rankingListView.Items.Clear();
+            ListViewItem item = new ListViewItem(ranking.ToString());
+            rankingListView.Items.Add(item);
+
+
         }
         private void CargarMateriasEnComboBox(ComboBox comboBox)
         {
@@ -48,6 +55,8 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             comboBox.ValueMember = "id";
             comboBox.SelectedIndex = -1;
         }
+
+
 
         private void EnviarInscMatBtn_Click(object sender, EventArgs e)
         {
@@ -72,8 +81,11 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                     MessageBox.Show("No se puede seleccionar la misma materia más de una vez.");
                     return;
                 }
-
-                _modelo.InscribirAlumnoAMaterias(_alumnoId, idsSeleccionados);
+                foreach (int id in idsSeleccionados)
+                {
+                    _modelo.InscribirAlumnoAMaterias(_alumnoId, id);
+                }
+                
                 MessageBox.Show("Inscripción realizada correctamente.");
                 this.Close();
             }

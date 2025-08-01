@@ -30,7 +30,7 @@ namespace Persistencia
         }
 
         // Inscribir al alumno en una lista de materias (array de IDs)
-        public void InscribirMaterias(long alumnoId, List<int> idsMaterias)
+        public void InscribirMaterias(long alumnoId, int idsMaterias)
         {
             string json = JsonSerializer.Serialize(idsMaterias);
             HttpResponseMessage response = WebHelper.Post($"tpIntensivo/alumno/{alumnoId}/materias", json);
