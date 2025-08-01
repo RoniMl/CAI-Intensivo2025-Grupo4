@@ -35,93 +35,101 @@
             DNILbl = new Label();
             DniTxb = new TextBox();
             CarreraLbl = new Label();
-            CarreraCmbBox = new ComboBox();
+            CarreraCmb = new ComboBox();
             AtrasBtn = new Button();
             CrearAlumnoBtn = new Button();
             CarreraListView = new ListView();
             CarrerasLbl = new Label();
-            AñadirBtn = new Button();
+            AgregarBtn = new Button();
+            QuitarBtn = new Button();
             SuspendLayout();
             // 
             // NombreLbl
             // 
             NombreLbl.AutoSize = true;
-            NombreLbl.Location = new Point(120, 93);
+            NombreLbl.Location = new Point(137, 124);
             NombreLbl.Name = "NombreLbl";
-            NombreLbl.Size = new Size(57, 17);
+            NombreLbl.Size = new Size(64, 20);
             NombreLbl.TabIndex = 0;
             NombreLbl.Text = "Nombre";
             // 
             // NombreTxb
             // 
-            NombreTxb.Location = new Point(183, 87);
+            NombreTxb.Location = new Point(209, 116);
+            NombreTxb.Margin = new Padding(3, 4, 3, 4);
             NombreTxb.Name = "NombreTxb";
-            NombreTxb.Size = new Size(138, 23);
+            NombreTxb.Size = new Size(157, 27);
             NombreTxb.TabIndex = 1;
             // 
             // ApellidoLbl
             // 
             ApellidoLbl.AutoSize = true;
-            ApellidoLbl.Location = new Point(121, 130);
+            ApellidoLbl.Location = new Point(138, 190);
             ApellidoLbl.Name = "ApellidoLbl";
-            ApellidoLbl.Size = new Size(56, 17);
+            ApellidoLbl.Size = new Size(66, 20);
             ApellidoLbl.TabIndex = 2;
             ApellidoLbl.Text = "Apellido";
             // 
             // ApellidoTxb
             // 
-            ApellidoTxb.Location = new Point(183, 127);
+            ApellidoTxb.Location = new Point(209, 186);
+            ApellidoTxb.Margin = new Padding(3, 4, 3, 4);
             ApellidoTxb.Name = "ApellidoTxb";
-            ApellidoTxb.Size = new Size(138, 23);
+            ApellidoTxb.Size = new Size(157, 27);
             ApellidoTxb.TabIndex = 3;
             // 
             // DNILbl
             // 
             DNILbl.AutoSize = true;
-            DNILbl.Location = new Point(147, 166);
+            DNILbl.Location = new Point(168, 248);
             DNILbl.Name = "DNILbl";
-            DNILbl.Size = new Size(30, 17);
+            DNILbl.Size = new Size(35, 20);
             DNILbl.TabIndex = 4;
             DNILbl.Text = "DNI";
             // 
             // DniTxb
             // 
-            DniTxb.Location = new Point(183, 166);
+            DniTxb.Location = new Point(209, 248);
+            DniTxb.Margin = new Padding(3, 4, 3, 4);
             DniTxb.Name = "DniTxb";
-            DniTxb.Size = new Size(138, 23);
+            DniTxb.Size = new Size(157, 27);
             DniTxb.TabIndex = 5;
             // 
             // CarreraLbl
             // 
             CarreraLbl.AutoSize = true;
-            CarreraLbl.Location = new Point(124, 209);
+            CarreraLbl.Location = new Point(143, 325);
             CarreraLbl.Name = "CarreraLbl";
-            CarreraLbl.Size = new Size(52, 17);
+            CarreraLbl.Size = new Size(57, 20);
             CarreraLbl.TabIndex = 6;
             CarreraLbl.Text = "Carrera";
             // 
-            // CarreraCmbBox
+            // CarreraCmb
             // 
-            CarreraCmbBox.FormattingEnabled = true;
-            CarreraCmbBox.Location = new Point(182, 209);
-            CarreraCmbBox.Name = "CarreraCmbBox";
-            CarreraCmbBox.Size = new Size(138, 23);
-            CarreraCmbBox.TabIndex = 7;
+            CarreraCmb.FormattingEnabled = true;
+            CarreraCmb.Location = new Point(209, 325);
+            CarreraCmb.Margin = new Padding(3, 4, 3, 4);
+            CarreraCmb.Name = "CarreraCmb";
+            CarreraCmb.Size = new Size(157, 28);
+            CarreraCmb.TabIndex = 7;
             // 
             // AtrasBtn
             // 
-            AtrasBtn.Location = new Point(12, 414);
+            AtrasBtn.Location = new Point(23, 502);
+            AtrasBtn.Margin = new Padding(3, 4, 3, 4);
             AtrasBtn.Name = "AtrasBtn";
-            AtrasBtn.Size = new Size(75, 29);
+            AtrasBtn.Size = new Size(86, 39);
             AtrasBtn.TabIndex = 8;
             AtrasBtn.Text = "Atras";
             AtrasBtn.UseVisualStyleBackColor = true;
+            AtrasBtn.Click += AtrasBtn_Click;
             // 
             // CrearAlumnoBtn
             // 
-            CrearAlumnoBtn.Location = new Point(675, 414);
+            CrearAlumnoBtn.Location = new Point(763, 502);
+            CrearAlumnoBtn.Margin = new Padding(3, 4, 3, 4);
             CrearAlumnoBtn.Name = "CrearAlumnoBtn";
-            CrearAlumnoBtn.Size = new Size(113, 29);
+            CrearAlumnoBtn.Size = new Size(129, 39);
             CrearAlumnoBtn.TabIndex = 9;
             CrearAlumnoBtn.Text = "Crear Alumno";
             CrearAlumnoBtn.UseVisualStyleBackColor = true;
@@ -129,42 +137,55 @@
             // 
             // CarreraListView
             // 
-            CarreraListView.Location = new Point(487, 110);
+            CarreraListView.Location = new Point(557, 147);
+            CarreraListView.Margin = new Padding(3, 4, 3, 4);
             CarreraListView.Name = "CarreraListView";
-            CarreraListView.Size = new Size(238, 97);
+            CarreraListView.Size = new Size(271, 128);
             CarreraListView.TabIndex = 10;
             CarreraListView.UseCompatibleStateImageBehavior = false;
             // 
             // CarrerasLbl
             // 
             CarrerasLbl.AutoSize = true;
-            CarrerasLbl.Location = new Point(487, 90);
+            CarrerasLbl.Location = new Point(557, 120);
             CarrerasLbl.Name = "CarrerasLbl";
-            CarrerasLbl.Size = new Size(63, 17);
+            CarrerasLbl.Size = new Size(69, 20);
             CarrerasLbl.TabIndex = 11;
             CarrerasLbl.Text = "Carrera/s";
             // 
-            // AñadirBtn
+            // AgregarBtn
             // 
-            AñadirBtn.Location = new Point(326, 209);
-            AñadirBtn.Name = "AñadirBtn";
-            AñadirBtn.Size = new Size(75, 23);
-            AñadirBtn.TabIndex = 12;
-            AñadirBtn.Text = "Añadir";
-            AñadirBtn.UseVisualStyleBackColor = true;
-            AñadirBtn.Click += AñadirBtn_Click;
+            AgregarBtn.Location = new Point(374, 325);
+            AgregarBtn.Margin = new Padding(3, 4, 3, 4);
+            AgregarBtn.Name = "AgregarBtn";
+            AgregarBtn.Size = new Size(86, 31);
+            AgregarBtn.TabIndex = 12;
+            AgregarBtn.Text = "Agregar";
+            AgregarBtn.UseVisualStyleBackColor = true;
+            AgregarBtn.Click += AñadirBtn_Click;
+            // 
+            // QuitarBtn
+            // 
+            QuitarBtn.Location = new Point(741, 288);
+            QuitarBtn.Name = "QuitarBtn";
+            QuitarBtn.Size = new Size(87, 35);
+            QuitarBtn.TabIndex = 13;
+            QuitarBtn.Text = "Quitar";
+            QuitarBtn.UseVisualStyleBackColor = true;
+            QuitarBtn.Click += QuitarBtn_Click;
             // 
             // CrearAlumno
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 447);
-            Controls.Add(AñadirBtn);
+            ClientSize = new Size(914, 556);
+            Controls.Add(QuitarBtn);
+            Controls.Add(AgregarBtn);
             Controls.Add(CarrerasLbl);
             Controls.Add(CarreraListView);
             Controls.Add(CrearAlumnoBtn);
             Controls.Add(AtrasBtn);
-            Controls.Add(CarreraCmbBox);
+            Controls.Add(CarreraCmb);
             Controls.Add(CarreraLbl);
             Controls.Add(DniTxb);
             Controls.Add(DNILbl);
@@ -172,6 +193,7 @@
             Controls.Add(ApellidoLbl);
             Controls.Add(NombreTxb);
             Controls.Add(NombreLbl);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "CrearAlumno";
             Text = "Crear Alumno";
             ResumeLayout(false);
@@ -187,11 +209,12 @@
         private Label DNILbl;
         private TextBox DniTxb;
         private Label CarreraLbl;
-        private ComboBox CarreraCmbBox;
+        private ComboBox CarreraCmb;
         private Button AtrasBtn;
         private Button CrearAlumnoBtn;
         private ListView CarreraListView;
         private Label CarrerasLbl;
-        private Button AñadirBtn;
+        private Button AgregarBtn;
+        private Button QuitarBtn;
     }
 }

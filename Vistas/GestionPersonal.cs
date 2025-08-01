@@ -27,8 +27,6 @@ namespace Vistas
             InitializeComponent();
 
             this.Load += GestionPersonal_Load;
-
-
         }
 
         private void GestionPersonal_Load(object sender, EventArgs e)
@@ -91,13 +89,10 @@ namespace Vistas
         }
 
         private void NuevoDocenteBtn_Click(object sender, EventArgs e)
-        {
-            // Abrir el formulario CrearPersonal
+        {            
             CrearPersonal crearPersonalForm = new CrearPersonal();
             crearPersonalForm.ShowDialog();
-
-            // Opcional: recargar lista de personal después de crear nuevo
-            // CargarPersonal(); // método que tengas para refrescar la lista
+            
         }
 
         private void CancelarGroupbtn_Click(object sender, EventArgs e)
@@ -119,7 +114,7 @@ namespace Vistas
             try
             {
                 // Llama a la capa negocio para obtener el docente por dni
-                var docente = negocio.ObtenerDocentePorDni(dni);
+                var docente = negocio.BuscarDocentePorDni(dni);
 
                 // Limpia la lista antes de mostrar resultados
                 PersonalListView.Clear();
