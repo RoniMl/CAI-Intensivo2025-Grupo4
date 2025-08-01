@@ -78,8 +78,6 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
                 if (alumno != null)
                 {
-                    NuevoAlumnoBtn.Enabled = false;
-
                     // Crea el ítem con la info del docente
                     ListViewItem item = new ListViewItem(alumno.id.ToString());
                     item.SubItems.Add(alumno.nombre);
@@ -124,16 +122,25 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
             var item = AlumnosListView.SelectedItems[0];
 
-            // Asignar valores desde el ListView (ajustar según columnas)
-            IdGrpTxb.Text = item.SubItems[0].Text;
-            NombreGrpTxb.Text = item.SubItems[1].Text;
-            ApellidoGrpTxb.Text = item.SubItems[2].Text;
-            DniGrpTxb.Text = item.SubItems[3].Text;
+            int idAlumno = int.Parse(item.SubItems[0].Text); // ID directo del listview
 
-            IdGrpTxb.Enabled = false;
+            try
+            {
+                // Llenar los campos del formulario
+                IdGrpTxb.Text = item.SubItems[0].Text;
+                NombreGrpTxb.Text = item.SubItems[1].Text;
+                ApellidoGrpTxb.Text = item.SubItems[2].Text;
+                DniGrpTxb.Text = item.SubItems[3].Text;
 
-            int idAlumno = int.Parse(IdGrpTxb.Text);
-            CargarCarrerasAsignadasEnListView(idAlumno);
+                IdGrpTxb.Enabled = false;
+
+                CargarCarrerasAsignadasEnListView(idAlumno);
+                ActivarEdicion(true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo cargar el alumno para edición: " + ex.Message);
+            }
 
             ActivarEdicion(true);
 

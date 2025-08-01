@@ -1,12 +1,13 @@
-﻿using Persistencia.utils;
+﻿using Datos;
+using Persistencia.utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Datos;
-using System.Net.Http;
 
 
 namespace Persistencia
@@ -24,7 +25,7 @@ namespace Persistencia
                 var contentStream = response.Content.ReadAsStringAsync().Result;
                 var alumnos = JsonSerializer.Deserialize<List<Alumno>>(contentStream);
 
-                var alumnoEncontradoDni = alumnos.Find(a => a.dni.Trim() == dni.Trim());
+                alumnoEncontradoDni = alumnos.Find(a => a.dni.Trim() == dni.Trim());
                 return alumnoEncontradoDni;
             }
             else
@@ -35,17 +36,20 @@ namespace Persistencia
         }
         public Alumno BuscarAlumnoPorId(int id)
         {
-            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{id}");
+            HttpResponseMessage response = WebHelper.Get("tpIntensivo/alumnos");
 
             if (response.IsSuccessStatusCode)
             {
-                string json = response.Content.ReadAsStringAsync().Result;
-                var alumnoEncontradoId = JsonSerializer.Deserialize<Alumno>(json);
+                var contentStream = response.Content.ReadAsStringAsync().Result;
+                var alumnos = JsonSerializer.Deserialize<List<Alumno>>(contentStream);
+
+                alumnoEncontradoId = alumnos.Find(a => a.id == id);
                 return alumnoEncontradoId;
             }
             else
             {
-                throw new Exception("No se pudo obtener el alumno");
+                Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+                throw new Exception("Error al obtener alumnos");
             }
 
         }
