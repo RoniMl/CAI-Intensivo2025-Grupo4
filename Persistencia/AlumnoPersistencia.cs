@@ -46,7 +46,7 @@ namespace Persistencia
                 throw new Exception("Error al obtener materias del alumno");
             }
         }
-        public List<InscripcionMateriaResponse> ObtenerMateriasNoAprobadas(long alumnoId)
+        public List<InscripcionMateriaResponse> ObtenerMateriasNoAprobadas(int alumnoId)
         {
             HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{alumnoId}/materias");
 

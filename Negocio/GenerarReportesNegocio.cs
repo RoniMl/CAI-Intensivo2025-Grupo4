@@ -28,8 +28,6 @@ namespace Negocio
            return reportes;
         }
 
-
-
         public MateriaReporte materiaReportes(CarreraResponse carrera)
         {
             List<Alumno> alumnos = alumnoPersistencia.buscarAlumnos();
@@ -65,11 +63,20 @@ namespace Negocio
 
                 // Clasificación por promedio
                 if (promedio >= 8 && promedio < 9)
+                { 
                     cumLaude++;
+                }
+                   
                 else if (promedio >= 9 && promedio < 10)
+                {
+
                     summaCumLaude++;
+                }
                 else if (promedio == 10)
+                {
+
                     magnumSummaCumLaude++;
+                }
             
             }
 
@@ -77,7 +84,84 @@ namespace Negocio
             return materiaReporte;
         }
 
+        public List<MateriaReporte> generarReportes()
+        {
+            List<MateriaReporte> reportes = new List<MateriaReporte>();
+            List<CarreraResponse> carreras = new List<CarreraResponse>();
+            carreras = carreraPersistencia.buscarCarrera();
 
+
+            foreach (var carrera in carreras)
+            {
+                MateriaReporte materiaReporte = new MateriaReporte();
+               List<Alumno> alumnos = new List<Alumno>();
+                alumnos = alumnoPersistencia.buscarAlumnos();
+                List<Alumno>alumnosDeLaCarrera = new List<Alumno>();
+                foreach (var alumno in alumnos)
+                {
+                    foreach(var id in alumno.carrerasId)
+                    {
+                        alumnosDeLaCarrera.Add(alumno);
+                    }
+                }
+                
+                MateriaReporte reporteCarrera = new MateriaReporte();
+                string nombreCarrera = carrera.nombre;
+                int cumLaude = 0;
+                int summaCumLaude = 0;
+                int magnumSummaCumLaude = 0;
+                int totalEgresados = 0;
+
+                foreach(var a in alumnosDeLaCarrera)
+                {
+                    List<InscripcionMateriaResponse> matsNoAprobadas = new List<InscripcionMateriaResponse>();
+                    matsNoAprobadas = alumnoPersistencia.ObtenerMateriasNoAprobadas(a.id);
+                    List<InscripcionMateriaResponse> matsAprobadas = new List<InscripcionMateriaResponse>();
+                    matsAprobadas = alumnoPersistencia.ObtenerMateriasAprobadas(a.id);
+                    int? totalMaterias = matsAprobadas.Count + matsNoAprobadas.Count;
+                    int? totalNotas = 0;
+
+                    totalEgresados++;
+                    foreach (var m in matsAprobadas)
+                    {
+                      if (matsNoAprobadas.Count == 0)
+                      { 
+                            totalNotas += m.nota;
+                      }
+                    }
+                    
+                    int? promedio = totalNotas / totalMaterias;
+                    if (promedio >= 8 && promedio < 9)
+                    {
+                        cumLaude++;
+                    }
+
+                    else if (promedio >= 9 && promedio < 10)
+                    {
+
+                        summaCumLaude++;
+                    }
+                    else if (promedio == 10)
+                    {
+
+                        magnumSummaCumLaude++;
+                    }
+
+                    
+                } 
+
+                    materiaReporte.totalEgresados = totalEgresados;
+                    materiaReporte.cumLaude = cumLaude;
+                    materiaReporte.summaCumLaude = summaCumLaude;
+                    materiaReporte.magnumSummaCumLaude += magnumSummaCumLaude;
+
+                
+                reportes.Add(materiaReporte);
+            }
+
+
+         return reportes;
+        }
 
 
     }
