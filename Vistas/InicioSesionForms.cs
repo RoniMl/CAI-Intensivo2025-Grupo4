@@ -54,7 +54,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 switch (login.perfilUsuario)
                 {
                     case "ALUMNO":
-                       
+
                         int idAlumno = login.id;
                         int idCarrera = 1;
 
@@ -90,51 +90,11 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 MessageBox.Show(loginNegocio.mensajeError, "Error");
             }
 
+        }
 
-
-            //if (string.IsNullOrWhiteSpace(UsuarioTextBox.Text) || string.IsNullOrWhiteSpace(ContraseñaTextBox.Text))
-            //{
-            //    MessageBox.Show("Por favor, complete todos los campos.", "Error");
-            //    return;
-            //} 
-
-            //string contraseñaIngresada = ContraseñaTextBox.Text;
-            //usuarioIngresado = UsuarioTextBox.Text;
-            //Usuario usuarioEncontrado = modelo.ObtenerUsuario(usuarioIngresado);
-
-            //if (usuarioEncontrado == null)
-            //{
-            //    MessageBox.Show("El usuario y/o la contraseña no son correctos.", "Error");
-            //    return;
-            //}
-            //if (usuarioEncontrado.bloqueado)
-            //{
-            //    MessageBox.Show("El usuario está bloqueado. Por favor, contacte al administrador.", "Error");
-            //    return;
-            //}
-            //if ((usuarioEncontrado != null) && (contraseñaIngresada != usuarioEncontrado.contraseña))
-            //{
-            //    usuarioEncontrado.intentosFallidos++;
-            //    if (usuarioEncontrado.intentosFallidos >= 3)
-            //    {
-            //        usuarioEncontrado.bloqueado = true;
-            //        MessageBox.Show("El usuario ha sido bloqueado por demasiados intentos fallidos.", "Error");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("El usuario y/o la contraseña no son correctos. Intentos fallidos: " + usuarioEncontrado.intentosFallidos, "Error");
-            //    }
-            //    return;
-            //}
-            //if (usuarioEncontrado != null && contraseñaIngresada == usuarioEncontrado.contraseña)
-            //{
-            //    usuarioEncontrado.intentosFallidos = 0; // Reiniciar intentos fallidos al iniciar sesión correctamente
-            //    MessageBox.Show("Inicio de sesión exitoso.", "Éxito");
-            //    // Aquí puedes redirigir al usuario a la siguiente pantalla o realizar otras acciones necesarias
-
-            //}
-
-
+        private void CerrarBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -43,8 +43,9 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         
         private void cerrarSesion_Click(object sender, EventArgs e)
         {
-            // Cierra la aplicación al hacer clic en el botón de cerrar sesión
-            Application.Exit();
+            this.Hide();
+            InicioSesionForms inicioSesionForms = new InicioSesionForms();
+            inicioSesionForms.ShowDialog();
         }
     }
     

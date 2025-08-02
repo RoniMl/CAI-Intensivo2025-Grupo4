@@ -23,7 +23,7 @@ namespace Vistas
         {
             InitializeComponent();
             this.idDocente = idDocente;
-            LiquidarBtn.Click += LiquidarBtn_Click;            
+            LiquidarBtn.Click += LiquidarBtn_Click;
         }
 
         private void LiquidarBtn_Click(object? sender, EventArgs e)
@@ -32,7 +32,7 @@ namespace Vistas
             if (negocio.ValidarDocentePuedeLiquidar(idDocente).tipo == "AYUDANTE_AD_HONOREM")
             {
                 MessageBox.Show(negocio.mensajeError, "Error");
-                
+
             }
             else
             {
@@ -40,18 +40,15 @@ namespace Vistas
                 var form = new LiquidacionSueldo(docente);
                 form.Show();
             }
-                // Mostrar el formulario de liquidación si no es ad honorem
-            
+            // Mostrar el formulario de liquidación si no es ad honorem
+
         }
 
         private void cerrarSesion_Click(object sender, EventArgs e)
         {
-            // Cierra la aplicación al hacer clic en el botón de cerrar sesión
-            Application.Exit();
+            this.Hide();
+            InicioSesionForms inicioSesionForms = new InicioSesionForms();
+            inicioSesionForms.ShowDialog();
         }
-
-
-
-
     }
 }

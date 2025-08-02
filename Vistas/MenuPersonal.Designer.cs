@@ -34,31 +34,33 @@
             // 
             // LiquidarBtn
             // 
-            LiquidarBtn.Location = new Point(213, 125);
-            LiquidarBtn.Margin = new Padding(4, 5, 4, 5);
+            LiquidarBtn.Location = new Point(170, 100);
+            LiquidarBtn.Margin = new Padding(3, 4, 3, 4);
             LiquidarBtn.Name = "LiquidarBtn";
-            LiquidarBtn.Size = new Size(281, 77);
+            LiquidarBtn.Size = new Size(225, 62);
             LiquidarBtn.TabIndex = 0;
             LiquidarBtn.Text = "Liquidar sueldo";
             LiquidarBtn.UseVisualStyleBackColor = true;
             // 
             // cerrarSesion
             // 
-            cerrarSesion.Location = new Point(589, 254);
+            cerrarSesion.Location = new Point(11, 235);
+            cerrarSesion.Margin = new Padding(2, 2, 2, 2);
             cerrarSesion.Name = "cerrarSesion";
-            cerrarSesion.Size = new Size(149, 46);
+            cerrarSesion.Size = new Size(119, 37);
             cerrarSesion.TabIndex = 3;
             cerrarSesion.Text = "Cerrar Sesion";
             cerrarSesion.UseVisualStyleBackColor = true;
+            cerrarSesion.Click += cerrarSesion_Click;
             // 
             // MenuPersonal
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(750, 312);
+            ClientSize = new Size(600, 283);
             Controls.Add(cerrarSesion);
             Controls.Add(LiquidarBtn);
-            Margin = new Padding(4, 5, 4, 5);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "MenuPersonal";
             Text = "Menu de Personal";
             ResumeLayout(false);
