@@ -156,8 +156,17 @@ namespace Persistencia
         }
         public bool EliminarAlumno(int id)
         {
-            HttpResponseMessage response = WebHelper.Delete($"tpIntensivo/alumnos/{id}");
-            return response.IsSuccessStatusCode;
+            HttpResponseMessage response = WebHelper.Delete($"tpIntensivo/alumno/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+           
         }
     }
 }

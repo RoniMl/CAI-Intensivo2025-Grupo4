@@ -183,7 +183,7 @@ namespace Vistas
                 bool eliminado = negocio.EliminarDocentePorId(idDocente);
                 if (eliminado)
                 {
-                    MessageBox.Show("Docente eliminado con éxito.");
+                    MessageBox.Show("Docente eliminado correctamente.");
                     // Recargar lista o limpiar
                     BuscarBtn_Click(null, null); // o el método que uses para refrescar la lista
                 }
@@ -298,7 +298,7 @@ namespace Vistas
 
                 if (resultado)
                 {
-                    MessageBox.Show("Cambios guardados con éxito.");
+                    MessageBox.Show("Cambios guardados correctamente.");
 
                     // Refrescar el ListView con solo ese docente actualizado
                     PersonalListView.Items.Clear();

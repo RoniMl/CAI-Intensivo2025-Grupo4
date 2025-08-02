@@ -42,6 +42,7 @@
             CarrerasLbl = new Label();
             AgregarBtn = new Button();
             QuitarBtn = new Button();
+            CarreraCol = new ColumnHeader();
             SuspendLayout();
             // 
             // NombreLbl
@@ -137,12 +138,14 @@
             // 
             // CarreraListView
             // 
+            CarreraListView.Columns.AddRange(new ColumnHeader[] { CarreraCol });
             CarreraListView.Location = new Point(557, 147);
             CarreraListView.Margin = new Padding(3, 4, 3, 4);
             CarreraListView.Name = "CarreraListView";
-            CarreraListView.Size = new Size(271, 128);
+            CarreraListView.Size = new Size(271, 171);
             CarreraListView.TabIndex = 10;
             CarreraListView.UseCompatibleStateImageBehavior = false;
+            CarreraListView.View = View.Details;
             // 
             // CarrerasLbl
             // 
@@ -166,13 +169,18 @@
             // 
             // QuitarBtn
             // 
-            QuitarBtn.Location = new Point(741, 288);
+            QuitarBtn.Location = new Point(742, 325);
             QuitarBtn.Name = "QuitarBtn";
-            QuitarBtn.Size = new Size(87, 35);
+            QuitarBtn.Size = new Size(86, 31);
             QuitarBtn.TabIndex = 13;
             QuitarBtn.Text = "Quitar";
             QuitarBtn.UseVisualStyleBackColor = true;
             QuitarBtn.Click += QuitarBtn_Click;
+            // 
+            // CarreraCol
+            // 
+            CarreraCol.Text = "Carrera";
+            CarreraCol.Width = 270;
             // 
             // CrearAlumno
             // 
@@ -216,5 +224,6 @@
         private Label CarrerasLbl;
         private Button AgregarBtn;
         private Button QuitarBtn;
+        private ColumnHeader CarreraCol;
     }
 }

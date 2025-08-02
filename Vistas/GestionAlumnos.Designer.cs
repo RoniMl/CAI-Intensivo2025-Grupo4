@@ -46,6 +46,7 @@
             AgregarGrpBtn = new Button();
             QuitarGrpBtn = new Button();
             CarrerasGrpListView = new ListView();
+            CarreraCol = new ColumnHeader();
             CarrerasGrpCmb = new ComboBox();
             CarrerasGrpLbl = new Label();
             DniGrpTxb = new TextBox();
@@ -214,10 +215,11 @@
             AgregarGrpBtn.TabIndex = 12;
             AgregarGrpBtn.Text = "Agregar";
             AgregarGrpBtn.UseVisualStyleBackColor = true;
+            AgregarGrpBtn.Click += AgregarGrpBtn_Click;
             // 
             // QuitarGrpBtn
             // 
-            QuitarGrpBtn.Location = new Point(794, 236);
+            QuitarGrpBtn.Location = new Point(792, 255);
             QuitarGrpBtn.Margin = new Padding(3, 4, 3, 4);
             QuitarGrpBtn.Name = "QuitarGrpBtn";
             QuitarGrpBtn.Size = new Size(87, 31);
@@ -228,12 +230,19 @@
             // 
             // CarrerasGrpListView
             // 
+            CarrerasGrpListView.Columns.AddRange(new ColumnHeader[] { CarreraCol });
             CarrerasGrpListView.Location = new Point(553, 71);
             CarrerasGrpListView.Margin = new Padding(3, 4, 3, 4);
             CarrerasGrpListView.Name = "CarrerasGrpListView";
-            CarrerasGrpListView.Size = new Size(326, 147);
+            CarrerasGrpListView.Size = new Size(326, 176);
             CarrerasGrpListView.TabIndex = 10;
             CarrerasGrpListView.UseCompatibleStateImageBehavior = false;
+            CarrerasGrpListView.View = View.Details;
+            // 
+            // CarreraCol
+            // 
+            CarreraCol.Text = "Carrera";
+            CarreraCol.Width = 320;
             // 
             // CarrerasGrpCmb
             // 
@@ -324,6 +333,7 @@
             CancelarGrpBtn.TabIndex = 0;
             CancelarGrpBtn.Text = "Cancelar";
             CancelarGrpBtn.UseVisualStyleBackColor = true;
+            CancelarGrpBtn.Click += CancelarGrpBtn_Click;
             // 
             // AtrasBtn
             // 
@@ -401,5 +411,6 @@
         private ColumnHeader NombreCol;
         private ColumnHeader ApellidoCol;
         private ColumnHeader DniCol;
+        private ColumnHeader CarreraCol;
     }
 }

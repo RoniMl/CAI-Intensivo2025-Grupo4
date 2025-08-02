@@ -15,6 +15,8 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
     public partial class GestionAlumnos : Form
     {
         private GestionarAlumnosNegocio negocio = new GestionarAlumnosNegocio();
+        private List<CarreraResponse> listaCarreras = new List<CarreraResponse>();
+        private List<CarreraResponse> carrerasAsignadas = new List<CarreraResponse>();
         public GestionAlumnos()
         {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
             EditarBtn.Enabled = false;
             EliminarBtn.Enabled = false;
+            
 
 
             CargarCarreras();
@@ -43,6 +46,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             NuevoAlumnoBtn.Enabled = !activar;
             EditarBtn.Enabled = !activar;
             EliminarBtn.Enabled = !activar;
+            AtrasBtn.Enabled = !activar;
         }
 
         private void LimpiarCampos()
@@ -58,8 +62,6 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void BuscarBtn_Click(object sender, EventArgs e)
         {
-            AtrasBtn.Enabled = false;
-
             string dni = BuscarDniTxb.Text.Trim();
 
             if (string.IsNullOrEmpty(dni))
@@ -153,12 +155,15 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 var carreras = negocio.CarrerasAsignadasAlumno(idAlumno);
 
                 CarrerasGrpListView.Items.Clear();
+                carrerasAsignadas.Clear(); // LIMPIAR lista en memoria
 
                 foreach (var carrera in carreras)
                 {
-                    ListViewItem item = new ListViewItem(carrera.id.ToString());
-                    item.SubItems.Add(carrera.nombre);
+                    var item = new ListViewItem(carrera.nombre);
+                    item.Tag = carrera.id;
                     CarrerasGrpListView.Items.Add(item);
+
+                    carrerasAsignadas.Add(carrera);  // AGREGAR a lista en memoria
                 }
             }
             catch (Exception ex)
@@ -169,14 +174,40 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void CargarCarreras()
         {
-            var carreras = negocio.Carreras(); // Esto debe devolver List<Carrera> o similar
+            listaCarreras = negocio.Carreras(); // Esto debe devolver List<Carrera> o similar
             CarrerasGrpCmb.Items.Clear();
 
-            foreach (var carrera in carreras)
+            foreach (var carrera in listaCarreras)
             {
                 CarrerasGrpCmb.Items.Add(carrera.nombre);
             }
         }
+
+        private void AgregarGrpBtn_Click(object sender, EventArgs e)
+        {
+            int indexCarrera = CarrerasGrpCmb.SelectedIndex;
+
+            if (indexCarrera < 0)
+            {
+                MessageBox.Show("Seleccioná una carrera.");
+                return;
+            }
+
+            var carreraSeleccionada = listaCarreras[indexCarrera]; // tomo el objeto por índice
+
+            if (carrerasAsignadas.Any(c => c.id == carreraSeleccionada.id))
+            {
+                MessageBox.Show("La carrera ya está asignada.");
+                return;
+            }
+
+            carrerasAsignadas.Add(carreraSeleccionada);
+
+            var newItem = new ListViewItem(carreraSeleccionada.nombre); // solo nombre visible
+            newItem.Tag = carreraSeleccionada.id; // guardo Id para luego poder eliminar
+            CarrerasGrpListView.Items.Add(newItem);
+        }
+        
         private void EliminarBtn_Click(object sender, EventArgs e)
         {
             if (AlumnosListView.SelectedItems.Count == 0)
@@ -200,9 +231,13 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 bool eliminado = negocio.EliminarAlumnoPorId(idAlumno);
                 if (eliminado)
                 {
-                    MessageBox.Show("Alumno eliminado con éxito.");
-                    // Recargar lista o limpiar
-                    BuscarBtn_Click(null, null); // o el método que uses para refrescar la lista
+                    MessageBox.Show("Alumno eliminado correctamente.");
+
+                    BuscarDniTxb.Text = "";
+                    
+                    LimpiarCampos();
+                    
+                    ActivarEdicion(false);
                 }
                 else
                 {
@@ -215,7 +250,8 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             }
 
         }
-        private void CancelarGroupbtn_Click(object sender, EventArgs e)
+
+        private void CancelarGrpBtn_Click(object sender, EventArgs e)
         {
             ActivarEdicion(false);
             LimpiarCampos();
@@ -230,10 +266,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 if (!ValidarNombreApellido()) return;
                 if (!ValidarDni()) return;
 
-                var carrerasIds = CarrerasGrpListView.Items
-                .Cast<ListViewItem>()
-                .Select(item => int.Parse(item.SubItems[0].Text))
-                .ToList();
+                var carrerasIds = carrerasAsignadas.Select(c => c.id).ToList();
 
                 if (carrerasIds.Count == 0)
                 {
@@ -258,14 +291,13 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                          $"Carreras asignadas: {string.Join(", ", AlumnoEditado.carrerasIds)}";
 
                 MessageBox.Show(mensaje, "Datos a enviar (Edición)", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                MessageBox.Show(mensaje, "Datos a enviar (Edición)", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
                 // Guardar la edición en la capa negocio
                 bool resultado = negocio.EditarAlumno(AlumnoEditado);
 
                 if (resultado)
                 {
-                    MessageBox.Show("Cambios guardados con éxito.");
+                    MessageBox.Show("Cambios guardados correctamente.");
 
                     // Refrescar el ListView con solo ese docente actualizado
                     AlumnosListView.Items.Clear();
@@ -346,8 +378,17 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 MessageBox.Show("Seleccione una carrera para quitar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            
-            CarrerasGrpListView.Items.Remove(CarrerasGrpListView.SelectedItems[0]);
+
+            var itemSeleccionado = CarrerasGrpListView.SelectedItems[0];
+            int idCarrera = (int)itemSeleccionado.Tag;
+
+            // Eliminar del ListView
+            CarrerasGrpListView.Items.Remove(itemSeleccionado);
+
+            // Eliminar de la lista en memoria
+            carrerasAsignadas.RemoveAll(c => c.id == idCarrera);
         }
+
+        
     }
 }
