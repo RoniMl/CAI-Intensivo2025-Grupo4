@@ -152,10 +152,10 @@ namespace Negocio
             //return habilitadas;
         
 
-        public int calcularRanking(int idAlumno)
+        public double calcularRanking(int idAlumno)
         {
             int valorFaltante = 0;
-            int? notasTotal = 0;
+            double? notasTotal = 0;
 
             List<Alumno> alumnos = alumnoPersistencia.buscarAlumnos();
             Alumno alumno = new Alumno();
@@ -209,13 +209,13 @@ namespace Negocio
                 case 1: valorFaltante += 90; break;
             }
 
-            int totalMateriasParaPromedio = cantidadMatsAprob + materiasDesaprobadas.Count;
+            double totalMateriasParaPromedio = cantidadMatsAprob + materiasDesaprobadas.Count;
 
-            int promedio = (totalMateriasParaPromedio > 0)
-                ? (int)(notasTotal / totalMateriasParaPromedio)
+            double promedio = (totalMateriasParaPromedio > 0)
+                ? (double)(notasTotal / totalMateriasParaPromedio)
                 : 0;
 
-            int ranking = cantidadMatsAprobOFin * 100
+            double ranking = cantidadMatsAprobOFin * 100
                         + cantidadMatsAprob * 3
                         + valorFaltante
                         + promedio * 3;

@@ -24,10 +24,9 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         {
             InitializeComponent();
             this.alumno = alumnoLogueado;
-            CargarMateriasHabilitadas();
-           ;
+            CargarMateriasHabilitadas();           
             
-            int ranking = modelo.calcularRanking(alumno.id);
+            double ranking = modelo.calcularRanking(alumno.id);
             rankingListView.Items.Clear();
             ListViewItem item = new ListViewItem(ranking.ToString());
             rankingListView.Items.Add(item);
