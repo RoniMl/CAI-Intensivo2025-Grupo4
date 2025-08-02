@@ -21,8 +21,8 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
 
         public Docente docente;
-        public DocenteLiquidacion resultadoLiquidacion;        
-  
+        public DocenteLiquidacion resultadoLiquidacion;
+
         public LiquidacionSueldo(Docente docenteLogueado)
         {
             InitializeComponent();
@@ -46,12 +46,19 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         private void CargarEnListView(DocenteLiquidacion doc)
         {
             liquidacionList.Items.Clear();
-            ListViewItem item = new ListViewItem(resultadoLiquidacion.nombre);            
+            ListViewItem item = new ListViewItem(resultadoLiquidacion.nombre);
             item.SubItems.Add(doc.apellido);
             item.SubItems.Add(doc.cuit);
             item.SubItems.Add(doc.horasTotales.ToString());
             item.SubItems.Add(doc.sueldo.ToString("C"));
             liquidacionList.Items.Add(item);
+        }
+
+        private void AtrasBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MenuPersonal menuPersonal = new MenuPersonal(docente.id);
+            menuPersonal.Show();            
         }
 
     }

@@ -21,7 +21,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void CerrarSesionBtn_Click(object sender, EventArgs e)
         {            
-            this.Hide();
+            this.Close();
             InicioSesionForms inicioSesionForms = new InicioSesionForms();
             inicioSesionForms.ShowDialog();
         }

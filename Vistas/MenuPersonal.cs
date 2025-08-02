@@ -46,7 +46,7 @@ namespace Vistas
 
         private void cerrarSesion_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
             InicioSesionForms inicioSesionForms = new InicioSesionForms();
             inicioSesionForms.ShowDialog();
         }

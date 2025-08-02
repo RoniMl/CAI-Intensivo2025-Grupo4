@@ -364,12 +364,6 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             return true;
         }
 
-        private void AtrasBtn_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            var menuAdministrador = new MenuAdministrador();
-            menuAdministrador.Show();
-        }
 
         private void QuitarGrpBtn_Click(object sender, EventArgs e)
         {
@@ -387,6 +381,12 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
             // Eliminar de la lista en memoria
             carrerasAsignadas.RemoveAll(c => c.id == idCarrera);
+        }
+        private void AtrasBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var menuAdministrador = new MenuAdministrador();
+            menuAdministrador.Show();
         }
 
         

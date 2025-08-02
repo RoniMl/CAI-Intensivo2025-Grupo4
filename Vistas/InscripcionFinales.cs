@@ -67,10 +67,12 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             }
         }
 
-        private void AtrasBtn_Click(object sender, EventArgs e)
-        {
-            this.Close(); // Simplemente cierra el form
-        }
+        //private void AtrasBtn_Click(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    MenuAlumno menuAlumno = new MenuAlumno(_alumnoId,);
+        //    menuAlumno.Show();
+        //}
 
     }
 }

@@ -43,10 +43,10 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void Atrasbtn_Click(object sender, EventArgs e)
         {
+            this.Hide();
             MenuAdministrador menuAdmin = new MenuAdministrador();
             menuAdmin.Show();
-
-            this.Close();
+            
         }
     }
 }

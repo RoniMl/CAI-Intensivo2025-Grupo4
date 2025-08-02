@@ -52,10 +52,10 @@ namespace Vistas
 
         private void AtrasBtn_Click(object sender, EventArgs e)
         {
-            MenuAdministrador menuAdmin = new MenuAdministrador();
-            menuAdmin.Show();
+            this.Hide();
 
-            this.Close();
+            MenuAdministrador menuAdmin = new MenuAdministrador();
+            menuAdmin.Show();            
         }
     }
 }
