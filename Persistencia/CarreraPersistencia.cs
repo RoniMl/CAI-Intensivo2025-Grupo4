@@ -59,6 +59,11 @@ namespace Persistencia
             }
 
         }
+        public CarreraResponse ObtenerCarreraPorId(int id)
+        {
+            var carreras = buscarCarrera(); // trae todas las carreras desde la API
+            return carreras.FirstOrDefault(c => c.id == id);
+        }
 
     }
 }

@@ -11,9 +11,7 @@ namespace Datos
         public int id { get; set; }
         public string nombre { get; set; } = string.Empty;
         public int horasSemanales { get; set; }
-        public List<Materia> correlativas { get; set; } = new List<Materia>();
-
-        //No es necesario public List<CarreraResponse> carreras { get; set; } = new List<CarreraResponse>();
+        public List<Materia> correlativas { get; set; } = new List<Materia>();        
 
     }
     

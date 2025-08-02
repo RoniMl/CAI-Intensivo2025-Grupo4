@@ -55,11 +55,10 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 {
                     case "ALUMNO":
 
-                        int idAlumno = login.id;
-                        int idCarrera = 1;
+                        int idAlumno = login.id;                        
 
                         this.Hide();
-                        MenuAlumno menuAlumno = new MenuAlumno(idAlumno, idCarrera);
+                        MenuAlumno menuAlumno = new MenuAlumno(idAlumno);
                         menuAlumno.ShowDialog();
                         break;
 

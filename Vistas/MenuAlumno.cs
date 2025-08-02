@@ -14,14 +14,16 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 {
     public partial class MenuAlumno : Form
     {
-        private int _alumnoId;
-        private int _carreraId;
-
-        public MenuAlumno(int alumnoId, int carreraId)
+        //private int _alumnoId;
+        //private int _carreraId;
+        private MenuAlumnoNegocio negocio = new MenuAlumnoNegocio();
+        public int idAlumno;
+        private Alumno alumno;
+        public MenuAlumno(int idAlumno)
         {
             InitializeComponent();
-            _alumnoId = alumnoId;
-            _carreraId = carreraId;
+            alumno = negocio.ObtenerAlumnoPorId(idAlumno);
+            this.idAlumno = idAlumno;
         }
 
         private void MenuAlumno_Load(object sender, EventArgs e)
@@ -30,14 +32,18 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         }
         private void btnInscripcionMaterias_Click(object sender, EventArgs e)
         {
-            InscripcionMaterias formMaterias = new InscripcionMaterias(_alumnoId, _carreraId);
-            formMaterias.Show();
+            var form = new InscripcionMaterias(alumno);
+            form.Show();
+        //    InscripcionMaterias formMaterias = new InscripcionMaterias(alumnoId, carreraId);
+        //    formMaterias.Show();
         }
 
         private void btnInscripcionFinales_Click(object sender, EventArgs e)
         {
-            InscripcionFinales formFinales = new InscripcionFinales(_alumnoId);
-            formFinales.Show();
+            var form = new InscripcionFinales(alumno);
+            form.Show();
+            //InscripcionFinales formFinales = new InscripcionFinales(_alumnoId);
+            //formFinales.Show();
         }
 
         

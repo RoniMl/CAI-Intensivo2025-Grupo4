@@ -123,7 +123,7 @@ namespace Persistencia
         }
 
 
-        public List<InscripcionMateriaResponse> ObtenerMateriasDelAlumno(long alumnoId)
+        public List<InscripcionMateriaResponse> ObtenerMateriasDelAlumno(int alumnoId)
         {
             HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{alumnoId}/materias");
 

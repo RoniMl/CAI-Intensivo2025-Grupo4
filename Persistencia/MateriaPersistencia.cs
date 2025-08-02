@@ -11,7 +11,7 @@ namespace Persistencia
 {
     public class MateriaPersistencia
     {
-        public List<Materia> buscarMateriasPorCarrera(long carreraId)
+        public List<Materia> buscarMateriasPorCarrera(int carreraId)
         {
             HttpResponseMessage response = WebHelper.Get($"tpIntensivo/materias/{carreraId}");
 

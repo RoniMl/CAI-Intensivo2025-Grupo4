@@ -13,7 +13,7 @@ namespace Negocio
         private AlumnoPersistencia _alumnoPersistencia = new AlumnoPersistencia();
         private InscripcionPersistencia _inscripcionPersistencia = new InscripcionPersistencia();
 
-        public List<InscripcionMateriaResponse> ObtenerMateriasParaFinal(long alumnoId)
+        public List<InscripcionMateriaResponse> ObtenerMateriasParaFinal(int alumnoId)
         {
             var materias = _alumnoPersistencia.ObtenerMateriasDelAlumno(alumnoId);
 
@@ -22,7 +22,7 @@ namespace Negocio
                 .ToList();
         }
 
-        public void InscribirAFinal(long alumnoId, long materiaId)
+        public void InscribirAFinal(int alumnoId, int materiaId)
         {
             _inscripcionPersistencia.InscribirAFinal(alumnoId, materiaId);
         }

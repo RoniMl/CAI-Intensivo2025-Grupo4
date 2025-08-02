@@ -14,20 +14,20 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 {
     public partial class InscripcionFinales : Form
     {
-        private long _alumnoId;
         private InscripcionFinalesModelo _modelo = new InscripcionFinalesModelo();
+        public Alumno alumno;
 
-        public InscripcionFinales(long alumnoId)
+        public InscripcionFinales(Alumno alumnoLogueado)
         {
             InitializeComponent();
-            _alumnoId = alumnoId;
+            this.alumno = alumnoLogueado;
         }
 
         private void InscripcionFinales_Load(object sender, EventArgs e)
         {
             try
             {
-                var materiasFinales = _modelo.ObtenerMateriasParaFinal(_alumnoId);
+                var materiasFinales = _modelo.ObtenerMateriasParaFinal(alumno.id);
 
                 if (materiasFinales == null || materiasFinales.Count == 0)
                 {
@@ -48,23 +48,23 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void EnviarInscFinBtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (MateriaFinalCmb.SelectedValue == null)
-                {
-                    MessageBox.Show("Debe seleccionar una materia.");
-                    return;
-                }
+            //try
+            //{
+            //    if (MateriaFinalCmb.SelectedValue == null)
+            //    {
+            //        MessageBox.Show("Debe seleccionar una materia.");
+            //        return;
+            //    }
 
-                long idMateria = Convert.ToInt64(MateriaFinalCmb.SelectedValue);
-                _modelo.InscribirAFinal(_alumnoId, idMateria);
-                MessageBox.Show("Inscripción al final realizada con éxito.");
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al inscribirse al final: " + ex.Message);
-            }
+            //    int idMateria = MateriaFinalCmb.SelectedValue;
+            //    _modelo.InscribirAFinal(alumno.id, idMateria);
+            //    MessageBox.Show("Inscripción al final realizada con éxito.");
+            //    this.Close();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error al inscribirse al final: " + ex.Message);
+            //}
         }
 
         //private void AtrasBtn_Click(object sender, EventArgs e)
