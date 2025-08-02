@@ -30,14 +30,15 @@
         {
             ModuloInscMatBtn = new Button();
             ModuloInscFinBtn = new Button();
+            cerrarSesion = new Button();
             SuspendLayout();
             // 
             // ModuloInscMatBtn
             // 
-            ModuloInscMatBtn.Location = new Point(234, 84);
-            ModuloInscMatBtn.Margin = new Padding(3, 2, 3, 2);
+            ModuloInscMatBtn.Location = new Point(334, 140);
+            ModuloInscMatBtn.Margin = new Padding(4, 3, 4, 3);
             ModuloInscMatBtn.Name = "ModuloInscMatBtn";
-            ModuloInscMatBtn.Size = new Size(209, 52);
+            ModuloInscMatBtn.Size = new Size(299, 87);
             ModuloInscMatBtn.TabIndex = 0;
             ModuloInscMatBtn.Text = " Modulo de inscripción a materia";
             ModuloInscMatBtn.UseVisualStyleBackColor = true;
@@ -45,23 +46,34 @@
             // 
             // ModuloInscFinBtn
             // 
-            ModuloInscFinBtn.Location = new Point(235, 176);
-            ModuloInscFinBtn.Margin = new Padding(3, 2, 3, 2);
+            ModuloInscFinBtn.Location = new Point(336, 293);
+            ModuloInscFinBtn.Margin = new Padding(4, 3, 4, 3);
             ModuloInscFinBtn.Name = "ModuloInscFinBtn";
-            ModuloInscFinBtn.Size = new Size(209, 50);
+            ModuloInscFinBtn.Size = new Size(299, 83);
             ModuloInscFinBtn.TabIndex = 1;
             ModuloInscFinBtn.Text = "Modulo de inscripción a finales";
             ModuloInscFinBtn.UseVisualStyleBackColor = true;
             ModuloInscFinBtn.Click += btnInscripcionFinales_Click;
             // 
+            // cerrarSesion
+            // 
+            cerrarSesion.Location = new Point(839, 505);
+            cerrarSesion.Name = "cerrarSesion";
+            cerrarSesion.Size = new Size(149, 46);
+            cerrarSesion.TabIndex = 2;
+            cerrarSesion.Text = "Cerrar Sesion";
+            cerrarSesion.UseVisualStyleBackColor = true;
+            cerrarSesion.Click += cerrarSesion_Click;
+            // 
             // MenuAlumno
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 338);
+            ClientSize = new Size(1000, 563);
+            Controls.Add(cerrarSesion);
             Controls.Add(ModuloInscFinBtn);
             Controls.Add(ModuloInscMatBtn);
-            Margin = new Padding(3, 2, 3, 2);
+            Margin = new Padding(4, 3, 4, 3);
             Name = "MenuAlumno";
             Text = "Menu";
             Load += MenuAlumno_Load;
@@ -72,5 +84,6 @@
 
         private Button ModuloInscMatBtn;
         private Button ModuloInscFinBtn;
+        private Button cerrarSesion;
     }
 }

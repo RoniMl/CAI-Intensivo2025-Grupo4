@@ -35,7 +35,7 @@ namespace Persistencia
             string json = JsonSerializer.Serialize(idsMaterias);
             HttpResponseMessage response = WebHelper.Post($"tpIntensivo/alumno/{alumnoId}/materias", json);
 
-            if (!response.IsSuccessStatusCode)
+             if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
                 throw new Exception("No se pudieron inscribir las materias.");

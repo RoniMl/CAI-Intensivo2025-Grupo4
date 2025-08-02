@@ -30,7 +30,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         }
         private void btnInscripcionMaterias_Click(object sender, EventArgs e)
         {
-            InscripcionMaterias formMaterias = new InscripcionMaterias(_alumnoId,_carreraId);
+            InscripcionMaterias formMaterias = new InscripcionMaterias(_alumnoId, _carreraId);
             formMaterias.Show();
         }
 
@@ -39,5 +39,13 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             InscripcionFinales formFinales = new InscripcionFinales(_alumnoId);
             formFinales.Show();
         }
+
+        
+        private void cerrarSesion_Click(object sender, EventArgs e)
+        {
+            // Cierra la aplicación al hacer clic en el botón de cerrar sesión
+            Application.Exit();
+        }
     }
+    
 }

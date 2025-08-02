@@ -44,6 +44,12 @@ namespace Vistas
             
         }
 
+        private void cerrarSesion_Click(object sender, EventArgs e)
+        {
+            // Cierra la aplicación al hacer clic en el botón de cerrar sesión
+            Application.Exit();
+        }
+
 
 
 
