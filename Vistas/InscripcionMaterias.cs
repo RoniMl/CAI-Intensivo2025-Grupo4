@@ -99,9 +99,14 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 return;
             }
 
+            //MANDAR POR POST LOS IDS DE LAS MATERIAS
+
+
             // Mensaje de prueba: muestra los IDs
             string mensaje = "Materias seleccionadas (IDs): " + string.Join(", ", ids);
             MessageBox.Show(mensaje, "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
         }
 
         private void AtrasInscMatBtn_Click(object sender, EventArgs e)
