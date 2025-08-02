@@ -97,10 +97,17 @@ namespace Negocio
             return materiaPersistencia.buscarMateriasPorCarrera(carreraId);
         }
 
-        public void InscribirAlumnoAMaterias(int alumnoId, int materiasIds)
+        
+
+
+        public void InscribirAlumnoAMaterias(int alumnoId, List<int> materiasIds)
         {
-            // convertir
-            inscripcionPersistencia.InscribirMaterias(alumnoId, materiasIds);
+            // Inscribir cada materia, no reasignar alumnoId ya que InscribirMaterias devuelve void
+            foreach (int materiaId in materiasIds)
+            {
+                inscripcionPersistencia.InscribirMaterias(alumnoId, materiaId);
+            }
+            return;
         }
 
         public List<Materia> ObtenerMateriasHabilitadas(int alumnoId, int carreraId)
@@ -151,7 +158,6 @@ namespace Negocio
 
             //return habilitadas;
         
-
         public double calcularRanking(int idAlumno)
         {
             int valorFaltante = 0;

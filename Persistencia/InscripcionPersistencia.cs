@@ -35,16 +35,16 @@ namespace Persistencia
             string json = JsonSerializer.Serialize(idsMaterias);
             HttpResponseMessage response = WebHelper.Post($"tpIntensivo/alumno/{alumnoId}/materias", json);
 
-             if (!response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
                 throw new Exception("No se pudieron inscribir las materias.");
             }
         }
-        public void InscribirAFinal(long alumnoId, long materiaId)
+        public void InscribirAFinal(int alumnoId, int materiaId)
         {
             string json = JsonSerializer.Serialize(materiaId);
-            HttpResponseMessage response = WebHelper.Post($"tpIntensivo/alumno/{alumnoId}/finales", json);
+            HttpResponseMessage response = WebHelper.Post($"tpIntensivo/alumno/{alumnoId}/materia", json);
 
             if (!response.IsSuccessStatusCode)
             {

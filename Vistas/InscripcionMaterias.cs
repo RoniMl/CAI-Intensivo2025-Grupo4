@@ -100,7 +100,10 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             }
 
             //MANDAR POR POST LOS IDS DE LAS MATERIAS
-
+            foreach (var materia in materiasSeleccionadas)
+            {
+                modelo.InscribirAlumnoAMaterias(alumno.id, ids);
+            }
 
             // Mensaje de prueba: muestra los IDs
             string mensaje = "Materias seleccionadas (IDs): " + string.Join(", ", ids);
