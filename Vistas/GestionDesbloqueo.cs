@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CAI_Intensivo2025_Grupo4.Vistas;
+using Datos;    
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Datos;    
-using Negocio;
 
 namespace Vistas
 {
@@ -46,14 +47,15 @@ namespace Vistas
             {
                 MessageBox.Show("Por favor, ingrese un ID de usuario válido.", "Error");
             }
-            
 
+        }
 
+        private void AtrasBtn_Click(object sender, EventArgs e)
+        {
+            MenuAdministrador menuAdmin = new MenuAdministrador();
+            menuAdmin.Show();
 
-
-
-
-
+            this.Close();
         }
     }
 }
