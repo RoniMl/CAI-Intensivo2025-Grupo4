@@ -1,6 +1,5 @@
 ﻿using Datos;
 using Negocio;
-using Persistencia;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,28 +14,60 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 {
     public partial class InscripcionMaterias : Form
     {
-        public Alumno alumno;
-        private CarreraPersistencia carreraPersistencia = new CarreraPersistencia();
-        private MateriaPersistencia materiaPersistencia = new MateriaPersistencia();
+        public Alumno alumno;           
         private InscripcionMateriasModelo modelo = new InscripcionMateriasModelo();
         private List<Materia> materiasHabilitadas = new List<Materia>();
+        private List<CursoResumenDTO> cursos1 = new();
+        private List<CursoResumenDTO> cursos2 = new();
+        private List<CursoResumenDTO> cursos3 = new();
+        private List<CursoResumenDTO> cursosSeleccionados = new List<CursoResumenDTO>();
         public InscripcionMaterias(Alumno alumnoLogueado)
         {
             InitializeComponent();
             this.alumno = alumnoLogueado;
-            CargarMateriasHabilitadas();           
-            
+
+            // Asociaciones de eventos
+            Materia1Cmb.SelectedIndexChanged += Materia1Cmb_SelectedIndexChanged;
+            Materia2Cmb.SelectedIndexChanged += Materia2Cmb_SelectedIndexChanged;
+            Materia3Cmb.SelectedIndexChanged += Materia3Cmb_SelectedIndexChanged;
+
+            Curso1Cmb.SelectedIndexChanged += CursoCmb_SelectedIndexChanged;
+            Curso2Cmb.SelectedIndexChanged += CursoCmb_SelectedIndexChanged;
+            Curso3Cmb.SelectedIndexChanged += CursoCmb_SelectedIndexChanged;
+        }
+        private void InscripcionMaterias_Load(object sender, EventArgs e)
+        {
+            CargarMateriasHabilitadas();
+
             double ranking = modelo.calcularRanking(alumno.id);
             rankingListView.Items.Clear();
-            ListViewItem item = new ListViewItem(ranking.ToString());
+            ListViewItem item = new ListViewItem(ranking.ToString("0.##"));
             rankingListView.Items.Add(item);
+
+            Curso1Cmb.Enabled = false;
+            Curso2Cmb.Enabled = false;
+            Curso3Cmb.Enabled = false;
+
+            if (materiasHabilitadas == null || materiasHabilitadas.Count == 0)
+            {
+                MessageBox.Show("No tiene materias disponibles para inscribirse.",
+                                "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Materia1Cmb.Enabled = false;
+                Materia2Cmb.Enabled = false;
+                Materia3Cmb.Enabled = false;
+                EnviarBtn.Enabled = false;
+
+                return;
+            }
+
         }
 
         private void CargarMateriasHabilitadas()
         {
             materiasHabilitadas.Clear();
 
-            var carreras = carreraPersistencia.buscarCarrera();
+            var carreras = modelo.ObtenerCarreras();
             var carrerasDelAlumno = carreras.Where(c => alumno.carrerasIds.Contains(c.id)).ToList();
 
             foreach (var carrera in carrerasDelAlumno)
@@ -61,8 +92,113 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 Materia2Cmb.Items.Add(materia.nombre);
                 Materia3Cmb.Items.Add(materia.nombre);
             }
-        }        
+        }
+        private void Materia1Cmb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarCursos(Materia1Cmb, Curso1Cmb, cursos1, materiasHabilitadas);
+        }
+        private void Materia2Cmb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarCursos(Materia2Cmb, Curso2Cmb, cursos2, materiasHabilitadas);
+        }
+        private void Materia3Cmb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarCursos(Materia3Cmb, Curso3Cmb, cursos3, materiasHabilitadas);
+        }
+        private void CargarCursos(ComboBox materiaCmb, ComboBox cursoCmb, List<CursoResumenDTO> listaCursos, List<Materia> materiasHabilitadas)
+        {
+            int indexMateria = materiaCmb.SelectedIndex;
+            if (indexMateria < 0)
+            {
+                cursoCmb.Items.Clear();
+                cursoCmb.Enabled = false;
+                listaCursos.Clear();
+                return;
+            }
 
+            cursoCmb.Enabled = true;
+
+            var materiaSeleccionada = materiasHabilitadas[indexMateria];
+            var cursos = modelo.ObtenerCursosPorMateria(materiaSeleccionada.id)
+                               .GroupBy(c => c.id)
+                               .Select(g => g.First())
+                               .ToList();
+
+            listaCursos.Clear();
+            listaCursos.AddRange(cursos);
+
+            cursoCmb.Items.Clear();
+            foreach (var curso in cursos)
+            {
+                cursoCmb.Items.Add(FormatearCurso(curso));
+            }
+        }
+
+        private string FormatearCurso(CursoResumenDTO curso)
+        {
+            if (curso.horarios == null || curso.horarios.Count == 0)
+                return "Sin horarios";
+
+            var dias = curso.horarios.Select(h => h.dia).Distinct();
+            var horario = curso.horarios.First();
+
+            string diasString = string.Join(" - ", dias);
+            string horarioString = $"{horario.horaInicio} - {horario.horaFin}";
+
+            return $"{diasString} ({horarioString})";
+        }
+
+        private void CursoCmb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            if (comboBox == null) return;
+
+            int indexSeleccionado = comboBox.SelectedIndex;
+            if (indexSeleccionado < 0) return;
+
+            // Saber qué lista de cursos corresponde a este ComboBox
+            List<CursoResumenDTO> listaCursos = null;
+            if (comboBox == Curso1Cmb) listaCursos = cursos1;
+            else if (comboBox == Curso2Cmb) listaCursos = cursos2;
+            else if (comboBox == Curso3Cmb) listaCursos = cursos3;
+
+            if (listaCursos == null) return;
+
+            CursoResumenDTO cursoSeleccionado = listaCursos[indexSeleccionado];
+
+            VerificarYAgregarCurso(cursoSeleccionado, comboBox);
+        }
+        private void VerificarYAgregarCurso(CursoResumenDTO cursoSeleccionado, ComboBox comboBox)
+        {
+            foreach (var cursoExistente in cursosSeleccionados)
+            {
+                if (HaySuperposicionHoraria(cursoExistente, cursoSeleccionado))
+                {
+                    MessageBox.Show("El curso seleccionado se superpone con otro ya elegido.");
+                    comboBox.SelectedIndex = -1; // Borra la selección
+                    return;
+                }
+            }
+
+            cursosSeleccionados.Add(cursoSeleccionado);
+        }
+        private bool HaySuperposicionHoraria(CursoResumenDTO cursoExistente, CursoResumenDTO cursoNuevo)
+        {
+            foreach (var h1 in cursoExistente.horarios)
+            {
+                foreach (var h2 in cursoNuevo.horarios)
+                {
+                    if (h1.dia == h2.dia)
+                    {
+                        if (!(h2.horaFin.CompareTo(h1.horaInicio) <= 0 || h2.horaInicio.CompareTo(h1.horaFin) >= 0))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
         private void EnviarBtn_Click(object sender, EventArgs e)
         {
             var materiasSeleccionadas = new List<Materia>();
@@ -99,15 +235,18 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 return;
             }
 
-            //MANDAR POR POST LOS IDS DE LAS MATERIAS
-            foreach (var materia in materiasSeleccionadas)
-            {
+            try
+            {                
                 modelo.InscribirAlumnoAMaterias(alumno.id, ids);
-            }
 
-            // Mensaje de prueba: muestra los IDs
-            string mensaje = "Materias seleccionadas (IDs): " + string.Join(", ", ids);
-            MessageBox.Show(mensaje, "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string mensaje = "Materias seleccionadas (IDs): " + string.Join(", ", ids);
+                MessageBox.Show(mensaje, "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                // Mostrar mensaje amigable en caso de error (p. ej. falla conexión, error servidor, etc)
+                MessageBox.Show($"Error al inscribir materias: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
 
         }
@@ -119,91 +258,6 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             menuAlumno.Show();
         }
 
-
-        //private int _alumnoId;
-        //private int _carreraId;
-        //private InscripcionMateriasModelo _modelo;
-        //private List<Materia> _materiasDisponibles;
-        //public InscripcionMaterias(int alumnoId, int carreraId)
-        //{
-        //    InitializeComponent();
-        //    _alumnoId = alumnoId;
-        //    _carreraId = carreraId;
-        //    _modelo = new InscripcionMateriasModelo();
-
-        //    this.Load += InscripcionMaterias_Load;
-        //}
-        //private void InscripcionMaterias_Load(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        _materiasDisponibles = _modelo.ObtenerMateriasHabilitadas(_alumnoId, _carreraId);
-        //        CargarMateriasEnComboBox(Materia1Cmb);
-        //        CargarMateriasEnComboBox(Materia2Cmb);
-        //        CargarMateriasEnComboBox(Materia3Cmb);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error al cargar materias: " + ex.Message);
-        //    }
-        //    // Mostrar ranking en el rankingListView
-        //    int ranking = _modelo.calcularRanking(_alumnoId);
-        //    rankingListView.Items.Clear();
-        //    ListViewItem item = new ListViewItem(ranking.ToString());
-        //    rankingListView.Items.Add(item);
-
-
-        //}
-        //private void CargarMateriasEnComboBox(ComboBox comboBox)
-        //{
-        //    comboBox.DataSource = _materiasDisponibles.ToList(); // importante: hacé ToList() para evitar referencia duplicada
-        //    comboBox.DisplayMember = "nombre"; // << asegurate que sea en minúscula
-        //    comboBox.ValueMember = "id";
-        //    comboBox.SelectedIndex = -1;
-        //}
-
-
-
-        //private void EnviarInscMatBtn_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        var idsSeleccionados = new List<long>();
-
-        //        if (Materia1Cmb.SelectedValue != null) idsSeleccionados.Add(Convert.ToInt64(Materia1Cmb.SelectedValue));
-        //        if (Materia2Cmb.SelectedValue != null) idsSeleccionados.Add(Convert.ToInt64(Materia2Cmb.SelectedValue));
-        //        if (Materia3Cmb.SelectedValue != null) idsSeleccionados.Add(Convert.ToInt64(Materia3Cmb.SelectedValue));
-
-        //        // Validar que haya al menos una materia
-        //        if (idsSeleccionados.Count == 0)
-        //        {
-        //            MessageBox.Show("Debe seleccionar al menos una materia.");
-        //            return;
-        //        }
-
-        //        // Validar que no haya duplicados
-        //        if (idsSeleccionados.Count != idsSeleccionados.Distinct().Count())
-        //        {
-        //            MessageBox.Show("No se puede seleccionar la misma materia más de una vez.");
-        //            return;
-        //        }
-        //        foreach (int id in idsSeleccionados)
-        //        {
-        //            _modelo.InscribirAlumnoAMaterias(_alumnoId, id);
-        //        }
-
-        //        MessageBox.Show("Inscripción realizada correctamente.");
-        //        this.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error al inscribirse: " + ex.Message);
-        //    }
-        //}
-        //private void AtrasInscMatBtn_Click(object sender, EventArgs e)
-        //{
-        //    this.Close();
-        //}
     }
 }
 

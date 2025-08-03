@@ -11,9 +11,11 @@ namespace Negocio
 {
     public class InscripcionMateriasModelo
     {
-        private MateriaPersistencia materiaPersistencia;
-        private InscripcionPersistencia inscripcionPersistencia;
-        private AlumnoPersistencia alumnoPersistencia;
+        private MateriaPersistencia materiaPersistencia = new MateriaPersistencia();
+        private CursoPersistencia cursoPersistencia = new CursoPersistencia();
+        private InscripcionPersistencia inscripcionPersistencia = new InscripcionPersistencia();
+        private AlumnoPersistencia alumnoPersistencia = new AlumnoPersistencia();
+        private CarreraPersistencia carreraPersistencia = new CarreraPersistencia();
 
         public InscripcionMateriasModelo()
         {
@@ -91,13 +93,19 @@ namespace Negocio
 
         //    return habilitadas;
         //}
-
+        public List<CarreraResponse> ObtenerCarreras()
+        {
+            return carreraPersistencia.buscarCarrera();
+        }
         public List<Materia> ObtenerMateriasPorCarrera(int carreraId)
         {
             return materiaPersistencia.buscarMateriasPorCarrera(carreraId);
         }
 
-        
+        public List<CursoResumenDTO> ObtenerCursosPorMateria(int id)
+        {
+            return cursoPersistencia.buscarCursosPorMateria(id);
+        }
 
 
         public void InscribirAlumnoAMaterias(int alumnoId, List<int> materiasIds)
