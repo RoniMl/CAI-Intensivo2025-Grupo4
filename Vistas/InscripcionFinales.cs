@@ -51,7 +51,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         {
             try
             {
-                if (MateriaFinalCmb.SelectedValue == null)
+                if (MateriaFinalCmb.SelectedItem == null)
                 {
                     MessageBox.Show("Debe seleccionar una materia.");
                     return;
