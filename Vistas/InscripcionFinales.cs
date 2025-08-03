@@ -36,9 +36,10 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                     return;
                 }
 
-                MateriaFinalCmb.DataSource = materiasFinales;
-                MateriaFinalCmb.DisplayMember = "nombre";
-                MateriaFinalCmb.ValueMember = "id";
+                foreach (var materia in materiasFinales)
+                {
+                    MateriaFinalCmb.Items.Add(materia.nombre);
+                }
             }
             catch (Exception ex)
             {
@@ -48,23 +49,23 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void EnviarInscFinBtn_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (MateriaFinalCmb.SelectedValue == null)
-            //    {
-            //        MessageBox.Show("Debe seleccionar una materia.");
-            //        return;
-            //    }
+            try
+            {
+                if (MateriaFinalCmb.SelectedValue == null)
+                {
+                    MessageBox.Show("Debe seleccionar una materia.");
+                    return;
+                }
 
-            //    int idMateria = MateriaFinalCmb.SelectedValue;
-            //    _modelo.InscribirAFinal(alumno.id, idMateria);
-            //    MessageBox.Show("Inscripción al final realizada con éxito.");
-            //    this.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error al inscribirse al final: " + ex.Message);
-            //}
+                int idMateria = MateriaFinalCmb.SelectedIndex;
+                _modelo.InscribirAFinal(alumno.id, idMateria);
+                MessageBox.Show("Inscripción al final realizada con éxito.");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al inscribirse al final: " + ex.Message);
+            }
         }
 
         //private void AtrasBtn_Click(object sender, EventArgs e)

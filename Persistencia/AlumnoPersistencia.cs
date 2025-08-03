@@ -104,6 +104,24 @@ namespace Persistencia
             }
         }
 
+        public List<InscripcionMateriaResponse> ObtenerMateriasFinal(int alumnoId)
+        {
+            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{alumnoId}/materias");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = response.Content.ReadAsStringAsync().Result;
+                var materias = JsonSerializer.Deserialize<List<InscripcionMateriaResponse>>(json);
+                var materiasAprobadas = materias.Where(m => m.condicion == "FINAL" || m.condicion == "FINAL").ToList();
+                return materiasAprobadas;
+
+            }
+            else
+            {
+                throw new Exception("Error al obtener materias del alumno");
+            }
+        }
+
         public List<InscripcionMateriaResponse> ObtenerMateriasAprobadasOFinal(int alumnoId)
         {
             HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{alumnoId}/materias");

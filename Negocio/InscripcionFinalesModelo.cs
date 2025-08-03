@@ -15,7 +15,7 @@ namespace Negocio
 
         public List<InscripcionMateriaResponse> ObtenerMateriasParaFinal(int alumnoId)
         {
-            var materias = _alumnoPersistencia.ObtenerMateriasDelAlumno(alumnoId);
+            var materias = _alumnoPersistencia.ObtenerMateriasFinal(alumnoId);
 
             return materias
                 .Where(m => m.condicion == "REGULAR" || m.condicion == "FINAL")
