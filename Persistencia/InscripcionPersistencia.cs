@@ -43,13 +43,17 @@ namespace Persistencia
         }
         public void InscribirAFinal(int alumnoId, int materiaId)
         {
-            string json = JsonSerializer.Serialize(materiaId);
-            HttpResponseMessage response = WebHelper.Post($"tpIntensivo/alumno/{alumnoId}/materia", json);
+            List<int> materiasIds = new List<int> { materiaId };
+            string json = JsonSerializer.Serialize(materiasIds);
+
+            HttpResponseMessage response = WebHelper.Post($"tpIntensivo/alumno/{alumnoId}/materias", json);
 
             if (!response.IsSuccessStatusCode)
             {
+
                 throw new Exception("No se pudo inscribir al final");
             }
         }
+
     }
 }
