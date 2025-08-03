@@ -13,9 +13,7 @@ using Negocio;
 namespace CAI_Intensivo2025_Grupo4.Vistas
 {
     public partial class MenuAlumno : Form
-    {
-        //private int _alumnoId;
-        //private int _carreraId;
+    {        
         private MenuAlumnoNegocio negocio = new MenuAlumnoNegocio();
         public int idAlumno;
         private Alumno alumno;

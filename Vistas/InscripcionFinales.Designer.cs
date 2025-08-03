@@ -37,38 +37,35 @@
             // MateriaFinalLbl
             // 
             MateriaFinalLbl.AutoSize = true;
-            MateriaFinalLbl.Location = new Point(94, 81);
-            MateriaFinalLbl.Margin = new Padding(4, 0, 4, 0);
+            MateriaFinalLbl.Location = new Point(64, 71);
             MateriaFinalLbl.Name = "MateriaFinalLbl";
-            MateriaFinalLbl.Size = new Size(158, 25);
+            MateriaFinalLbl.Size = new Size(135, 20);
             MateriaFinalLbl.TabIndex = 0;
             MateriaFinalLbl.Text = "Seleccione Materia";
             // 
             // MateriaFinalCmb
             // 
             MateriaFinalCmb.FormattingEnabled = true;
-            MateriaFinalCmb.Location = new Point(94, 114);
-            MateriaFinalCmb.Margin = new Padding(4, 4, 4, 4);
+            MateriaFinalCmb.Location = new Point(64, 97);
             MateriaFinalCmb.Name = "MateriaFinalCmb";
-            MateriaFinalCmb.Size = new Size(188, 33);
+            MateriaFinalCmb.Size = new Size(151, 28);
             MateriaFinalCmb.TabIndex = 1;
             // 
             // AtrasInscFinBtn
             // 
-            AtrasInscFinBtn.Location = new Point(94, 314);
-            AtrasInscFinBtn.Margin = new Padding(4, 4, 4, 4);
+            AtrasInscFinBtn.Location = new Point(35, 259);
             AtrasInscFinBtn.Name = "AtrasInscFinBtn";
-            AtrasInscFinBtn.Size = new Size(106, 44);
+            AtrasInscFinBtn.Size = new Size(85, 35);
             AtrasInscFinBtn.TabIndex = 2;
             AtrasInscFinBtn.Text = "Atras";
             AtrasInscFinBtn.UseVisualStyleBackColor = true;
+            AtrasInscFinBtn.Click += AtrasInscFinBtn_Click;
             // 
             // EnviarInscFinBtn
             // 
-            EnviarInscFinBtn.Location = new Point(309, 110);
-            EnviarInscFinBtn.Margin = new Padding(4, 4, 4, 4);
+            EnviarInscFinBtn.Location = new Point(236, 94);
             EnviarInscFinBtn.Name = "EnviarInscFinBtn";
-            EnviarInscFinBtn.Size = new Size(109, 39);
+            EnviarInscFinBtn.Size = new Size(87, 31);
             EnviarInscFinBtn.TabIndex = 3;
             EnviarInscFinBtn.Text = "Enviar";
             EnviarInscFinBtn.UseVisualStyleBackColor = true;
@@ -76,14 +73,13 @@
             // 
             // InscripcionFinales
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(554, 396);
+            ClientSize = new Size(443, 317);
             Controls.Add(EnviarInscFinBtn);
             Controls.Add(AtrasInscFinBtn);
             Controls.Add(MateriaFinalCmb);
             Controls.Add(MateriaFinalLbl);
-            Margin = new Padding(4, 4, 4, 4);
             Name = "InscripcionFinales";
             Text = "Inscripción a finales";
             Load += InscripcionFinales_Load;
