@@ -11,7 +11,6 @@ namespace Persistencia
 {
     public class InscripcionPersistencia
     {
-        // Obtener materias en las que el alumno está inscripto
         public List<InscripcionMateriaResponse> ObtenerMateriasInscriptas(long alumnoId)
         {
             HttpResponseMessage response = WebHelper.Get($"tpIntensivo/alumno/{alumnoId}/materias");
@@ -29,7 +28,7 @@ namespace Persistencia
             }
         }
 
-        // Inscribir al alumno en una lista de materias (array de IDs)
+        
         public void InscribirMaterias(long alumnoId, int idsMaterias)
         {
             string json = JsonSerializer.Serialize(idsMaterias);

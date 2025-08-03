@@ -28,7 +28,6 @@ namespace Vistas
 
         private void LiquidarBtn_Click(object? sender, EventArgs e)
         {
-            // Verificar si el docente es ad honorem
             if (negocio.ValidarDocentePuedeLiquidar(idDocente).tipo == "AYUDANTE_AD_HONOREM")
             {
                 MessageBox.Show(negocio.mensajeError, "Error");
@@ -40,8 +39,6 @@ namespace Vistas
                 var form = new LiquidacionSueldo(docente);
                 form.Show();
             }
-            // Mostrar el formulario de liquidación si no es ad honorem
-
         }
 
         private void cerrarSesion_Click(object sender, EventArgs e)

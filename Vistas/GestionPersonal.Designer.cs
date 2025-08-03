@@ -62,73 +62,75 @@
             IdGroupLbl = new Label();
             BuscarBtn = new Button();
             AtrasBtn = new Button();
+            IdCol = new ColumnHeader();
+            NombreCol = new ColumnHeader();
+            ApellidoCol = new ColumnHeader();
+            DniCol = new ColumnHeader();
+            CuitCol = new ColumnHeader();
+            TipoCol = new ColumnHeader();
             EdicionGroup.SuspendLayout();
             SuspendLayout();
             // 
             // BuscarPersonalLbl
             // 
             BuscarPersonalLbl.AutoSize = true;
-            BuscarPersonalLbl.Location = new Point(24, 28);
+            BuscarPersonalLbl.Location = new Point(27, 37);
             BuscarPersonalLbl.Name = "BuscarPersonalLbl";
-            BuscarPersonalLbl.Size = new Size(152, 17);
+            BuscarPersonalLbl.Size = new Size(170, 20);
             BuscarPersonalLbl.TabIndex = 0;
             BuscarPersonalLbl.Text = "Buscar personal por DNI";
             // 
             // BuscarDniTxb
             // 
-            BuscarDniTxb.Location = new Point(178, 26);
-            BuscarDniTxb.Margin = new Padding(3, 2, 3, 2);
+            BuscarDniTxb.Location = new Point(203, 35);
             BuscarDniTxb.Name = "BuscarDniTxb";
-            BuscarDniTxb.Size = new Size(143, 23);
+            BuscarDniTxb.Size = new Size(163, 27);
             BuscarDniTxb.TabIndex = 1;
             // 
             // PersonalLbl
             // 
             PersonalLbl.AutoSize = true;
-            PersonalLbl.Location = new Point(24, 80);
+            PersonalLbl.Location = new Point(27, 107);
             PersonalLbl.Name = "PersonalLbl";
-            PersonalLbl.Size = new Size(58, 17);
+            PersonalLbl.Size = new Size(64, 20);
             PersonalLbl.TabIndex = 2;
             PersonalLbl.Text = "Personal";
             // 
             // PersonalListView
             // 
+            PersonalListView.Columns.AddRange(new ColumnHeader[] { IdCol, NombreCol, ApellidoCol, DniCol, CuitCol, TipoCol });
             PersonalListView.FullRowSelect = true;
-            PersonalListView.Location = new Point(24, 110);
-            PersonalListView.Margin = new Padding(3, 2, 3, 2);
+            PersonalListView.Location = new Point(27, 147);
             PersonalListView.MultiSelect = false;
             PersonalListView.Name = "PersonalListView";
-            PersonalListView.Size = new Size(766, 129);
+            PersonalListView.Size = new Size(875, 171);
             PersonalListView.TabIndex = 3;
             PersonalListView.UseCompatibleStateImageBehavior = false;
             PersonalListView.View = View.Details;
             // 
             // NuevoDocenteBtn
             // 
-            NuevoDocenteBtn.Location = new Point(373, 256);
-            NuevoDocenteBtn.Margin = new Padding(3, 2, 3, 2);
+            NuevoDocenteBtn.Location = new Point(426, 341);
             NuevoDocenteBtn.Name = "NuevoDocenteBtn";
-            NuevoDocenteBtn.Size = new Size(133, 28);
+            NuevoDocenteBtn.Size = new Size(152, 37);
             NuevoDocenteBtn.TabIndex = 4;
             NuevoDocenteBtn.Text = "Nuevo Docente";
             NuevoDocenteBtn.UseVisualStyleBackColor = true;
             // 
             // EditarBtn
             // 
-            EditarBtn.Location = new Point(524, 256);
-            EditarBtn.Margin = new Padding(3, 2, 3, 2);
+            EditarBtn.Location = new Point(599, 341);
             EditarBtn.Name = "EditarBtn";
-            EditarBtn.Size = new Size(116, 28);
+            EditarBtn.Size = new Size(133, 37);
             EditarBtn.TabIndex = 5;
             EditarBtn.Text = "Editar";
             EditarBtn.UseVisualStyleBackColor = true;
             // 
             // EliminarBtn
             // 
-            EliminarBtn.Location = new Point(655, 256);
-            EliminarBtn.Margin = new Padding(3, 2, 3, 2);
+            EliminarBtn.Location = new Point(749, 341);
             EliminarBtn.Name = "EliminarBtn";
-            EliminarBtn.Size = new Size(112, 28);
+            EliminarBtn.Size = new Size(128, 37);
             EliminarBtn.TabIndex = 6;
             EliminarBtn.Text = "Eliminar";
             EliminarBtn.UseVisualStyleBackColor = true;
@@ -157,90 +159,82 @@
             EdicionGroup.Controls.Add(ApellidoGroupTxb);
             EdicionGroup.Controls.Add(IdGroupTxb);
             EdicionGroup.Controls.Add(IdGroupLbl);
-            EdicionGroup.Location = new Point(24, 316);
-            EdicionGroup.Margin = new Padding(3, 2, 3, 2);
+            EdicionGroup.Location = new Point(27, 421);
             EdicionGroup.Name = "EdicionGroup";
-            EdicionGroup.Padding = new Padding(3, 2, 3, 2);
-            EdicionGroup.Size = new Size(1029, 254);
+            EdicionGroup.Size = new Size(1176, 339);
             EdicionGroup.TabIndex = 7;
             EdicionGroup.TabStop = false;
             EdicionGroup.Text = "Edicion";
             // 
             // Cuit3GroupTxb
             // 
-            Cuit3GroupTxb.Location = new Point(154, 183);
-            Cuit3GroupTxb.Margin = new Padding(3, 2, 3, 2);
+            Cuit3GroupTxb.Location = new Point(176, 244);
             Cuit3GroupTxb.Name = "Cuit3GroupTxb";
-            Cuit3GroupTxb.Size = new Size(17, 23);
+            Cuit3GroupTxb.Size = new Size(19, 27);
             Cuit3GroupTxb.TabIndex = 23;
             // 
             // Cuit2GroupTxb
             // 
-            Cuit2GroupTxb.Location = new Point(88, 183);
-            Cuit2GroupTxb.Margin = new Padding(3, 2, 3, 2);
+            Cuit2GroupTxb.Location = new Point(101, 244);
             Cuit2GroupTxb.Name = "Cuit2GroupTxb";
-            Cuit2GroupTxb.Size = new Size(62, 23);
+            Cuit2GroupTxb.Size = new Size(70, 27);
             Cuit2GroupTxb.TabIndex = 22;
             // 
             // Cuit1GroupTxb
             // 
-            Cuit1GroupTxb.Location = new Point(64, 183);
-            Cuit1GroupTxb.Margin = new Padding(3, 2, 3, 2);
+            Cuit1GroupTxb.Location = new Point(73, 244);
             Cuit1GroupTxb.Name = "Cuit1GroupTxb";
-            Cuit1GroupTxb.Size = new Size(19, 23);
+            Cuit1GroupTxb.Size = new Size(21, 27);
             Cuit1GroupTxb.TabIndex = 21;
             // 
             // CuitGroupLbl
             // 
             CuitGroupLbl.AutoSize = true;
-            CuitGroupLbl.Location = new Point(62, 166);
+            CuitGroupLbl.Location = new Point(71, 221);
             CuitGroupLbl.Name = "CuitGroupLbl";
-            CuitGroupLbl.Size = new Size(30, 17);
+            CuitGroupLbl.Size = new Size(35, 20);
             CuitGroupLbl.TabIndex = 20;
             CuitGroupLbl.Text = "Cuit";
             // 
             // CursosComboBox
             // 
             CursosComboBox.FormattingEnabled = true;
-            CursosComboBox.Location = new Point(200, 108);
-            CursosComboBox.Margin = new Padding(3, 2, 3, 2);
+            CursosComboBox.Location = new Point(229, 144);
             CursosComboBox.Name = "CursosComboBox";
-            CursosComboBox.Size = new Size(229, 23);
+            CursosComboBox.Size = new Size(261, 28);
             CursosComboBox.TabIndex = 19;
             // 
             // CursosLbl
             // 
             CursosLbl.AutoSize = true;
-            CursosLbl.Location = new Point(200, 91);
+            CursosLbl.Location = new Point(229, 121);
             CursosLbl.Name = "CursosLbl";
-            CursosLbl.Size = new Size(48, 17);
+            CursosLbl.Size = new Size(52, 20);
             CursosLbl.TabIndex = 18;
             CursosLbl.Text = "Cursos";
             // 
             // TipoDocenteGroupCmb
             // 
             TipoDocenteGroupCmb.FormattingEnabled = true;
-            TipoDocenteGroupCmb.Location = new Point(64, 226);
-            TipoDocenteGroupCmb.Margin = new Padding(3, 2, 3, 2);
+            TipoDocenteGroupCmb.Location = new Point(73, 301);
             TipoDocenteGroupCmb.Name = "TipoDocenteGroupCmb";
-            TipoDocenteGroupCmb.Size = new Size(140, 23);
+            TipoDocenteGroupCmb.Size = new Size(159, 28);
             TipoDocenteGroupCmb.TabIndex = 17;
             // 
             // TipoDocenteGroupLbl
             // 
             TipoDocenteGroupLbl.AutoSize = true;
-            TipoDocenteGroupLbl.Location = new Point(64, 208);
+            TipoDocenteGroupLbl.Location = new Point(73, 277);
             TipoDocenteGroupLbl.Name = "TipoDocenteGroupLbl";
-            TipoDocenteGroupLbl.Size = new Size(105, 17);
+            TipoDocenteGroupLbl.Size = new Size(120, 20);
             TipoDocenteGroupLbl.TabIndex = 16;
             TipoDocenteGroupLbl.Text = "Tipo de Docente";
             // 
             // AgregarGroupBtn
             // 
-            AgregarGroupBtn.Location = new Point(463, 106);
-            AgregarGroupBtn.Margin = new Padding(3, 2, 3, 2);
+            AgregarGroupBtn.Location = new Point(529, 141);
             AgregarGroupBtn.Name = "AgregarGroupBtn";
-            AgregarGroupBtn.Size = new Size(83, 25);
+            AgregarGroupBtn.Size = new Size(95, 33);
             AgregarGroupBtn.TabIndex = 15;
             AgregarGroupBtn.Text = "Agregar";
             AgregarGroupBtn.UseVisualStyleBackColor = true;
@@ -248,47 +242,43 @@
             // 
             // NombreGroupTxb
             // 
-            NombreGroupTxb.Location = new Point(64, 88);
-            NombreGroupTxb.Margin = new Padding(3, 2, 3, 2);
+            NombreGroupTxb.Location = new Point(73, 117);
             NombreGroupTxb.Name = "NombreGroupTxb";
-            NombreGroupTxb.Size = new Size(107, 23);
+            NombreGroupTxb.Size = new Size(122, 27);
             NombreGroupTxb.TabIndex = 14;
             // 
             // ApellidoGroupLbl
             // 
             ApellidoGroupLbl.AutoSize = true;
-            ApellidoGroupLbl.Location = new Point(64, 120);
+            ApellidoGroupLbl.Location = new Point(73, 160);
             ApellidoGroupLbl.Name = "ApellidoGroupLbl";
-            ApellidoGroupLbl.Size = new Size(56, 17);
+            ApellidoGroupLbl.Size = new Size(66, 20);
             ApellidoGroupLbl.TabIndex = 13;
             ApellidoGroupLbl.Text = "Apellido";
             // 
             // AceptarGroupbtn
             // 
-            AceptarGroupbtn.Location = new Point(923, 214);
-            AceptarGroupbtn.Margin = new Padding(3, 2, 3, 2);
+            AceptarGroupbtn.Location = new Point(1055, 285);
             AceptarGroupbtn.Name = "AceptarGroupbtn";
-            AceptarGroupbtn.Size = new Size(84, 25);
+            AceptarGroupbtn.Size = new Size(96, 33);
             AceptarGroupbtn.TabIndex = 12;
             AceptarGroupbtn.Text = "Aceptar";
             AceptarGroupbtn.UseVisualStyleBackColor = true;
             // 
             // CancelarGroupbtn
             // 
-            CancelarGroupbtn.Location = new Point(811, 214);
-            CancelarGroupbtn.Margin = new Padding(3, 2, 3, 2);
+            CancelarGroupbtn.Location = new Point(927, 285);
             CancelarGroupbtn.Name = "CancelarGroupbtn";
-            CancelarGroupbtn.Size = new Size(89, 25);
+            CancelarGroupbtn.Size = new Size(102, 33);
             CancelarGroupbtn.TabIndex = 11;
             CancelarGroupbtn.Text = "Cancelar";
             CancelarGroupbtn.UseVisualStyleBackColor = true;
             // 
             // QuitarGroupBtn
             // 
-            QuitarGroupBtn.Location = new Point(940, 161);
-            QuitarGroupBtn.Margin = new Padding(3, 2, 3, 2);
+            QuitarGroupBtn.Location = new Point(1074, 215);
             QuitarGroupBtn.Name = "QuitarGroupBtn";
-            QuitarGroupBtn.Size = new Size(67, 24);
+            QuitarGroupBtn.Size = new Size(77, 32);
             QuitarGroupBtn.TabIndex = 10;
             QuitarGroupBtn.Text = "Quitar";
             QuitarGroupBtn.UseVisualStyleBackColor = true;
@@ -298,10 +288,9 @@
             // 
             MatAsignadasGroupListView.Columns.AddRange(new ColumnHeader[] { MateriaColumna, CursoColumna });
             MatAsignadasGroupListView.FullRowSelect = true;
-            MatAsignadasGroupListView.Location = new Point(656, 59);
-            MatAsignadasGroupListView.Margin = new Padding(3, 2, 3, 2);
+            MatAsignadasGroupListView.Location = new Point(750, 79);
             MatAsignadasGroupListView.Name = "MatAsignadasGroupListView";
-            MatAsignadasGroupListView.Size = new Size(351, 97);
+            MatAsignadasGroupListView.Size = new Size(401, 128);
             MatAsignadasGroupListView.TabIndex = 9;
             MatAsignadasGroupListView.UseCompatibleStateImageBehavior = false;
             MatAsignadasGroupListView.View = View.Details;
@@ -319,90 +308,115 @@
             // CursosAsignadosGroupLbl
             // 
             CursosAsignadosGroupLbl.AutoSize = true;
-            CursosAsignadosGroupLbl.Location = new Point(656, 38);
+            CursosAsignadosGroupLbl.Location = new Point(750, 51);
             CursosAsignadosGroupLbl.Name = "CursosAsignadosGroupLbl";
-            CursosAsignadosGroupLbl.Size = new Size(113, 17);
+            CursosAsignadosGroupLbl.Size = new Size(125, 20);
             CursosAsignadosGroupLbl.TabIndex = 8;
             CursosAsignadosGroupLbl.Text = "Cursos Asignados";
             // 
             // MateriasGroupCmb
             // 
             MateriasGroupCmb.FormattingEnabled = true;
-            MateriasGroupCmb.Location = new Point(200, 59);
-            MateriasGroupCmb.Margin = new Padding(3, 2, 3, 2);
+            MateriasGroupCmb.Location = new Point(229, 79);
             MateriasGroupCmb.Name = "MateriasGroupCmb";
-            MateriasGroupCmb.Size = new Size(229, 23);
+            MateriasGroupCmb.Size = new Size(261, 28);
             MateriasGroupCmb.TabIndex = 7;
             // 
             // MateriasGroupLbl
             // 
             MateriasGroupLbl.AutoSize = true;
-            MateriasGroupLbl.Location = new Point(200, 39);
+            MateriasGroupLbl.Location = new Point(229, 52);
             MateriasGroupLbl.Name = "MateriasGroupLbl";
-            MateriasGroupLbl.Size = new Size(59, 17);
+            MateriasGroupLbl.Size = new Size(66, 20);
             MateriasGroupLbl.TabIndex = 6;
             MateriasGroupLbl.Text = "Materias";
             // 
             // NombreGroupLbl
             // 
             NombreGroupLbl.AutoSize = true;
-            NombreGroupLbl.Location = new Point(64, 70);
+            NombreGroupLbl.Location = new Point(73, 93);
             NombreGroupLbl.Name = "NombreGroupLbl";
-            NombreGroupLbl.Size = new Size(57, 17);
+            NombreGroupLbl.Size = new Size(64, 20);
             NombreGroupLbl.TabIndex = 4;
             NombreGroupLbl.Text = "Nombre";
             // 
             // ApellidoGroupTxb
             // 
-            ApellidoGroupTxb.Location = new Point(64, 136);
-            ApellidoGroupTxb.Margin = new Padding(3, 2, 3, 2);
+            ApellidoGroupTxb.Location = new Point(73, 181);
             ApellidoGroupTxb.Name = "ApellidoGroupTxb";
-            ApellidoGroupTxb.Size = new Size(107, 23);
+            ApellidoGroupTxb.Size = new Size(122, 27);
             ApellidoGroupTxb.TabIndex = 2;
             // 
             // IdGroupTxb
             // 
-            IdGroupTxb.Location = new Point(64, 39);
-            IdGroupTxb.Margin = new Padding(3, 2, 3, 2);
+            IdGroupTxb.Location = new Point(73, 52);
             IdGroupTxb.Name = "IdGroupTxb";
-            IdGroupTxb.Size = new Size(56, 23);
+            IdGroupTxb.Size = new Size(63, 27);
             IdGroupTxb.TabIndex = 1;
             // 
             // IdGroupLbl
             // 
             IdGroupLbl.AutoSize = true;
-            IdGroupLbl.Location = new Point(61, 18);
+            IdGroupLbl.Location = new Point(70, 24);
             IdGroupLbl.Name = "IdGroupLbl";
-            IdGroupLbl.Size = new Size(20, 17);
+            IdGroupLbl.Size = new Size(24, 20);
             IdGroupLbl.TabIndex = 0;
             IdGroupLbl.Text = "ID";
             // 
             // BuscarBtn
             // 
-            BuscarBtn.Location = new Point(327, 25);
-            BuscarBtn.Margin = new Padding(3, 2, 3, 2);
+            BuscarBtn.Location = new Point(374, 33);
             BuscarBtn.Name = "BuscarBtn";
-            BuscarBtn.Size = new Size(102, 24);
+            BuscarBtn.Size = new Size(117, 32);
             BuscarBtn.TabIndex = 8;
             BuscarBtn.Text = "Buscar";
             BuscarBtn.UseVisualStyleBackColor = true;
             // 
             // AtrasBtn
             // 
-            AtrasBtn.Location = new Point(33, 583);
-            AtrasBtn.Margin = new Padding(3, 2, 3, 2);
+            AtrasBtn.Location = new Point(38, 777);
             AtrasBtn.Name = "AtrasBtn";
-            AtrasBtn.Size = new Size(90, 21);
+            AtrasBtn.Size = new Size(103, 28);
             AtrasBtn.TabIndex = 9;
             AtrasBtn.Text = "Atrás";
             AtrasBtn.UseVisualStyleBackColor = true;
             AtrasBtn.Click += AtrasBtn_Click;
             // 
+            // IdCol
+            // 
+            IdCol.Text = "ID";
+            IdCol.Width = 50;
+            // 
+            // NombreCol
+            // 
+            NombreCol.Text = "Nombre";
+            NombreCol.Width = 150;
+            // 
+            // ApellidoCol
+            // 
+            ApellidoCol.Text = "Apellido";
+            ApellidoCol.Width = 150;
+            // 
+            // DniCol
+            // 
+            DniCol.Text = "DNI";
+            DniCol.Width = 100;
+            // 
+            // CuitCol
+            // 
+            CuitCol.Text = "CUIT";
+            CuitCol.Width = 120;
+            // 
+            // TipoCol
+            // 
+            TipoCol.Text = "Tipo de docente";
+            TipoCol.Width = 180;
+            // 
             // GestionPersonal
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1088, 608);
+            ClientSize = new Size(1243, 811);
             Controls.Add(AtrasBtn);
             Controls.Add(BuscarBtn);
             Controls.Add(EdicionGroup);
@@ -413,7 +427,6 @@
             Controls.Add(PersonalLbl);
             Controls.Add(BuscarDniTxb);
             Controls.Add(BuscarPersonalLbl);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "GestionPersonal";
             Text = "Gestion de Personal";
             EdicionGroup.ResumeLayout(false);
@@ -458,5 +471,11 @@
         private TextBox Cuit3GroupTxb;
         private TextBox Cuit2GroupTxb;
         private Button AtrasBtn;
+        private ColumnHeader IdCol;
+        private ColumnHeader NombreCol;
+        private ColumnHeader ApellidoCol;
+        private ColumnHeader DniCol;
+        private ColumnHeader CuitCol;
+        private ColumnHeader TipoCol;
     }
 }

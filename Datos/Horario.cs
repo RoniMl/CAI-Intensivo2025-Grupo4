@@ -8,8 +8,8 @@ namespace Datos
 {
     public class Horario
     {
-        public string dia { get; set; } = string.Empty; // Lunes, Martes, etc.
-        public string horaInicio { get; set; } = string.Empty; // Formato "HH:mm"
-        public string horaFin { get; set; } = string.Empty; // Formato "HH:mm"
+        public string dia { get; set; } = string.Empty; 
+        public string horaInicio { get; set; } = string.Empty; 
+        public string horaFin { get; set; } = string.Empty; 
     }
 }

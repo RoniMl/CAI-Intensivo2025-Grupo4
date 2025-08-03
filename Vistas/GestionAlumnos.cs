@@ -71,10 +71,8 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             }
             try
             {
-                // Llama a la capa negocio para obtener el docente por dni
                 var alumno = negocio.BuscarAlumnoPorDni(dni);
 
-                // Limpia la lista antes de mostrar resultados
                 AlumnosListView.Items.Clear();
 
 
@@ -124,11 +122,10 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
             var item = AlumnosListView.SelectedItems[0];
 
-            int idAlumno = int.Parse(item.SubItems[0].Text); // ID directo del listview
+            int idAlumno = int.Parse(item.SubItems[0].Text); 
 
             try
             {
-                // Llenar los campos del formulario
                 IdGrpTxb.Text = item.SubItems[0].Text;
                 NombreGrpTxb.Text = item.SubItems[1].Text;
                 ApellidoGrpTxb.Text = item.SubItems[2].Text;
@@ -155,7 +152,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 var carreras = negocio.CarrerasAsignadasAlumno(idAlumno);
 
                 CarrerasGrpListView.Items.Clear();
-                carrerasAsignadas.Clear(); // LIMPIAR lista en memoria
+                carrerasAsignadas.Clear(); 
 
                 foreach (var carrera in carreras)
                 {
@@ -163,7 +160,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                     item.Tag = carrera.id;
                     CarrerasGrpListView.Items.Add(item);
 
-                    carrerasAsignadas.Add(carrera);  // AGREGAR a lista en memoria
+                    carrerasAsignadas.Add(carrera);
                 }
             }
             catch (Exception ex)
@@ -174,7 +171,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void CargarCarreras()
         {
-            listaCarreras = negocio.Carreras(); // Esto debe devolver List<Carrera> o similar
+            listaCarreras = negocio.Carreras(); 
             CarrerasGrpCmb.Items.Clear();
 
             foreach (var carrera in listaCarreras)
@@ -193,7 +190,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 return;
             }
 
-            var carreraSeleccionada = listaCarreras[indexCarrera]; // tomo el objeto por índice
+            var carreraSeleccionada = listaCarreras[indexCarrera]; // agarro el objeto por índice
 
             if (carrerasAsignadas.Any(c => c.id == carreraSeleccionada.id))
             {
@@ -203,8 +200,8 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
             carrerasAsignadas.Add(carreraSeleccionada);
 
-            var newItem = new ListViewItem(carreraSeleccionada.nombre); // solo nombre visible
-            newItem.Tag = carreraSeleccionada.id; // guardo Id para luego poder eliminar
+            var newItem = new ListViewItem(carreraSeleccionada.nombre); 
+            newItem.Tag = carreraSeleccionada.id; // guardo el id para poder eliminarlo despues
             CarrerasGrpListView.Items.Add(newItem);
         }
         
@@ -261,7 +258,6 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         {
             try
             {
-                // Validaciones
                 if (!ValidarCamposObligatorios()) return;
                 if (!ValidarNombreApellido()) return;
                 if (!ValidarDni()) return;
@@ -274,7 +270,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                     return;
                 }
 
-                // Crear el objeto docente con los datos modificados
+                // Creamos el objeto docente con los datos modificados
                 Alumno AlumnoEditado = new Alumno()
                 {
                     id = int.Parse(IdGrpTxb.Text),
@@ -292,14 +288,12 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
                 MessageBox.Show(mensaje, "Datos a enviar (Edición)", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
-                // Guardar la edición en la capa negocio
                 bool resultado = negocio.EditarAlumno(AlumnoEditado);
 
                 if (resultado)
                 {
                     MessageBox.Show("Cambios guardados correctamente.");
 
-                    // Refrescar el ListView con solo ese docente actualizado
                     AlumnosListView.Items.Clear();
 
                     var item = new ListViewItem(AlumnoEditado.id.ToString());
@@ -376,10 +370,8 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             var itemSeleccionado = CarrerasGrpListView.SelectedItems[0];
             int idCarrera = (int)itemSeleccionado.Tag;
 
-            // Eliminar del ListView
             CarrerasGrpListView.Items.Remove(itemSeleccionado);
 
-            // Eliminar de la lista en memoria
             carrerasAsignadas.RemoveAll(c => c.id == idCarrera);
         }
         private void AtrasBtn_Click(object sender, EventArgs e)

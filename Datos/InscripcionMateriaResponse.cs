@@ -13,5 +13,5 @@ namespace Datos
         public string condicion { get; set; }
         public int? nota { get; set; }
     }
-    // Para inscribir materias (POST) no hace falta clase, es un List<long> directamente.
+    
 }

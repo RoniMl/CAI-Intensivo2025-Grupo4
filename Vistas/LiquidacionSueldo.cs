@@ -34,11 +34,6 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             var liquidarNegocio = new LiquidarNegocio();
             resultadoLiquidacion = liquidarNegocio.LiquidarDocente(docente);
 
-            //if (!string.IsNullOrEmpty(resultadoLiquidacion.mensajeError))
-            //{
-            //    MessageBox.Show(resultadoLiquidacion.mensajeError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
             CargarEnListView(resultadoLiquidacion);
 
         }

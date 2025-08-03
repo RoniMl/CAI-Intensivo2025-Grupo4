@@ -37,7 +37,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             TipoCmb.Items.Add("AYUDANTE");
             TipoCmb.Items.Add("AYUDANTE_AD_HONOREM");
 
-            CursosCmb.Enabled = false; // Hasta que elija materia
+            CursosCmb.Enabled = false; 
         }
 
         private void CargarMaterias()
@@ -143,13 +143,13 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                             // o si el nuevo curso empieza después que termine el asignado
                             if (!(h2.horaFin.CompareTo(h1.horaInicio) <= 0 || h2.horaInicio.CompareTo(h1.horaFin) >= 0))
                             {
-                                return true; // Superposición detectada
+                                return true; 
                             }
                         }
                     }
                 }
             }
-            return false; // No hay superposición
+            return false; 
         }
 
         private void QuitarBtn_Click(object sender, EventArgs e)
@@ -160,7 +160,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 return;
             }
 
-            // Tomamos el primer ítem seleccionado (si querés podés hacer un foreach para eliminar varios)
+            // Agarramos el primer ítem seleccionado (si querés podés hacer un foreach para eliminar varios)
             var itemSeleccionado = CursosAsignadosListView.SelectedItems[0];
 
             string nombreMateria = itemSeleccionado.SubItems[0].Text;
@@ -228,8 +228,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 MessageBox.Show("CUIT inválido. Debe tener formato XX-XXXXXXXX-X");
                 return;
             }
-
-            // Construcción del CUIT y DNI
+                        
             string cuit = $"{Cuit1Txb.Text}-{Cuit2Txb.Text}-{Cuit3Txb.Text}";
             string dni = Cuit2Txb.Text;
 
@@ -250,20 +249,19 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             };
 
             //MENSAJE DE PRUEBA DE CREACION
-            //string mensaje = $"{{\n" +
-            //     $"  \"nombre\": \"{nuevoDocente.nombre}\",\n" +
-            //     $"  \"apellido\": \"{nuevoDocente.apellido}\",\n" +
-            //     $"  \"cuit\": \"{nuevoDocente.cuit}\",\n" +
-            //     $"  \"dni\": \"{nuevoDocente.dni}\",\n" +
-            //     $"  \"tipo\": \"{nuevoDocente.tipo}\",\n" +
-            //     $"  \"cursos\": [{string.Join(", ", nuevoDocente.cursos)}]\n" +
-            //     $"}}";
+            string mensaje = $"{{\n" +
+                 $"  \"nombre\": \"{nuevoDocente.nombre}\",\n" +
+                 $"  \"apellido\": \"{nuevoDocente.apellido}\",\n" +
+                 $"  \"cuit\": \"{nuevoDocente.cuit}\",\n" +
+                 $"  \"dni\": \"{nuevoDocente.dni}\",\n" +
+                 $"  \"tipo\": \"{nuevoDocente.tipo}\",\n" +
+                 $"  \"cursos\": [{string.Join(", ", nuevoDocente.cursos)}]\n" +
+                 $"}}";
 
-            //MessageBox.Show(mensaje, "Docente a crear (Preview)");
+            MessageBox.Show(mensaje, "Docente a crear (Preview)");
 
             try
             {
-                // Aquí llamarías a tu método negocio para POST, por ej:
                 bool creado = negocio.CrearDocente(nuevoDocente);
                 if (creado)
                 {

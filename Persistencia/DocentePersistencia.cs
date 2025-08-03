@@ -39,8 +39,7 @@ namespace Persistencia
                 var contentStream = response.Content.ReadAsStringAsync().Result;
                 var docentes = JsonSerializer.Deserialize<List<Docente>>(contentStream);
 
-                docenteEncontradoDni = docentes.Find(d => d.dni.Trim() == dni.Trim());
-                // Busca el docente que tenga el mismo DNI (sin espacios, por las dudas)
+                docenteEncontradoDni = docentes.Find(d => d.dni.Trim() == dni.Trim()); //(sin espacios, por las dudas)
                 return docenteEncontradoDni;
             }
             else
@@ -59,8 +58,7 @@ namespace Persistencia
                 var contentStream = response.Content.ReadAsStringAsync().Result;
                 var docentes = JsonSerializer.Deserialize<List<Docente>>(contentStream);
 
-                docenteEncontradoId = docentes.Find(d => d.id == id);
-                // Busca el docente que tenga el mismo DNI (sin espacios, por las dudas)
+                docenteEncontradoId = docentes.Find(d => d.id == id);                
                 return docenteEncontradoId;
             }
             else

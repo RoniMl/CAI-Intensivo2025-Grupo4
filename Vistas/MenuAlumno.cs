@@ -33,8 +33,6 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             this.Hide();
             var form = new InscripcionMaterias(alumno);
             form.Show();
-        //    InscripcionMaterias formMaterias = new InscripcionMaterias(alumnoId, carreraId);
-        //    formMaterias.Show();
         }
 
         private void btnInscripcionFinales_Click(object sender, EventArgs e)
@@ -42,8 +40,6 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             this.Hide();
             var form = new InscripcionFinales(alumno);
             form.Show();
-            //InscripcionFinales formFinales = new InscripcionFinales(_alumnoId);
-            //formFinales.Show();
         }
 
         

@@ -27,25 +27,5 @@ namespace Persistencia
             }
         }
 
-
-
-        /*
-        public List<Materia> buscarMateriasPorCarrera(long carreraId)
-        {
-            HttpResponseMessage response = WebHelper.Get($"tpIntensivo/materias/{carreraId}");
-
-            if (response.IsSuccessStatusCode)
-            {
-                string json = response.Content.ReadAsStringAsync().Result;
-                var materias = JsonSerializer.Deserialize<List<Materia>>(json);
-                return materias;
-            }
-            else
-            {
-                Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
-                throw new Exception("Error al obtener las materias de la carrera");
-            }
-        }
-        */
     }
 }

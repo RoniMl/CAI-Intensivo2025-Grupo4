@@ -17,8 +17,7 @@ namespace Negocio
         public CarreraPersistencia carreraPersistencia = new CarreraPersistencia();
         public CursoPersistencia cursoPersistencia = new CursoPersistencia();
         public MateriaPersistencia materiaPersistencia = new MateriaPersistencia();
-
-        //public string mensaje = string.Empty;   PARA VER DESPUES DE PASAR UN ERROR SI ES AD HONOREM
+        
 
         // Precio y coeficientes para la liquidación
         private const decimal PrecioHora = 7700m;
@@ -26,7 +25,6 @@ namespace Negocio
         private const decimal CoefAyudante = 1.05m;
         private const decimal CoefAntiguedadPor5Anos = 1.1m;
 
-        // Método principal para calcular horas y sueldo
         public DocenteLiquidacion LiquidarDocente(Docente docente)
         {
             int horasTotales = 0;
@@ -62,7 +60,7 @@ namespace Negocio
 
                 // Cálculo de sueldo
                 decimal coefCargo = docente.tipo == "PROFESOR" ? CoefProfesor : CoefAyudante;
-                int bloquesDeCincoAnios = docente.antiguedad / 5; // Se aplica por bloques de 5 años completos
+                int bloquesDeCincoAnios = docente.antiguedad / 5; 
                 decimal coefAntiguedad = (decimal)Math.Pow((double)CoefAntiguedadPor5Anos, bloquesDeCincoAnios);
                 sueldo = horasTotales * PrecioHora * coefCargo * coefAntiguedad;
 
@@ -86,69 +84,6 @@ namespace Negocio
             return DocenteLiquidacion;
         }
 
-        //public Docente ValidarDocentePuedeLiquidar(int idDocente, out string mensaje)
-        //{
-        //    try
-        //    {
-        //        Docente docenteTipo = docentePersistencia.BuscarDocentePorId(idDocente);
-
-        //        if (docenteTipo == null)
-        //        {
-        //            mensaje = "No se encontró al docente.";
-                    
-        //        }
-
-        //        if (docenteTipo.tipo == "AYUDANTE_AD_HONOREM")
-        //        {
-        //            mensaje = "El docente es Ad Honorem, por lo tanto no corresponde liquidación.";
-                    
-        //        }
-
-        //        mensaje = string.Empty;
-        //        return docenteTipo;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        mensaje = $"Error al validar el docente: {ex.Message}";
-                
-        //    }
-        //    return null;
-        //}
-
-
-
-
-
-
-        //public int CalcularHorasTotalesDocente(int idProfesor)
-        //{
-        //    int horasTotales = 0;
-        //    List<int> idCarreras = carreraPersistencia.buscarCarrera().id;
-        //    return idCarreras;
-        //}
-
-        //foreach(int i in idCarreras){ 
-
-        //public List<int> ObtenerMaterias(int idCarreras)
-        //{
-        //    List<int> idMaterias = materiaPersistencia.buscarMateriasPorCarrera(idCarreras);
-        //    return idMaterias;
-        //}
-
-        //public List<CursoResumenDTO> ObtenerCursos(int idMaterias)
-        //{
-        //    List<CursoResumenDTO> cursos = cursoPersistencia.buscarCursosPorMateria(idMaterias);
-        //    return cursos;
-
-        //}
-
-        //foreach(CursoResumenDTO curso in cursos){
-        //    if(Curso.idDocente.contains(idProfesor)){
-
-        //    horasTotales += curso.horasSemanales
-        //       }
-        //   }
-        //}
     }
 }
 

@@ -7,18 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Datos; // Asegúrate de que el modelo esté en este espacio de nombres
+using Datos; 
 using Negocio;
 using Persistencia;
 using Vistas;
-using Windows.Graphics.Printing.OptionDetails; // Asegúrate de que la clase Usuario esté en este espacio de nombres
+using Windows.Graphics.Printing.OptionDetails; 
 
 namespace CAI_Intensivo2025_Grupo4.Vistas
 {
     public partial class InicioSesionForms : System.Windows.Forms.Form
     {
         private InicioSesionModelo modelo;
-        //public int contadorIntentosFallidos = 0;
         public string usuarioIngresado;
         public string contraseñaIngresada;
 
@@ -74,7 +73,6 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
                         this.Hide();
                         MenuPersonal menuPersonal = new MenuPersonal(idDocenteLogin);
-                        //liquidarNegocio.LiquidarDocente(login.id); // Llamada al método de liquidación de docente
                         menuPersonal.ShowDialog();
                         break;
 

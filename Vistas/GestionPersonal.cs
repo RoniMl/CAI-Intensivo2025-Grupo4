@@ -41,20 +41,13 @@ namespace Vistas
             EliminarBtn.Click += EliminarBtn_Click;
 
             PersonalListView.SelectedIndexChanged += PersonalListView_SelectedIndexChanged;
-
-            // Inicialmente los botones Editar y Eliminar deshabilitados
+                        
             EditarBtn.Enabled = false;
-            EliminarBtn.Enabled = false;
-
-            // Cargar las materias en el ComboBox
-            //foreach (var nombre in negocio.Materias().Select(m => m.nombre))
-            //{
-            //    MateriasGroupCmb.Items.Add(nombre);
-            //}
+            EliminarBtn.Enabled = false;            
 
             CargarMaterias();
 
-            MateriasGroupCmb.SelectedIndex = -1; // Ninguna seleccionada inicialmente
+            MateriasGroupCmb.SelectedIndex = -1; 
             MateriasGroupCmb.SelectedIndexChanged += MateriasGroupCmb_SelectedIndexChanged;
 
 
@@ -113,20 +106,18 @@ namespace Vistas
 
             try
             {
-                // Llama a la capa negocio para obtener el docente por dni
                 var docente = negocio.BuscarDocentePorDni(dni);
 
-                // Limpia la lista antes de mostrar resultados
-                PersonalListView.Clear();
+                PersonalListView.Items.Clear();
 
-                // Configura las columnas (títulos)
-                PersonalListView.View = View.Details;
-                PersonalListView.Columns.Add("ID", 50);
-                PersonalListView.Columns.Add("Nombre", 150);
-                PersonalListView.Columns.Add("Apellido", 150);
-                PersonalListView.Columns.Add("DNI", 100);
-                PersonalListView.Columns.Add("CUIT", 110);
-                PersonalListView.Columns.Add("Tipo de docente", 180);
+                //// Configura las columnas (títulos)
+
+                //PersonalListView.Columns.Add("ID", 50);
+                //PersonalListView.Columns.Add("Nombre", 150);
+                //PersonalListView.Columns.Add("Apellido", 150);
+                //PersonalListView.Columns.Add("DNI", 100);
+                //PersonalListView.Columns.Add("CUIT", 110);
+                //PersonalListView.Columns.Add("Tipo de docente", 180);
 
                 if (docente != null)
                 {

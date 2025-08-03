@@ -25,8 +25,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         {
             InitializeComponent();
             this.alumno = alumnoLogueado;
-
-            // Asociaciones de eventos
+            
             Materia1Cmb.SelectedIndexChanged += Materia1Cmb_SelectedIndexChanged;
             Materia2Cmb.SelectedIndexChanged += Materia2Cmb_SelectedIndexChanged;
             Materia3Cmb.SelectedIndexChanged += Materia3Cmb_SelectedIndexChanged;
@@ -80,8 +79,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                         materiasHabilitadas.Add(materia);
                 }
             }
-
-            // Cargar nombres al combo
+            
             Materia1Cmb.Items.Clear();
             Materia2Cmb.Items.Clear();
             Materia3Cmb.Items.Clear();
@@ -244,7 +242,6 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
             }
             catch (Exception ex)
             {
-                // Mostrar mensaje amigable en caso de error (p. ej. falla conexión, error servidor, etc)
                 MessageBox.Show($"Error al inscribir materias: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 

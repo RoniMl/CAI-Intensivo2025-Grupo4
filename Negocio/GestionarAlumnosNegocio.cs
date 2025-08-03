@@ -22,13 +22,7 @@ namespace Negocio
         public Alumno BuscarAlumnoPorId(int id)
         {
             return alumnoPersistencia.BuscarAlumnoPorId(id);
-        }
-
-        //esta de mas?
-        //public List<Alumno> BuscarAlumnos()
-        //{
-        //    return alumnoPersistencia.buscarAlumnos();
-        //}
+        }        
 
         public bool CrearAlumno(Alumno alumno)
         {

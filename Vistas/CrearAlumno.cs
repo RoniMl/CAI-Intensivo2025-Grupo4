@@ -44,7 +44,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 return;
             }
 
-            // Validación: nombre y apellido solo letras
+            // Validación nombre y apellido solo letras
             var regexLetras = new Regex("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$");
             if (!regexLetras.IsMatch(NombreTxb.Text.Trim()))
             {
@@ -82,13 +82,11 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
             try
             {
-                string previewCrear = "{\n" +
-    $"  \"nombre\": \"{alumno.nombre}\",\n" +
-    $"  \"apellido\": \"{alumno.apellido}\",\n" +
-    $"  \"dni\": \"{alumno.dni}\",\n" +
-    $"  \"carrerasIds\": [{string.Join(", ", alumno.carrerasIds)}]\n" +
-    "}";
+                string previewCrear = "{\n" + $"  \"nombre\": \"{alumno.nombre}\",\n" + $"  \"apellido\": \"{alumno.apellido}\",\n" +
+                $"  \"dni\": \"{alumno.dni}\",\n" + $"  \"carrerasIds\": [{string.Join(", ", alumno.carrerasIds)}]\n" +"}";
+                
                 MessageBox.Show(previewCrear, "Alumno a crear (preview)", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
                 bool creado = negocio.CrearAlumno(alumno);
                 if (creado)
                 {
