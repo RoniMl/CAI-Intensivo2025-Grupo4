@@ -49,9 +49,9 @@ namespace Negocio
                     if (promedio >= 8 && promedio < 9)
                         cumLaude++;
                     else if (promedio >= 9 && promedio < 10)
-                        summaCumLaude++;
-                    else if (promedio == 10)
                         magnumSummaCumLaude++;
+                    else if (promedio == 10)
+                        summaCumLaude++;
                 }
 
                 var materiaReporte = new MateriaReporte
