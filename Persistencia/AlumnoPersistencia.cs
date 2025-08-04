@@ -163,13 +163,13 @@ namespace Persistencia
         public bool CrearAlumno(Alumno alumno)
         {
             var json = JsonSerializer.Serialize(alumno);
-            HttpResponseMessage response = WebHelper.Post("tpIntensivo/alumnos", json);
+            HttpResponseMessage response = WebHelper.Post("tpIntensivo/alumno", json);
             return response.IsSuccessStatusCode;
         }
         public bool EditarAlumno(Alumno alumno)
         {
             var json = JsonSerializer.Serialize(alumno);
-            HttpResponseMessage response = WebHelper.Put($"tpIntensivo/alumnos/{alumno.id}", json);
+            HttpResponseMessage response = WebHelper.Put($"tpIntensivo/alumno/{alumno.id}", json);
             return response.IsSuccessStatusCode;
         }
         public bool EliminarAlumno(int id)
