@@ -42,19 +42,18 @@
             // GenerarReporteLbl
             // 
             GenerarReporteLbl.AutoSize = true;
-            GenerarReporteLbl.Location = new Point(46, 27);
+            GenerarReporteLbl.Location = new Point(40, 20);
             GenerarReporteLbl.Name = "GenerarReporteLbl";
-            GenerarReporteLbl.Size = new Size(168, 20);
+            GenerarReporteLbl.Size = new Size(150, 17);
             GenerarReporteLbl.TabIndex = 1;
             GenerarReporteLbl.Text = "Generacion de Reportes";
             // 
             // reporteListView
             // 
             reporteListView.Columns.AddRange(new ColumnHeader[] { carreraListView, cumLaudeListview, magnaCumLaudeListView, summaCumLaudeListView, totalListView });
-            reporteListView.Location = new Point(46, 53);
-            reporteListView.Margin = new Padding(3, 4, 3, 4);
+            reporteListView.Location = new Point(40, 40);
             reporteListView.Name = "reporteListView";
-            reporteListView.Size = new Size(860, 268);
+            reporteListView.Size = new Size(753, 202);
             reporteListView.TabIndex = 2;
             reporteListView.UseCompatibleStateImageBehavior = false;
             reporteListView.View = View.Details;
@@ -86,10 +85,9 @@
             // 
             // generarBtn
             // 
-            generarBtn.Location = new Point(749, 331);
-            generarBtn.Margin = new Padding(3, 4, 3, 4);
+            generarBtn.Location = new Point(655, 248);
             generarBtn.Name = "generarBtn";
-            generarBtn.Size = new Size(158, 40);
+            generarBtn.Size = new Size(138, 30);
             generarBtn.TabIndex = 3;
             generarBtn.Text = "Generar reportes";
             generarBtn.UseVisualStyleBackColor = true;
@@ -97,9 +95,10 @@
             // 
             // Atrasbtn
             // 
-            Atrasbtn.Location = new Point(46, 331);
+            Atrasbtn.Location = new Point(40, 248);
+            Atrasbtn.Margin = new Padding(3, 2, 3, 2);
             Atrasbtn.Name = "Atrasbtn";
-            Atrasbtn.Size = new Size(111, 38);
+            Atrasbtn.Size = new Size(97, 28);
             Atrasbtn.TabIndex = 4;
             Atrasbtn.Text = "Atrás";
             Atrasbtn.UseVisualStyleBackColor = true;
@@ -107,14 +106,13 @@
             // 
             // GenerarReportes
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(943, 425);
+            ClientSize = new Size(825, 319);
             Controls.Add(Atrasbtn);
             Controls.Add(generarBtn);
             Controls.Add(reporteListView);
             Controls.Add(GenerarReporteLbl);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "GenerarReportes";
             Text = "Generar Reportes";
             Load += GenerarReportes_Load;
