@@ -98,13 +98,19 @@ namespace Negocio
 
             //return habilitadas;
         
-        public double calcularRanking(int idAlumno)
+        public Ranking calcularRanking(int idAlumno, string nombreCarrera)
         {
+
             int valorFaltante = 0;
             double? notasTotal = 0;
 
             List<Alumno> alumnos = alumnoPersistencia.buscarAlumnos();
             Alumno alumno = new Alumno();
+            Ranking ranking = new Ranking();
+            List<CarreraResponse> carreras = carreraPersistencia.buscarCarrera();
+            List<Materia> materias = materiaPersistencia.buscarMateriasPorCarrera(carreras.FirstOrDefault(c => c.nombre == nombreCarrera).id);
+
+
 
             foreach (Alumno a in alumnos)
             {
@@ -121,9 +127,43 @@ namespace Negocio
             var materiasFaltantes = alumnoPersistencia.ObtenerMateriasNoAprobadas(alumno.id);
 
             // Corregir los contadores
-            int cantidadMatsAprob = materiasAprobadas.Count;
-            int cantidadMatsAprobOFin = materiasAprobadasOFinal.Count;
-            int cantidadMatsNoAprob = materiasFaltantes.Count;
+            int cantidadMatsAprob = 0;
+            int cantidadMatsAprobOFin = 0;
+            int cantidadMatsNoAprob = 0;
+
+            foreach (var materia in materiasAprobadas)
+            {
+                foreach (var m in materias)
+                {
+                    if (m.id == materia.id)
+                    {
+                        cantidadMatsAprob++;
+                    }
+                }
+            }
+
+            foreach (var materia in materiasFaltantes)
+            {
+                foreach (var m in materias)
+                {
+                    if (m.id == materia.id)
+                    {
+                        cantidadMatsNoAprob++;
+                    }
+                }
+            }
+
+            foreach (var materia in materiasAprobadasOFinal)
+            {
+                foreach (var m in materias)
+                {
+                    if (m.id == materia.id)
+                    {
+                        cantidadMatsAprobOFin++;
+                    }
+                }
+            }   
+
 
             // Detectar materias desaprobadas
             var materiasDesaprobadas = materiasFaltantes
@@ -161,10 +201,14 @@ namespace Negocio
                 ? (double)(notasTotal / totalMateriasParaPromedio)
                 : 0;
 
-            double ranking = cantidadMatsAprobOFin * 100
+            double ran = cantidadMatsAprobOFin * 100
                         + cantidadMatsAprob * 3
                         + valorFaltante
                         + promedio * 3;
+
+            ranking.carrera = nombreCarrera;
+            ranking.numero = ran;
+
 
             return ranking;
         }

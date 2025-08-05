@@ -16,6 +16,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
     {
         public Alumno alumno;           
         private InscripcionMateriasModelo modelo = new InscripcionMateriasModelo();
+
         private List<Materia> materiasHabilitadas = new List<Materia>();
         private List<CursoResumenDTO> cursos1 = new();
         private List<CursoResumenDTO> cursos2 = new();
@@ -59,10 +60,22 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
             CargarMateriasHabilitadas();
 
-            double ranking = modelo.calcularRanking(alumno.id);
-            rankingListView.Items.Clear();
-            ListViewItem item = new ListViewItem(ranking.ToString("0.##"));
-            rankingListView.Items.Add(item);
+            foreach (int carreraId in alumno.carrerasIds)
+            {
+                CarreraResponse carreraEncontrada = modelo.ObtenerCarreras().FirstOrDefault(c => c.id == carreraId);
+
+                if (carreraEncontrada != null)
+                {
+                    string nombreCarrera = carreraEncontrada.nombre;
+                    Ranking ranking = modelo.calcularRanking(alumno.id, nombreCarrera);
+
+                    ListViewItem item = new ListViewItem(ranking.carrera); // Columna 1: nombre carrera
+                    item.SubItems.Add(ranking.numero.ToString("F2"));     // Columna 2: ranking con 2 decimales
+
+                    rankingListView.Items.Add(item); // Agregar fila al ListView
+                }
+            }
+
 
             Curso1Cmb.Enabled = false;
             Curso2Cmb.Enabled = false;
