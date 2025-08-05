@@ -33,14 +33,32 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
 
         private void Ingresar_Click(object sender, EventArgs e)
         {
-            contraseñaIngresada = ContraseñaTextBox.Text;
-            usuarioIngresado = UsuarioTextBox.Text;
+            contraseñaIngresada = ContraseñaTextBox.Text.Trim();
+            usuarioIngresado = UsuarioTextBox.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(usuarioIngresado) || string.IsNullOrWhiteSpace(contraseñaIngresada))
             {
                 MessageBox.Show("Por favor, complete todos los campos.", "Error");
                 return;
             }
+
+            //VALIDACION DE USUARIO Y CONTRASEÑA DE 8 DIGITOS CON LETRAS Y NUMEROS  (DESCOMENTAR PARA ENTREGAR)
+
+            //if (usuarioIngresado.Length != 8 || !usuarioIngresado.All(char.IsLetterOrDigit))
+            //{
+            //    MessageBox.Show("El nombre de usuario debe tener exactamente 8 caracteres, compuestos por letras y números.", "Error de validación");
+            //    return;
+            //}
+
+            //// Validación de contraseña: mínimo 8 caracteres, al menos una letra y un número
+            //bool contieneLetra = contraseñaIngresada.Any(char.IsLetter);
+            //bool contieneNumero = contraseñaIngresada.Any(char.IsDigit);
+
+            //if (contraseñaIngresada.Length < 8 || !contieneLetra || !contieneNumero)
+            //{
+            //    MessageBox.Show("La contraseña debe tener al menos 8 caracteres y contener tanto letras como números.", "Error de validación");
+            //    return;
+            //}
 
             InicioSesionModelo loginNegocio = new InicioSesionModelo();
             LoginResponse login = loginNegocio.Login(usuarioIngresado, contraseñaIngresada);

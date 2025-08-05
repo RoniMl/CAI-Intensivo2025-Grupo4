@@ -25,7 +25,7 @@ namespace Persistencia
                 var contentStream = response.Content.ReadAsStringAsync().Result;
                 var alumnos = JsonSerializer.Deserialize<List<Alumno>>(contentStream);
 
-                alumnoEncontradoDni = alumnos.Find(a => a.dni.Trim() == dni.Trim());
+                alumnoEncontradoDni = alumnos.Find(a => !string.IsNullOrWhiteSpace(a.dni) && a.dni.Trim() == dni.Trim());
                 return alumnoEncontradoDni;
             }
             else

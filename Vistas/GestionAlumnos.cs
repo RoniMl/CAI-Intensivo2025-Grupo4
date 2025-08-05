@@ -230,6 +230,8 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 {
                     MessageBox.Show("Alumno eliminado correctamente.");
 
+                    AlumnosListView.Items.Remove(item);
+
                     BuscarDniTxb.Text = "";
                     
                     LimpiarCampos();
