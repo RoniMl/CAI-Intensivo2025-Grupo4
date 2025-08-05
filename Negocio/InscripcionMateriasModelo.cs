@@ -28,6 +28,7 @@ namespace Negocio
         {
             return carreraPersistencia.buscarCarrera();
         }
+       
         public List<Materia> ObtenerMateriasPorCarrera(int carreraId)
         {
             return materiaPersistencia.buscarMateriasPorCarrera(carreraId);

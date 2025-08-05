@@ -48,6 +48,8 @@
             Inscripcion3Grp = new GroupBox();
             Inscripcion1Grp = new GroupBox();
             Inscripcion2Grp = new GroupBox();
+            CarreraLbl = new Label();
+            CarreraCmb = new ComboBox();
             Inscripcion3Grp.SuspendLayout();
             Inscripcion1Grp.SuspendLayout();
             Inscripcion2Grp.SuspendLayout();
@@ -243,11 +245,31 @@
             Inscripcion2Grp.TabStop = false;
             Inscripcion2Grp.Text = "2";
             // 
+            // CarreraLbl
+            // 
+            CarreraLbl.AutoSize = true;
+            CarreraLbl.Location = new Point(140, 16);
+            CarreraLbl.Name = "CarreraLbl";
+            CarreraLbl.Size = new Size(57, 20);
+            CarreraLbl.TabIndex = 20;
+            CarreraLbl.Text = "Carrera";
+            // 
+            // CarreraCmb
+            // 
+            CarreraCmb.FormattingEnabled = true;
+            CarreraCmb.Location = new Point(140, 44);
+            CarreraCmb.Name = "CarreraCmb";
+            CarreraCmb.Size = new Size(159, 28);
+            CarreraCmb.TabIndex = 21;
+            CarreraCmb.SelectedIndexChanged += InscripcionMaterias_Load;
+            // 
             // InscripcionMaterias
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(823, 658);
+            Controls.Add(CarreraCmb);
+            Controls.Add(CarreraLbl);
             Controls.Add(Inscripcion2Grp);
             Controls.Add(Inscripcion1Grp);
             Controls.Add(Inscripcion3Grp);
@@ -258,7 +280,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "InscripcionMaterias";
             Text = "Inscripción a materias";
-            this.Load += new System.EventHandler(this.InscripcionMaterias_Load);
+            Load += InscripcionMaterias_Load;
             Inscripcion3Grp.ResumeLayout(false);
             Inscripcion3Grp.PerformLayout();
             Inscripcion1Grp.ResumeLayout(false);
@@ -291,5 +313,7 @@
         private GroupBox Inscripcion3Grp;
         private GroupBox Inscripcion1Grp;
         private GroupBox Inscripcion2Grp;
+        private Label CarreraLbl;
+        private ComboBox CarreraCmb;
     }
 }

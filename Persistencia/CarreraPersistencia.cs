@@ -31,10 +31,19 @@ namespace Persistencia
             }
 
         }
-        public CarreraResponse ObtenerCarreraPorId(int id)
+        public List<CarreraResponse> ObtenerCarrerasDelAlumno(Alumno alumno)
         {
             var carreras = buscarCarrera(); // trae todas las carreras desde la API
-            return carreras.FirstOrDefault(c => c.id == id);
+            List<CarreraResponse> carrerasAlumno = new List<CarreraResponse>();
+            foreach (var carrera in carreras)
+            {
+                if (alumno.carrerasIds.Contains(carrera.id))
+                {
+                    carrerasAlumno.Add(carrera);
+                }
+            }
+
+            return carrerasAlumno;
         }
 
     }
