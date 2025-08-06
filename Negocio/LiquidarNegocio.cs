@@ -41,7 +41,7 @@ namespace Negocio
                 foreach (var carrera in carreras)
                 {
                     var materias = materiaPersistencia.buscarMateriasPorCarrera(carrera.id);
-                    if (materias == null) continue;
+                   // if (materias == null) continue;
 
                     foreach (var materia in materias)
                     {
@@ -52,7 +52,13 @@ namespace Negocio
                         {
                             if (curso.idDocentes != null && curso.idDocentes.Contains(docente.id))
                             {
-                                horasTotales += materia.horasSemanales * 4;
+                                if (materia.horasSemanales == 2)
+                                {
+                                    horasTotales += materia.horasSemanales * 4 * curso.horarios.Count(); 
+                                } else
+                                {
+                                    horasTotales += materia.horasSemanales * 4 ;
+                                }
                             }
                         }
                     }
