@@ -38,25 +38,7 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
         }
         private void InscripcionMaterias_Load(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    var carreras = modelo.ObtenerCarreras() ?? new List<CarreraResponse>();
-            //    var carrerasDelAlumno = carreras.Where(c => alumno.carrerasIds != null && alumno.carrerasIds.Contains(c.id)).ToList();
-
-            //    CarreraCmb.Items.Clear();
-
-            //    foreach (var carrera in carrerasDelAlumno)
-            //    {
-            //        CarreraCmb.Items.Add(carrera.nombre);
-            //    }
-
-            //    if (CarreraCmb.Items.Count > 0)
-            //        CarreraCmb.SelectedIndex = 0;
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error cargando carreras: " + ex.Message);
-            //}
+            
 
             CargarMateriasHabilitadas();
 

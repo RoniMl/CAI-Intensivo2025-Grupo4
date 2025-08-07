@@ -35,11 +35,13 @@ namespace Negocio
                 foreach (var alumno in alumnosDeLaCarrera)
                 {
                     var matsNoAprobadas = alumnoPersistencia.ObtenerMateriasNoAprobadas(alumno.id);
+                    var matsAprobadas = alumnoPersistencia.ObtenerMateriasAprobadas(alumno.id);
+
                     if (matsNoAprobadas.Count > 0)
                         continue; // no es egresado
 
-                    var matsAprobadas = alumnoPersistencia.ObtenerMateriasAprobadas(alumno.id);
-                    
+                    if (matsAprobadas.Count == 0 || matsAprobadas == null)
+                        continue; 
 
                     totalEgresados++;
 

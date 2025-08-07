@@ -34,7 +34,6 @@
             Materia2Cmb = new ComboBox();
             AtrasInscMatBtn = new Button();
             EnviarBtn = new Button();
-            RankingLbl = new Label();
             Materia3Lbl = new Label();
             Materia3Cmb = new ComboBox();
             rankingListView = new ListView();
@@ -49,8 +48,6 @@
             Inscripcion3Grp = new GroupBox();
             Inscripcion1Grp = new GroupBox();
             Inscripcion2Grp = new GroupBox();
-            CarreraLbl = new Label();
-            CarreraCmb = new ComboBox();
             Inscripcion3Grp.SuspendLayout();
             Inscripcion1Grp.SuspendLayout();
             Inscripcion2Grp.SuspendLayout();
@@ -114,14 +111,6 @@
             EnviarBtn.UseVisualStyleBackColor = true;
             EnviarBtn.Click += EnviarBtn_Click;
             // 
-            // RankingLbl
-            // 
-            RankingLbl.AutoSize = true;
-            RankingLbl.Location = new Point(256, 16);
-            RankingLbl.Name = "RankingLbl";
-            RankingLbl.Size = new Size(0, 17);
-            RankingLbl.TabIndex = 8;
-            // 
             // Materia3Lbl
             // 
             Materia3Lbl.AutoSize = true;
@@ -143,7 +132,7 @@
             // rankingListView
             // 
             rankingListView.Columns.AddRange(new ColumnHeader[] { carrera, rankingList });
-            rankingListView.Location = new Point(328, 8);
+            rankingListView.Location = new Point(178, 11);
             rankingListView.Margin = new Padding(2);
             rankingListView.Name = "rankingListView";
             rankingListView.Size = new Size(339, 82);
@@ -260,37 +249,15 @@
             Inscripcion2Grp.TabStop = false;
             Inscripcion2Grp.Text = "2";
             // 
-            // CarreraLbl
-            // 
-            CarreraLbl.AutoSize = true;
-            CarreraLbl.Location = new Point(122, 12);
-            CarreraLbl.Name = "CarreraLbl";
-            CarreraLbl.Size = new Size(52, 17);
-            CarreraLbl.TabIndex = 20;
-            CarreraLbl.Text = "Carrera";
-            // 
-            // CarreraCmb
-            // 
-            CarreraCmb.FormattingEnabled = true;
-            CarreraCmb.Location = new Point(122, 33);
-            CarreraCmb.Margin = new Padding(3, 2, 3, 2);
-            CarreraCmb.Name = "CarreraCmb";
-            CarreraCmb.Size = new Size(140, 23);
-            CarreraCmb.TabIndex = 21;
-            CarreraCmb.SelectedIndexChanged += InscripcionMaterias_Load;
-            // 
             // InscripcionMaterias
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(720, 497);
-            Controls.Add(CarreraCmb);
-            Controls.Add(CarreraLbl);
             Controls.Add(Inscripcion2Grp);
             Controls.Add(Inscripcion1Grp);
             Controls.Add(Inscripcion3Grp);
             Controls.Add(rankingListView);
-            Controls.Add(RankingLbl);
             Controls.Add(EnviarBtn);
             Controls.Add(AtrasInscMatBtn);
             Margin = new Padding(3, 2, 3, 2);
@@ -304,7 +271,6 @@
             Inscripcion2Grp.ResumeLayout(false);
             Inscripcion2Grp.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -315,7 +281,6 @@
         private ComboBox Materia2Cmb;
         private Button AtrasInscMatBtn;
         private Button EnviarBtn;
-        private Label RankingLbl;
         private Label Materia3Lbl;
         private ComboBox Materia3Cmb;
         private ListView rankingListView;
@@ -329,8 +294,6 @@
         private GroupBox Inscripcion3Grp;
         private GroupBox Inscripcion1Grp;
         private GroupBox Inscripcion2Grp;
-        private Label CarreraLbl;
-        private ComboBox CarreraCmb;
         private ColumnHeader carrera;
     }
 }

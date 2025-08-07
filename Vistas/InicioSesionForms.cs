@@ -42,23 +42,29 @@ namespace CAI_Intensivo2025_Grupo4.Vistas
                 return;
             }
 
-            //VALIDACION DE USUARIO Y CONTRASEÑA DE 8 DIGITOS CON LETRAS Y NUMEROS  (DESCOMENTAR PARA ENTREGAR)
+            // ESTO LO PUSIMOS PARA LA BASE DE DATOS QUE PIDE LA CONSIGNA. DURANTE EL DESARROLLO LO QUITAMOS YA QUE LA BASE "DUMMIE" NO CUMPLE CON ESE REQUISITO
 
-            //if (usuarioIngresado.Length != 8 || !usuarioIngresado.All(char.IsLetterOrDigit))
-            //{
-            //    MessageBox.Show("El nombre de usuario debe tener exactamente 8 caracteres, compuestos por letras y números.", "Error de validación");
-            //    return;
-            //}
 
-            //// Validación de contraseña: mínimo 8 caracteres, al menos una letra y un número
-            //bool contieneLetra = contraseñaIngresada.Any(char.IsLetter);
-            //bool contieneNumero = contraseñaIngresada.Any(char.IsDigit);
+            //VALIDACION DE USUARIO Y CONTRASEÑA DE 8 DIGITOS CON LETRAS Y NUMEROS 
+            if (usuarioIngresado.Length != 8 || !usuarioIngresado.All(char.IsLetterOrDigit))
+            {
+                MessageBox.Show("El nombre de usuario debe tener exactamente 8 caracteres, compuestos por letras y números.", "Error de validación");
+                return;
+            }
 
-            //if (contraseñaIngresada.Length < 8 || !contieneLetra || !contieneNumero)
-            //{
-            //    MessageBox.Show("La contraseña debe tener al menos 8 caracteres y contener tanto letras como números.", "Error de validación");
-            //    return;
-            //}
+            // Validación de contraseña: mínimo 8 caracteres, al menos una letra y un número
+            bool contieneLetra = contraseñaIngresada.Any(char.IsLetter);
+            bool contieneNumero = contraseñaIngresada.Any(char.IsDigit);
+
+            if (contraseñaIngresada.Length < 8 || !contieneLetra || !contieneNumero)
+            {
+                MessageBox.Show("La contraseña debe tener al menos 8 caracteres y contener tanto letras como números.", "Error de validación");
+                return;
+            }
+
+
+            // HASTA ACA. 
+
 
             InicioSesionModelo loginNegocio = new InicioSesionModelo();
             LoginResponse login = loginNegocio.Login(usuarioIngresado, contraseñaIngresada);
